@@ -1,0 +1,29 @@
+body {
+	background-color: rgb(50,150,200);
+}
+
+div {
+	background-color: gray;
+}
+
+div.hello {
+	width: 100%;
+	background-color: white;
+}
+
+li {
+	color: red;
+}
+
+a#jsTest:link, a#jsTest:visited{
+	background-color: lightblue;
+	color: white;
+	padding: 15px 25px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+}
+
+a#jsTest:hover, a#jsTest:active{
+	background-color: blue;
+}
