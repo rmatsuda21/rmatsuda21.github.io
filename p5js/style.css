@@ -1,0 +1,19 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+canvas {
+  display: block;
+}
+a#jsTest:link, a#jsTest:visited{
+	background-color: lightblue;
+	color: white;
+	padding: 8px 15px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+}
+
+a#jsTest:hover, a#jsTest:active{
+	background-color: blue;
+}
