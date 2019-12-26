@@ -14,7 +14,7 @@
 }
 
 *{
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'MontserratLight', normal;
     margin: 0;
     padding: 0;
 }
@@ -45,7 +45,8 @@ div.navbar{
     width:100%;
 }
 
-div.navbar a.logo{
+div.navbar span.logo{
+    font-family: 'MontserratBlack', bolder;
     display: inline-block;
     /* color: #2e9cca; */
     color: var(--main-text-color);
@@ -58,7 +59,7 @@ div.navbar a.logo{
     cursor: default;
 }
 
-div.navbar a.logo:hover{
+div.navbar span.logo:hover{
     color: var(--logo-hover-color);
 }
 
@@ -143,7 +144,8 @@ div.mainContent .home p{
 }
 
 div.mainContent h2{
-    font-size: 4rem;
+    font-family: 'MontserratBlack';
+    font-size: 5rem;
     width: 100%;
     text-align: center;
     margin:auto;
@@ -154,7 +156,7 @@ div.mainContent h2::before, div.mainContent h2::after{
     content: "";
     display: inline-block;
     width: 4px;
-    height: 1.5rem;
+    height: 2rem;
     margin: 0rem 1rem .5rem 1rem;
     background-color: var(--nav-link-hover-color);
 
@@ -162,7 +164,7 @@ div.mainContent h2::before, div.mainContent h2::after{
 }
 
 div.mainContent h2:hover::before, div.mainContent h2:hover::after{
-    height: 2.5rem;
+    height: 3rem;
     margin: 0rem 1rem 0rem 1rem;
 }
 div.mainContent p{
@@ -242,6 +244,7 @@ div.mainContent p{
 
 .card .card-body p{
     margin: .5rem .5rem .5rem .5rem;
+    font-size: 1.25em;
     width: 90%;
     height: 15rem;
     overflow:auto;

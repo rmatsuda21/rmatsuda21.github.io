@@ -2,7 +2,15 @@
 <html>
 <head>
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Courier+Prime|Ubuntu&display=swap" rel="stylesheet">
+    <style>
+        @font-face{ font-family: 'Ubuntu'; font-weight: normal; src: url('../fonts/Ubuntu/Ubuntu-Light.ttf')}
+        @font-face{ font-family: 'Courier Prime'; font-weight: normal; src: url('../fonts/Courier_Prime/CourierPrime-Regular.ttf')}
+        @font-face{ font-family: 'MontserratBold'; font-weight: bold; src: url('../fonts/Montserrat/Montserrat-ExtraBold.ttf')}
+        @font-face{ font-family: 'MontserratLight'; font-weight: normal; src: url('../fonts/Montserrat/Montserrat-Light.ttf')}
+        @font-face{ font-family: 'MontserratBlack'; font-weight: bolder; src: url('../fonts/Montserrat/Montserrat-Black.ttf')}
+    </style>
+    
+    <!-- <<link href="https://fonts.googleapis.com/css?family=Courier+Prime|Ubuntu&display=swap" rel="stylesheet">> -->
 
     <!-- Stylesheet -->
     <link rel="stylesheet" type="text/css" href="css/styles.css">
@@ -20,7 +28,7 @@
 
 <body>
     <div class="navbar noselect">
-        <a class="logo" onclick="darkModeToggle()">R-Page</a>
+        <span class="logo" onclick="darkModeToggle()" >R-Page</span>
         <ul class="nav-links">
             <button class="nav-link active" ><a href="#home">Home</a></button>
             <button class="nav-link" href="index.html#about"><a href="#about">About</a></button>
@@ -37,14 +45,14 @@
         <div class="between"></div>
 
         <div class="about subPage" id="about">
-            <h2>About</h2>
+            <h2 class="noselect">About</h2>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident dolor modi quis corrupti nesciunt vel sunt ipsa earum tempore adipisci, neque expedita, quos animi quisquam! Perspiciatis asperiores nesciunt quae quasi enim iusto facilis, at, eveniet recusandae et sapiente officia cum accusantium quaerat magnam nam totam accusamus aliquid minus iure. Est.</p>
         </div>
 
         <div class="between"></div>
 
         <div class="projects subPage" id="projects">
-            <h2>Projects</h2>
+            <h2 class="noselect">Projects</h2>
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magni quod autem quia ut illum aut dolores molestias nisi consectetur ab? Vitae consequuntur hic eos, explicabo enim aperiam quaerat magni molestias, suscipit dolorem temporibus! Illo voluptate ratione eligendi pariatur, cumque officia?</p>
 
             <div class="languages">
@@ -68,55 +76,55 @@
 
             <div class="projectCards">
                 <div class="card js">
-                    <img class="card-img" src="https://via.placeholder.com/150">
+                    <img class="card-img" src="https://via.placeholder.com/450">
                     <div class="card-body">
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, corrupti. Eius ad sint quos facere, quidem perferendis officia magni quasi qui, iste recusandae dolore sed veritatis atque natus, ipsam saepe magnam in deserunt quaerat libero? Sequi quae dolorem hic in distinctio illo. Labore, itaque necessitatibus temporibus tempore sit recusandae nisi, alias deleniti dignissimos ad, culpa error maiores quam suscipit inventore explicabo. Architecto, a accusantium. Maiores, deserunt quasi tenetur beatae, veniam perspiciatis, expedita magnam laudantium eius inventore modi perferendis ea provident.</p>
                     </div>
                 </div>
                 <div class="card js">
-                    <img class="card-img" src="https://via.placeholder.com/150">
+                    <img class="card-img" src="https://via.placeholder.com/450">
                     <div class="card-body">
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum deleniti ratione, ad fuga rem sint. Repudiandae libero corrupti ea soluta consequuntur sequi ipsam voluptas aut?</p>
                     </div>
                 </div>
                 <div class="card js">
-                    <img class="card-img" src="https://via.placeholder.com/150">
+                    <img class="card-img" src="https://via.placeholder.com/450">
                     <div class="card-body">
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum deleniti ratione, ad fuga rem sint. Repudiandae libero corrupti ea soluta consequuntur sequi ipsam voluptas aut?</p>
                     </div>
                 </div>
                 <div class="card js">
-                    <img class="card-img" src="https://via.placeholder.com/150">
+                    <img class="card-img" src="https://via.placeholder.com/450">
                     <div class="card-body">
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum deleniti ratione, ad fuga rem sint. Repudiandae libero corrupti ea soluta consequuntur sequi ipsam voluptas aut?</p>
                     </div>
                 </div>
                 <div class="card js">
-                    <img class="card-img" src="https://via.placeholder.com/150">
+                    <img class="card-img" src="https://via.placeholder.com/450">
                     <div class="card-body">
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum deleniti ratione, ad fuga rem sint. Repudiandae libero corrupti ea soluta consequuntur sequi ipsam voluptas aut?</p>
                     </div>
                 </div>
                 <div class="card js">
-                    <img class="card-img" src="https://via.placeholder.com/150">
+                    <img class="card-img" src="https://via.placeholder.com/450">
                     <div class="card-body">
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum deleniti ratione, ad fuga rem sint. Repudiandae libero corrupti ea soluta consequuntur sequi ipsam voluptas aut?</p>
                     </div>
                 </div>
                 <div class="card java">
-                    <img class="card-img" src="https://via.placeholder.com/150">
+                    <img class="card-img" src="https://via.placeholder.com/450">
                     <div class="card-body">
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum deleniti ratione, ad fuga rem sint. Repudiandae libero corrupti ea soluta consequuntur sequi ipsam voluptas aut?</p>
                     </div>
                 </div>
                 <div class="card python">
-                    <img class="card-img" src="https://via.placeholder.com/150">
+                    <img class="card-img" src="https://via.placeholder.com/450">
                     <div class="card-body">
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum deleniti ratione, ad fuga rem sint. Repudiandae libero corrupti ea soluta consequuntur sequi ipsam voluptas aut?</p>
                     </div>
                 </div>
                 <div class="card unity">
-                    <img class="card-img" src="https://via.placeholder.com/150">
+                    <img class="card-img" src="https://via.placeholder.com/450">
                     <div class="card-body">
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum deleniti ratione, ad fuga rem sint. Repudiandae libero corrupti ea soluta consequuntur sequi ipsam voluptas aut?</p>
                     </div>
