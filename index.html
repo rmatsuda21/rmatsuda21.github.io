@@ -1,41 +1,128 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	<title>R-Page</title>
-	<meta charset="UTF-8"> <meta name="description" content="Reo Matsuda's personal portfolio. Will update as I learn HTML and CSS."> <meta name="author" content="Reo Matsuda">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Courier+Prime|Ubuntu&display=swap" rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <script src="https://kit.fontawesome.com/60e6ba57b1.js" crossorigin="anonymous"></script>
+
+    <!-- Script -->
+    <script type="text/javascript" src="js/script.js" defer></script>
+
+    <!-- Setup -->
+    <title>R-Page</title>
+	<meta charset="UTF-8"> 
+	<meta name="description" content="Reo Matsuda's personal portfolio. Will update as I learn HTML & CSS."> 
+	<meta name="author" content="Reo Matsuda">
 </head>
+
 <body>
-	<h1>Welcome to the R-Page</h1>
+    <div class="navbar noselect">
+        <a class="logo" onclick="darkModeToggle()">R-Page</a>
+        <ul class="nav-links">
+            <button class="nav-link active" ><a href="#home">Home</a></button>
+            <button class="nav-link" href="index.html#about"><a href="#about">About</a></button>
+            <button class="nav-link" href="index.html#projects"><a href="#projects">Projects</a></button>
+        </ul>
+    </div>
 
-	<p>Welcome to <em>my</em> brand new website. This site will be my <strong>new<strong> home on the web.</p>
-	<p><a href="test.html">Test Page</a></p>
+    <div class="mainContent">
+        <div class="home subPage" id="home">
+            <h1 id="title"></h1>
+            <p id="titleSub"></p>
+        </div>
 
-	<a href="jsTest.html" id="jsTest">JavaScript Test Site</a>
-	<a href="recursiveWebsite.html" id="jsTest">Recursion Test Site</a>
+        <div class="between"></div>
 
-	<dl>
-	<dt>Item</dt>
-	<dd>The definition goes here</dd>
-	</dl>
+        <div class="about subPage" id="about">
+            <h2>About</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident dolor modi quis corrupti nesciunt vel sunt ipsa earum tempore adipisci, neque expedita, quos animi quisquam! Perspiciatis asperiores nesciunt quae quasi enim iusto facilis, at, eveniet recusandae et sapiente officia cum accusantium quaerat magnam nam totam accusamus aliquid minus iure. Est.</p>
+        </div>
 
-	<div>
-	<div class="hello">
-	<p>This website will have the following benefits for my business:</p> 
-	<ul> 
-		<li>Increased traffic </li> 
-		<li>Global Reach</li> 
-		<li>Promotional Opportunities</li> 
-	</ul>
-	</div>
-	<div>
-	<p>This website will have the following benefits for my business:</p> 
-	<ul> 
-		<li>Increased traffic </li> 
-		<li>Global Reach</li> 
-		<li>Promotional Opportunities</li> 
-	</ul>
-	</div>
-	</div>
+        <div class="between"></div>
+
+        <div class="projects subPage" id="projects">
+            <h2>Projects</h2>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magni quod autem quia ut illum aut dolores molestias nisi consectetur ab? Vitae consequuntur hic eos, explicabo enim aperiam quaerat magni molestias, suscipit dolorem temporibus! Illo voluptate ratione eligendi pariatur, cumque officia?</p>
+
+            <div class="languages">
+                <label class="container lang">
+                    <input class="js" type="checkbox" onclick="toggleProjects()">
+                    <i class="fab fa-js fa-4x"></i>
+                </label>
+                <label class="container lang">
+                    <input class="java" type="checkbox" onclick="toggleProjects()">
+                    <i class="fab fa-java fa-4x"></i>
+                </label>
+                <label class="container lang">
+                    <input class="python" type="checkbox" onclick="toggleProjects()">
+                    <i class="fab fa-python fa-4x"></i>
+                </label>
+                <label class="container lang">
+                    <input class="unity" type="checkbox" onclick="toggleProjects()">
+                    <i class="fab fa-unity fa-4x"></i>
+                </label>
+            </div>
+
+            <div class="projectCards">
+                <div class="card js">
+                    <img class="card-img" src="https://via.placeholder.com/150">
+                    <div class="card-body">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, corrupti. Eius ad sint quos facere, quidem perferendis officia magni quasi qui, iste recusandae dolore sed veritatis atque natus, ipsam saepe magnam in deserunt quaerat libero? Sequi quae dolorem hic in distinctio illo. Labore, itaque necessitatibus temporibus tempore sit recusandae nisi, alias deleniti dignissimos ad, culpa error maiores quam suscipit inventore explicabo. Architecto, a accusantium. Maiores, deserunt quasi tenetur beatae, veniam perspiciatis, expedita magnam laudantium eius inventore modi perferendis ea provident.</p>
+                    </div>
+                </div>
+                <div class="card js">
+                    <img class="card-img" src="https://via.placeholder.com/150">
+                    <div class="card-body">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum deleniti ratione, ad fuga rem sint. Repudiandae libero corrupti ea soluta consequuntur sequi ipsam voluptas aut?</p>
+                    </div>
+                </div>
+                <div class="card js">
+                    <img class="card-img" src="https://via.placeholder.com/150">
+                    <div class="card-body">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum deleniti ratione, ad fuga rem sint. Repudiandae libero corrupti ea soluta consequuntur sequi ipsam voluptas aut?</p>
+                    </div>
+                </div>
+                <div class="card js">
+                    <img class="card-img" src="https://via.placeholder.com/150">
+                    <div class="card-body">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum deleniti ratione, ad fuga rem sint. Repudiandae libero corrupti ea soluta consequuntur sequi ipsam voluptas aut?</p>
+                    </div>
+                </div>
+                <div class="card js">
+                    <img class="card-img" src="https://via.placeholder.com/150">
+                    <div class="card-body">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum deleniti ratione, ad fuga rem sint. Repudiandae libero corrupti ea soluta consequuntur sequi ipsam voluptas aut?</p>
+                    </div>
+                </div>
+                <div class="card js">
+                    <img class="card-img" src="https://via.placeholder.com/150">
+                    <div class="card-body">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum deleniti ratione, ad fuga rem sint. Repudiandae libero corrupti ea soluta consequuntur sequi ipsam voluptas aut?</p>
+                    </div>
+                </div>
+                <div class="card java">
+                    <img class="card-img" src="https://via.placeholder.com/150">
+                    <div class="card-body">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum deleniti ratione, ad fuga rem sint. Repudiandae libero corrupti ea soluta consequuntur sequi ipsam voluptas aut?</p>
+                    </div>
+                </div>
+                <div class="card python">
+                    <img class="card-img" src="https://via.placeholder.com/150">
+                    <div class="card-body">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum deleniti ratione, ad fuga rem sint. Repudiandae libero corrupti ea soluta consequuntur sequi ipsam voluptas aut?</p>
+                    </div>
+                </div>
+                <div class="card unity">
+                    <img class="card-img" src="https://via.placeholder.com/150">
+                    <div class="card-body">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum deleniti ratione, ad fuga rem sint. Repudiandae libero corrupti ea soluta consequuntur sequi ipsam voluptas aut?</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div >
 </body>
 </html>
