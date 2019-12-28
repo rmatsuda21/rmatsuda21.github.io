@@ -32,7 +32,7 @@
 body{
     /* background-color: #464866; */
     /* background-color: white; */
-    background-image: linear-gradient(to right,#777, var(--main-bg-color) 3% 97%, #777);
+    background-image: linear-gradient(to right,var(--between-main-color), var(--main-bg-color) 3% 97%, var(--between-main-color));
 }
 
 /* Begin Navbar */
@@ -267,7 +267,7 @@ div.mainContent p{
 .between::before ,.between::after{
     content: "";
     display: block;
-    margin: 0rem 0vw 0rem 46%;
+    margin: 0rem 0vw 0rem 39.9vw;
     width: 5vw;
     height: 1.5px;
     background-image: linear-gradient(to right,var(--main-bg-color), var(--between-topbot-color) 5% 95%, var(--main-bg-color));

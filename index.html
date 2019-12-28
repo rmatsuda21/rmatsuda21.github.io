@@ -9,14 +9,15 @@
         @font-face{ font-family: 'MontserratLight'; font-weight: normal; src: url('../fonts/Montserrat/Montserrat-Light.ttf')}
         @font-face{ font-family: 'MontserratBlack'; font-weight: bolder; src: url('../fonts/Montserrat/Montserrat-Black.ttf')}
     </style>
-    
-    <!-- <<link href="https://fonts.googleapis.com/css?family=Courier+Prime|Ubuntu&display=swap" rel="stylesheet">> -->
 
     <!-- Stylesheet -->
     <link rel="stylesheet" type="text/css" href="css/styles.css">
     <script src="https://kit.fontawesome.com/60e6ba57b1.js" crossorigin="anonymous"></script>
 
     <!-- Script -->
+    <script type="text/javascript" src="p5js/p5.js"></script>
+    <script type="text/javascript" src="p5js/p5.dom.min.js"></script>
+    <script type="text/javascript" src="p5js/tree.js"></script>
     <script type="text/javascript" src="js/script.js" defer></script>
 
     <!-- Setup -->
@@ -28,7 +29,7 @@
 
 <body>
     <div class="navbar noselect">
-        <span class="logo" onclick="darkModeToggle()" >R-Page</span>
+        <span class="logo" id="logo">R-Page</span>
         <ul class="nav-links">
             <button class="nav-link active" ><a href="#home">Home</a></button>
             <button class="nav-link" href="index.html#about"><a href="#about">About</a></button>

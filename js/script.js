@@ -31,6 +31,9 @@
 
 window.onload = wait(titleCall);
 
+var el = document.getElementById("logo");
+el.addEventListener("click", darkModeToggle, false);
+
 function typeWriter(msg, id, i, speed, _secondcall) {
   if (i < msg.length) {
     document.getElementById(id).innerHTML += msg.charAt(i);
@@ -63,9 +66,29 @@ var typer = function(el, msg, speed) {
 
 var dark = false;
 
+function initDark(){
+  var c = document.cookie;
+  if(c.substring(c.indexOf("=")+1) == "dark")
+    dark = false;
+  else
+    dark = true;
+  
+  darkModeToggle();
+}
+
 function darkModeToggle(){
-  var sheet = document.styleSheets;
   dark = !dark;
+  
+  //Write cookie to store darkmode option
+  if(dark)
+    document.cookie = "darkMode=dark";
+  else
+    document.cookie = "darkMode=light";
+
+  toggleDark();
+
+  var sheet = document.styleSheets;
+
   sheet[1].deleteRule(0);
   if(!dark)
     sheet[1].insertRule(":root{ --main-bg-color: #eee; --main-text-color: black; --logo-hover-color: #888;--nav-link-hover-color: #666;--between-topbot-color: #aaa;--between-main-color: #777;}",0);
