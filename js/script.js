@@ -1,34 +1,3 @@
-// //Get all navbar links
-// var navLinks = document.getElementsByClassName("nav-link")
-
-// // Loop through the buttons and add the active class to the current/clicked button
-// var i = 0;
-// for (i = 0; i < navLinks.length; i++) {
-//   navLinks[i].addEventListener("click", function() {
-//     var target = this.getAttribute("target");
-//     var current = document.getElementsByClassName("active");
-    
-//     var page = document.getElementsByClassName(target + " subPage");
-//     var currentPageName = current[0].getAttribute("target");
-//     var currentPage = document.getElementsByClassName(currentPageName + " subPage");
-
-//     current[0].className = current[0].className.replace(" active", "");
-//     this.className += " active";
-
-//     currentPage[0].style.opacity = 0;
-//     page[0].style.opacity = 1;
-//     currentPage[0].style.width = 0;
-//     console.log(vw(90));
-//     page[0].style.width = "90vw";
-//   });
-// }
-// function vw(v) {
-//   var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-//   return (v * w) / 100;
-// }
-//
-// ***Really Old Code***
-
 window.onload = wait(titleCall);
 
 var el = document.getElementById("logo");
