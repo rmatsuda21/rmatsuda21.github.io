@@ -10,8 +10,10 @@ let s=false;
 function setup(){
   background(0,0,0);
   createCanvas(windowWidth, windowHeight-30);
+  document.body.style.backgroundColor = color(0,0,0);
   let btn = createA("#","Reset");
   btn.id('jsTest');
+  btn.style('background-color', 'gray')
   //btn.style('height', 30);
   btn.mousePressed(reset);
   s = true;
@@ -33,6 +35,11 @@ function draw(){
     endDisp();
   else
     bubbleSort();
+}
+
+function windowResized(){
+  resizeCanvas(windowWidth, windowHeight-30);
+  strokeSize = int(width/size);
 }
 
 //Bar graph way to display array

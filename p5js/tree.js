@@ -56,7 +56,7 @@ function setup(){
   clear();
   tree(windowHeight/2.9, a);
   if(!animStart)
-  setTimeout(function(){animStart=true}, 1000);
+    setTimeout(function(){animStart=true}, 2000);
 }
 
 var animTime = 7;
@@ -70,29 +70,38 @@ function startAnim(){
 
 function draw(){
   if(animStart){
-    stroke(treeColor);
-    strokeWeight(5);
-    resetMatrix();
-    translate(width/2, height);
-    clear();
-    tree(windowHeight/2.9, a);
     totTime += deltaTime/1000.;
 
-    //Calculate animation angle using exponential
-    var B = 6;
-    var x = clamp(map(totTime, 0, animTime, 1, 5),0,5);
-    var y = Math.log(x)/Math.log(B);
-
-    a = map(y, 0, Math.log(5)/Math.log(B), 0, PI/4.0);
-    treeColor = lerpColor(fromColor, toColor, y/(Math.log(5)/Math.log(B)));
+    drawTree();
+    
     if(totTime > animTime){
       noLoop();
     }
   }
 }
 
+function drawTree(){
+  //Calculate animation angle using exponential
+  var B = 6;
+  var x = clamp(map(totTime, 0, animTime, 1, 5),0,5);
+  var y = Math.log(x)/Math.log(B);
+
+  a = map(y, 0, Math.log(5)/Math.log(B), 0, PI/4.0);
+  treeColor = lerpColor(fromColor, toColor, y/(Math.log(5)/Math.log(B)));
+  
+  stroke(treeColor);
+  strokeWeight(5);
+  resetMatrix();
+  translate(width/2, height);
+  clear();
+  tree(windowHeight/2.9, a);
+}
+
 function windowResized(){
   resizeCanvas(windowWidth, windowHeight);
+  if(totTime > animTime){
+    drawTree();
+  }
 }
 
 function mouseMoved(){
@@ -113,10 +122,5 @@ function toggleDark(){
     toColor = darkColor;
   }
   
-  stroke(treeColor);
-  strokeWeight(5);
-  resetMatrix();
-  translate(width/2, height);
-  clear();
-  tree(windowHeight/2.9, a);
+  drawTree();
 }
