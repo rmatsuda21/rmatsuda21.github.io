@@ -55,7 +55,7 @@ div.navbar span.logo{
     text-decoration: none;
     font-size: 50px;
     margin-top: .5rem;
-    margin-left: 2rem;
+    margin-left: 3rem;
     cursor: default;
 }
 
@@ -65,7 +65,7 @@ div.navbar span.logo:hover{
 
 div.navbar ul.nav-links{
     margin-top: 1.75rem;
-    margin-right: 3rem;
+    margin-right: 4rem;
     float: right;
 }
 
