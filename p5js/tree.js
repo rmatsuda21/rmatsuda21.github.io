@@ -59,7 +59,7 @@ function setup(){
     setTimeout(function(){animStart=true}, 2000);
 }
 
-var animTime = 7;
+var animTime = 5;
 var totTime = 0;
 var animStart = false;
 

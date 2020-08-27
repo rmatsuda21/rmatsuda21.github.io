@@ -123,6 +123,8 @@ div.mainContent .subPage{
     text-align: center;
     font-size: 20vw;
     margin-left: 4rem;
+
+    margin-top: 22rem;
 }
 
 .home h1:hover{ 
@@ -134,6 +136,17 @@ div.mainContent .subPage{
     0%{letter-spacing: 0px;}
     70%{letter-spacing: 1vw;}
     100%{letter-spacing: 0px;}
+}
+
+#titleSub {
+    padding-top: 6rem;
+
+    opacity: 0;
+    transition: opacity 2.5s;
+    -webkit-transition: opacity 2.5s;
+
+    text-align: center;
+    display: inline-block;
 }
 
 div.mainContent .home p{

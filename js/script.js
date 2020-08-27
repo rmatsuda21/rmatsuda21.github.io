@@ -26,7 +26,8 @@ function titleCall(){
 }
 
 function subCall(){
-  typeWriter("Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident dolor modi quis corrupti nesciunt vel sunt ipsa earum tempore adipisci, neque expedita, quos animi quisquam! Perspiciatis asperiores nesciunt quae quasi enim iusto facilis, at, eveniet recusandae et sapiente officia cum accusantium quaerat magnam nam totam accusamus aliquid minus iure. Est.", "titleSub", 0, 10)
+  // typeWriter("Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident dolor modi quis corrupti nesciunt vel sunt ipsa earum tempore adipisci, neque expedita, quos animi quisquam! Perspiciatis asperiores nesciunt quae quasi enim iusto facilis, at, eveniet recusandae et sapiente officia cum accusantium quaerat magnam nam totam accusamus aliquid minus iure. Est.", "titleSub", 0, 10)
+  document.getElementById("titleSub").style.opacity = "1";
 }
 
 var typer = function(el, msg, speed) {
