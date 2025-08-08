@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { FaHatCowboySide } from "react-icons/fa6";
 
 import { CustomCursor } from "./CustomCursor";

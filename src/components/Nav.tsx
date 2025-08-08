@@ -1,10 +1,6 @@
 import styles from "../styles/Nav.module.css";
 
-type Props = {
-  index: number;
-};
-
-export const Nav = ({ index }: Props) => {
+export const Nav = () => {
   return (
     <nav className={styles.body}>
       <input type="checkbox" id="nav-toggle" />

@@ -28,7 +28,7 @@ export const CustomCursor = () => {
         }
       };
 
-      const handleMouseUp = (e: MouseEvent) => {
+      const handleMouseUp = () => {
         setLeftClick(false);
       };
 
