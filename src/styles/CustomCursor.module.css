@@ -1,0 +1,32 @@
+:root {
+  --cursor-size: 25px;
+  --cursor-clip-path: inset(0 round 50%);
+}
+
+html:has(a:hover),
+html:has(button:hover) {
+  --cursor-size: 15px;
+  --cursor-clip-path: inset(0 round 10%);
+}
+
+.body {
+  z-index: 900;
+
+  position: fixed;
+  transform: translate(-50%, -50%);
+  width: var(--cursor-size);
+  height: var(--cursor-size);
+  pointer-events: none;
+
+  backdrop-filter: invert(1);
+  -webkit-backdrop-filter: invert(1);
+
+  clip-path: var(--cursor-clip-path);
+
+  transition: width 0.1s ease-in-out, height 0.1s ease-in-out,
+    clip-path 0.1s ease-in-out;
+
+  &.leftClick {
+    --cursor-clip-path: inset(0 round 30% 50% 50% 30%);
+  }
+}
