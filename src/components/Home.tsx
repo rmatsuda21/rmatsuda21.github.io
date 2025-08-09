@@ -17,7 +17,7 @@ function Home() {
   }, []);
 
   if (!hasRendered) {
-    return null;
+    return <div style={{ height: "100vh", backgroundColor: "black" }}></div>;
   }
 
   return (
@@ -27,13 +27,7 @@ function Home() {
         <div className={styles.content} ref={contentRef}>
           <Hero />
           <div className={styles.about} data-index={1}>
-            <p>
-              A frontend developer based in Texas <br />
-              I'm currently working at <a href="https://www.goat.com">
-                GOAT
-              </a>{" "}
-              as a software engineer.
-            </p>
+            <h2>Projects</h2>
           </div>
           <div className={styles.projects} data-index={2}>
             <h2>More to come!</h2>

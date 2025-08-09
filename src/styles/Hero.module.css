@@ -1,0 +1,133 @@
+.hero {
+  display: flex;
+  flex-direction: column;
+
+  --padding-bottom: 60px;
+  max-height: calc(100svh - var(--padding-bottom));
+  padding-bottom: var(--padding-bottom);
+
+  p,
+  span {
+    font-size: 1.5rem;
+    line-height: 1.3rem;
+
+    svg {
+      height: 0.9em;
+      width: 0.9em;
+    }
+  }
+
+  .center {
+    text-align: center;
+  }
+
+  .right {
+    text-align: right;
+  }
+
+  .block {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .stack {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 12px;
+    margin-top: 12px;
+    border-radius: 12px;
+
+    svg {
+      height: 40px;
+      width: 40px;
+      transform: rotate(0deg);
+    }
+
+    svg:hover {
+      animation: float 0.25s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    }
+  }
+
+  .IHeartCss {
+    flex: 1;
+    position: relative;
+
+    margin: -12px;
+    overflow: scroll;
+
+    p {
+      display: flex;
+
+      width: 200%;
+      height: 200%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .heart {
+      position: relative;
+      width: 1em;
+      height: 1em;
+      transform-style: preserve-3d;
+
+      svg {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 50%;
+        left: 50%;
+        backface-visibility: hidden;
+      }
+
+      svg:nth-child(1) {
+        color: white;
+        transform: translate(-50%, -50%) rotateY(0deg);
+      }
+
+      svg:nth-child(2) {
+        color: red;
+        transform: translate(-50%, -50%) rotateY(180deg);
+      }
+
+      animation: rotate 7s linear infinite;
+    }
+  }
+
+  hr {
+    width: 100vw;
+    height: 3px;
+    background-color: var(--text-color);
+    opacity: 0.3;
+
+    margin-block: 12px;
+    margin-left: -12px;
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}

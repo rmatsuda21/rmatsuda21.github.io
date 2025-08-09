@@ -6,6 +6,8 @@
   --icon-padding-inline: 24px;
   --highlight-color: red;
 
+  z-index: 900;
+
   position: fixed;
   bottom: 10px;
   left: 50%;
@@ -63,8 +65,8 @@
     opacity: 0;
     z-index: -1;
 
-    animation: fadein 0.6s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
-    animation-delay: 0.3s;
+    animation: fadein 0.2s ease-in forwards;
+    animation-delay: 0.35s;
 
     transition: left 0.15s ease-in-out, background-color 0.15s ease-in-out;
   }
