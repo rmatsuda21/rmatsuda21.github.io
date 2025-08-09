@@ -1,7 +1,7 @@
+import { useEffect } from "react";
 import { FaApple, FaAtom, FaHatCowboySide } from "react-icons/fa6";
 
-import styles from "../styles/MobileNav.module.css";
-import { useEffect } from "react";
+import styles from "@styles/MobileNav.module.css";
 
 type Props = {
   contentRef: React.RefObject<HTMLDivElement | null>;
@@ -53,12 +53,6 @@ export const MobileNav = ({ contentRef }: Props) => {
   const handleNavClick = (index: number) => {
     const nav = document.getElementById("nav");
     if (nav) {
-      nav.style.setProperty("--selected-index", index.toString());
-      nav.style.setProperty(
-        "--highlight-color",
-        `hsl(${index * 100}, 100%, 50%)`
-      );
-
       const element = contentRef.current?.querySelector(
         `[data-index="${index}"]`
       );

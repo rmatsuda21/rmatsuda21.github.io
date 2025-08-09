@@ -1,0 +1,12 @@
+.hero {
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  h1 {
+    font-size: 2rem;
+    line-height: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+}
