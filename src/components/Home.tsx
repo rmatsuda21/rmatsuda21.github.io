@@ -20,16 +20,20 @@ function Home() {
     return <div style={{ height: "100vh", backgroundColor: "black" }}></div>;
   }
 
+  const setIndex = (index: number) => {
+    contentRef.current?.style.setProperty("--selected-index", index.toString());
+  };
+
   return (
     <>
-      <main className={styles.body}>
-        <MobileNav contentRef={contentRef} />
+      <main id="main" className={styles.body} ref={contentRef}>
+        <MobileNav setIndex={setIndex} />
         <div className={styles.content} ref={contentRef}>
           <Hero />
-          <div className={styles.about} data-index={1}>
+          <div className={styles.about}>
             <h2>Projects</h2>
           </div>
-          <div className={styles.projects} data-index={2}>
+          <div className={styles.projects}>
             <h2>More to come!</h2>
           </div>
         </div>

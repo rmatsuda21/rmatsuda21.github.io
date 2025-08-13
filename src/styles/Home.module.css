@@ -3,6 +3,7 @@
   overflow: hidden;
 
   --grid-size: 50px;
+  --selected-index: 0;
   background: repeating-conic-gradient(#000 0% 25%, #090909 0% 50%)
     var(--grid-size) / var(--grid-size) var(--grid-size);
 }
@@ -12,13 +13,9 @@
   flex-direction: row;
   width: 100vw;
   height: 100svh;
-  overflow-x: scroll;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
 
-  &::-webkit-scrollbar {
-    display: none;
-  }
+  margin-left: calc(var(--selected-index) * -100vw);
+  transition: margin-left 0.3s ease-in-out;
 
   > div {
     min-width: 100vw;

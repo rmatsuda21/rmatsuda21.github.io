@@ -1,73 +1,58 @@
-import { useEffect } from "react";
+import { useRef } from "react";
+import cn from "classnames";
 import { FaApple, FaAtom, FaHatCowboySide } from "react-icons/fa6";
+import { MdArrowRightAlt } from "react-icons/md";
 
 import styles from "@styles/MobileNav.module.css";
 
 type Props = {
-  contentRef: React.RefObject<HTMLDivElement | null>;
+  setIndex: (index: number) => void;
 };
 
-export const MobileNav = ({ contentRef }: Props) => {
-  useEffect(() => {
-    let observer: IntersectionObserver;
+export const MobileNav = ({ setIndex }: Props) => {
+  const touchStart = useRef<number | null>(null);
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    touchStart.current = e.touches[0].clientX;
+    document.documentElement.style.overscrollBehavior = "none";
+  };
 
-    if (contentRef?.current) {
-      const options = {
-        root: contentRef.current,
-        rootMargin: "0px",
-        threshold: 0.5,
-      };
+  const handleTouchEnd = () => {
+    document.documentElement.style.overscrollBehavior = "auto";
+  };
 
-      observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const index = Number(
-              (entry.target as HTMLElement).dataset?.index || 0
-            );
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (touchStart.current === null) return;
 
-            const nav = document.getElementById("nav");
-            if (nav) {
-              nav.style.setProperty("--selected-index", index.toString());
-              nav.style.setProperty(
-                "--highlight-color",
-                `hsl(${index * 100}, 100%, 50%)`
-              );
-            }
-          }
-        });
-      }, options);
+    const touchEnd = e.touches[0].clientX;
+    const distance = touchEnd - touchStart.current;
 
-      const elements = contentRef.current.querySelectorAll("[data-index]");
-      elements.forEach((element) => {
-        observer.observe(element);
-      });
-    }
-
-    return () => {
-      if (observer) {
-        observer.disconnect();
-      }
-    };
-  }, []);
-
-  const handleNavClick = (index: number) => {
-    const nav = document.getElementById("nav");
-    if (nav) {
-      const element = contentRef.current?.querySelector(
-        `[data-index="${index}"]`
-      );
-
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
+    const main = document.getElementById("main");
+    const index = main?.style.getPropertyValue("--selected-index");
+    if (distance > 50) {
+      setIndex(Math.min(Number(index) + 1, 2));
+      touchStart.current = touchEnd;
+    } else if (distance < -50) {
+      setIndex(Math.max(Number(index) - 1, 0));
+      touchStart.current = touchEnd;
     }
   };
 
   return (
-    <nav className={styles.nav} id="nav">
-      <FaHatCowboySide onClick={() => handleNavClick(0)} />
-      <FaApple onClick={() => handleNavClick(1)} />
-      <FaAtom onClick={() => handleNavClick(2)} />
+    <nav
+      className={styles.nav}
+      id="nav"
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
+      <FaHatCowboySide className={styles.icon} onClick={() => setIndex(0)} />
+      <FaApple className={styles.icon} onClick={() => setIndex(1)} />
+      <FaAtom className={styles.icon} onClick={() => setIndex(2)} />
+      <div className={styles.arrows}>
+        <MdArrowRightAlt className={cn(styles.arrow, styles.left)} />
+        <span>Swipe</span>
+        <MdArrowRightAlt className={styles.arrow} />
+      </div>
     </nav>
   );
 };

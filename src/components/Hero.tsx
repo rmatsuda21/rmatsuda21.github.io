@@ -26,7 +26,6 @@ export const Hero = () => {
         .querySelector("p")
         ?.getBoundingClientRect();
 
-      console.log(containerSize);
       if (containerSize) {
         heartRef.current.scrollLeft =
           containerSize.width / 2 - heartRef.current.offsetWidth / 2;
@@ -37,7 +36,7 @@ export const Hero = () => {
   }, []);
 
   return (
-    <div className={styles.hero} data-index={0}>
+    <div className={styles.hero}>
       <div className={styles.block}>
         <p>
           <span>Howdy</span> <FaHatCowboySide />
