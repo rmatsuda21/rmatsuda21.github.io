@@ -6,13 +6,20 @@ import { MdArrowRightAlt } from "react-icons/md";
 import styles from "@styles/MobileNav.module.css";
 
 type Props = {
+  incrementIndex: () => void;
+  decrementIndex: () => void;
   setIndex: (index: number) => void;
 };
 
-export const MobileNav = ({ setIndex }: Props) => {
-  const touchStart = useRef<number | null>(null);
+export const MobileNav = ({
+  incrementIndex,
+  decrementIndex,
+  setIndex,
+}: Props) => {
+  const touchStartPos = useRef<number | null>(null);
+
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-    touchStart.current = e.touches[0].clientX;
+    touchStartPos.current = e.touches[0].clientX;
     document.documentElement.style.overscrollBehavior = "none";
   };
 
@@ -21,26 +28,23 @@ export const MobileNav = ({ setIndex }: Props) => {
   };
 
   const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-    if (touchStart.current === null) return;
+    if (touchStartPos.current === null) return;
 
     const touchEnd = e.touches[0].clientX;
-    const distance = touchEnd - touchStart.current;
+    const distance = touchEnd - touchStartPos.current;
 
-    const main = document.getElementById("main");
-    const index = main?.style.getPropertyValue("--selected-index");
     if (distance > 50) {
-      setIndex(Math.min(Number(index) + 1, 2));
-      touchStart.current = touchEnd;
+      incrementIndex();
+      touchStartPos.current = touchEnd;
     } else if (distance < -50) {
-      setIndex(Math.max(Number(index) - 1, 0));
-      touchStart.current = touchEnd;
+      decrementIndex();
+      touchStartPos.current = touchEnd;
     }
   };
 
   return (
     <nav
       className={styles.nav}
-      id="nav"
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}

@@ -24,10 +24,34 @@ function Home() {
     contentRef.current?.style.setProperty("--selected-index", index.toString());
   };
 
+  const incrementIndex = () => {
+    setIndex(
+      Math.min(
+        Number(contentRef.current?.style.getPropertyValue("--selected-index")) +
+          1,
+        2
+      )
+    );
+  };
+
+  const decrementIndex = () => {
+    setIndex(
+      Math.max(
+        Number(contentRef.current?.style.getPropertyValue("--selected-index")) -
+          1,
+        0
+      )
+    );
+  };
+
   return (
     <>
       <main id="main" className={styles.body} ref={contentRef}>
-        <MobileNav setIndex={setIndex} />
+        <MobileNav
+          incrementIndex={incrementIndex}
+          decrementIndex={decrementIndex}
+          setIndex={setIndex}
+        />
         <div className={styles.content} ref={contentRef}>
           <Hero />
           <div className={styles.about}>
