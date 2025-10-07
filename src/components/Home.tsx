@@ -3,9 +3,12 @@ import { useEffect, useRef, useState } from "react";
 import { CustomCursor } from "./CustomCursor";
 import { MobileNav } from "./MobileNav";
 import { Hero } from "./Hero";
+import { Experience } from "./Experience";
 
-import styles from "@styles/Home.module.css";
-function Home() {
+import styles from "../styles/Home.module.css";
+import { Project } from "./Project";
+
+export const Home = () => {
   const [hasRendered, setHasRendered] = useState(false);
 
   const contentRef = useRef<HTMLDivElement>(null);
@@ -54,17 +57,11 @@ function Home() {
         />
         <div className={styles.content} ref={contentRef}>
           <Hero />
-          <div className={styles.about}>
-            <h2>Projects</h2>
-          </div>
-          <div className={styles.projects}>
-            <h2>More to come!</h2>
-          </div>
+          <Experience />
+          <Project />
         </div>
       </main>
       <CustomCursor />
     </>
   );
-}
-
-export default Home;
+};

@@ -2,10 +2,11 @@
   flex: 1;
   overflow: hidden;
 
-  --grid-size: 50px;
+  --grid-size: 100px;
   --selected-index: 0;
-  background: repeating-conic-gradient(#000 0% 25%, #090909 0% 50%)
+  background: repeating-conic-gradient(#000 0% 25%, #040404 0% 50%)
     var(--grid-size) / var(--grid-size) var(--grid-size);
+  background-position: 25px 25px;
 }
 
 .content {

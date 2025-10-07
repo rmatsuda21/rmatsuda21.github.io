@@ -1,9 +1,9 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import cn from "classnames";
-import { FaApple, FaAtom, FaHatCowboySide } from "react-icons/fa6";
+import { FaBriefcase, FaFolderOpen, FaHatCowboySide } from "react-icons/fa6";
 import { MdArrowRightAlt } from "react-icons/md";
 
-import styles from "@styles/MobileNav.module.css";
+import styles from "../styles/MobileNav.module.css";
 
 type Props = {
   incrementIndex: () => void;
@@ -17,6 +17,7 @@ export const MobileNav = ({
   setIndex,
 }: Props) => {
   const touchStartPos = useRef<number | null>(null);
+  const [hasBeenSwiped, setHasBeenSwiped] = useState(false);
 
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     touchStartPos.current = e.touches[0].clientX;
@@ -35,6 +36,7 @@ export const MobileNav = ({
 
     if (distance > 50) {
       incrementIndex();
+      setHasBeenSwiped(true);
       touchStartPos.current = touchEnd;
     } else if (distance < -50) {
       decrementIndex();
@@ -50,9 +52,9 @@ export const MobileNav = ({
       onTouchEnd={handleTouchEnd}
     >
       <FaHatCowboySide className={styles.icon} onClick={() => setIndex(0)} />
-      <FaApple className={styles.icon} onClick={() => setIndex(1)} />
-      <FaAtom className={styles.icon} onClick={() => setIndex(2)} />
-      <div className={styles.arrows}>
+      <FaBriefcase className={styles.icon} onClick={() => setIndex(1)} />
+      <FaFolderOpen className={styles.icon} onClick={() => setIndex(2)} />
+      <div className={cn(styles.arrows, { [styles.fade]: hasBeenSwiped })}>
         <MdArrowRightAlt className={cn(styles.arrow, styles.left)} />
         <span>Swipe</span>
         <MdArrowRightAlt className={styles.arrow} />

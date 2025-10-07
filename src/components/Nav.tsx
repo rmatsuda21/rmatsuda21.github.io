@@ -1,4 +1,4 @@
-import styles from "@styles/Nav.module.css";
+import styles from "../styles/Nav.module.css";
 
 export const Nav = () => {
   return (

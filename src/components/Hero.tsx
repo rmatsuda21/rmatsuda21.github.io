@@ -15,7 +15,7 @@ import {
   TbBrandVite,
 } from "react-icons/tb";
 
-import styles from "@styles/Hero.module.css";
+import styles from "../styles/Hero.module.css";
 
 export const Hero = () => {
   const heartRef = useRef<HTMLDivElement>(null);
@@ -23,7 +23,7 @@ export const Hero = () => {
   useEffect(() => {
     if (heartRef.current) {
       const containerSize = heartRef.current
-        .querySelector("p")
+        .querySelector("div")
         ?.getBoundingClientRect();
 
       if (containerSize) {
@@ -52,17 +52,17 @@ export const Hero = () => {
       </div>
       <hr />
       <div ref={heartRef} className={cn(styles.IHeartCss, "hideScrollbar")}>
-        <p>
-          I{" "}
+        <div>
+          I
           <div className={styles.heart}>
             <FaHeart />
             <FaHeart className={styles.heart2} />
           </div>
           <FaCss3 />
-        </p>
+        </div>
       </div>
       <hr />
-      <p className={styles.center}>My Tech Stack</p>
+      <h3 className={styles.center}>My Tech Stack</h3>
       <div className={styles.stack}>
         <FaReact />
         <FaNodeJs />
