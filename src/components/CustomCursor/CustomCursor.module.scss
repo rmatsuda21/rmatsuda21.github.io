@@ -1,3 +1,5 @@
+@use "../../styles" as *;
+
 :root {
   --cursor-size: 25px;
   --cursor-clip-path: inset(0 round 50%);
@@ -28,5 +30,12 @@ html:has(button:hover) {
 
   &.leftClick {
     --cursor-clip-path: inset(0 round 30% 50% 50% 30%);
+  }
+}
+
+@include on(mobile) {
+  .body {
+    display: none;
+    pointer-events: none;
   }
 }

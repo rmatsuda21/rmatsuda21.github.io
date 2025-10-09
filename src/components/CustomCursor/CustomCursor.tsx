@@ -6,14 +6,8 @@ import styles from "./CustomCursor.module.scss";
 export const CustomCursor = () => {
   const cursorRef = useRef<HTMLDivElement>(null);
   const [leftClick, setLeftClick] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    if (window.innerWidth < 768) {
-      setIsMobile(true);
-      return;
-    }
-
     if (cursorRef.current) {
       const handleMouseMove = (e: MouseEvent) => {
         cursorRef.current!.style.left = `${e.clientX}px`;
@@ -42,10 +36,6 @@ export const CustomCursor = () => {
       };
     }
   }, []);
-
-  if (isMobile) {
-    return null;
-  }
 
   return (
     <div
