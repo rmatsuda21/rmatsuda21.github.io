@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 
-import { CustomCursor } from "./CustomCursor";
-import { MobileNav } from "./MobileNav";
-import { Hero } from "./Hero";
-import { Experience } from "./Experience";
+import { CustomCursor } from "../CustomCursor/CustomCursor";
+import { MobileNav } from "../MobileNav/MobileNav";
+import { Hero } from "../Hero/Hero";
+import { Experience } from "../Experience/Experience";
+import { Project } from "../Project/Project";
 
-import styles from "../styles/Home.module.css";
-import { Project } from "./Project";
+import styles from "./Home.module.scss";
 
 export const Home = () => {
   const [hasRendered, setHasRendered] = useState(false);

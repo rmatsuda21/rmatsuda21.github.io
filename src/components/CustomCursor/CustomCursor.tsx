@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import cn from "classnames";
 
-import styles from "../styles/CustomCursor.module.css";
+import styles from "./CustomCursor.module.scss";
 
 export const CustomCursor = () => {
   const cursorRef = useRef<HTMLDivElement>(null);

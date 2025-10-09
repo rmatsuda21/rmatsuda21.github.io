@@ -1,3 +1,5 @@
+@use "../../styles" as *;
+
 .nav {
   --icon-size: 30px;
   --icon-gap: 15px;
@@ -138,5 +140,12 @@
   }
   100% {
     transform: translate(-50%, -50%);
+  }
+}
+
+@include on(desktop) {
+  .nav {
+    display: none;
+    pointer-events: none;
   }
 }

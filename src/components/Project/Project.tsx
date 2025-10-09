@@ -1,6 +1,6 @@
 import { FaWrench } from "react-icons/fa6";
 
-import styles from "../styles/Project.module.css";
+import styles from "./Project.module.css";
 
 export const Project = () => {
   return (

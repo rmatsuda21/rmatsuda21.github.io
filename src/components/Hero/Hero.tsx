@@ -15,7 +15,7 @@ import {
   TbBrandVite,
 } from "react-icons/tb";
 
-import styles from "../styles/Hero.module.css";
+import styles from "./Hero.module.scss";
 
 export const Hero = () => {
   const heartRef = useRef<HTMLDivElement>(null);

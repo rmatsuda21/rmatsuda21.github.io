@@ -3,7 +3,7 @@ import cn from "classnames";
 import { FaBriefcase, FaFolderOpen, FaHatCowboySide } from "react-icons/fa6";
 import { MdArrowRightAlt } from "react-icons/md";
 
-import styles from "../styles/MobileNav.module.css";
+import styles from "./MobileNav.module.scss";
 
 type Props = {
   incrementIndex: () => void;

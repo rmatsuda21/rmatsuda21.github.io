@@ -1,6 +1,6 @@
-import { Icons } from "../constants/Icons";
+import { Icons } from "../../constants/Icons";
 
-import styles from "../styles/Experience.module.css";
+import styles from "./Experience.module.scss";
 
 type ExperienceProps = {
   company: string;
