@@ -1,0 +1,48 @@
+.wrapper {
+  --track-height: 40px;
+  --track-width: 90px;
+  --track-padding: 8px;
+  --track-color--on: pink;
+  --track-color--off: white;
+  --transition-time: 0.2s;
+
+  position: relative;
+  width: var(--track-width);
+  height: var(--track-height);
+  background-color: var(--track-color--off);
+  border-radius: calc(var(--track-height) / 2);
+
+  transition: background-color var(--transition-time) ease-in;
+
+  input[type="checkbox"] {
+    appearance: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: calc(var(--track-height) / 2);
+  }
+
+  .slider {
+    width: calc(var(--track-height) - var(--track-padding) * 2);
+    height: calc(var(--track-height) - var(--track-padding) * 2);
+    border-radius: 50%;
+    background-color: grey;
+    pointer-events: none;
+
+    position: absolute;
+    top: 50%;
+    left: var(--track-padding);
+    transform: translate(0, -50%);
+    transition: left var(--transition-time) ease-in-out;
+  }
+
+  &:has(input[type="checkbox"]:checked) {
+    background-color: var(--track-color--on);
+
+    .slider {
+      left: calc(100% - var(--track-height) + var(--track-padding));
+    }
+  }
+}

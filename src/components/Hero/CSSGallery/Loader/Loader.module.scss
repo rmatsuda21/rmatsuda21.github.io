@@ -1,0 +1,74 @@
+.wrapper {
+  --loader-size: 85px;
+  --loader-stroke-width: 4px;
+  --loader-shrink-speed: 1.8s;
+  --path-radius: 23px;
+  --path-length: calc(var(--path-radius) * 2 * 3.14);
+
+  width: var(--loader-size);
+  height: var(--loader-size);
+
+  .loader {
+    animation: rotate 2s linear infinite;
+
+    .path {
+      stroke-dasharray: calc(var(--path-length) * 0.02),
+        calc(var(--path-length) * 0.98);
+      stroke-dashoffset: 0;
+
+      r: var(--path-radius);
+      stroke: red;
+      stroke-width: var(--loader-stroke-width);
+      stroke-linecap: round;
+
+      animation: shrink var(--loader-shrink-speed) ease-in-out infinite,
+        gradient calc(var(--loader-shrink-speed) * 4) ease-in-out infinite;
+    }
+  }
+}
+
+@keyframes rotate {
+  to {
+    transform: rotate(0deg);
+  }
+  from {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes shrink {
+  0% {
+    stroke-dasharray: calc(var(--path-length) * 0.02),
+      calc(var(--path-length) * 0.98);
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: calc(var(--path-length) * 0.75),
+      calc(var(--path-length) * 0.25);
+    stroke-dashoffset: calc(var(--path-length) * -0.2);
+  }
+  100% {
+    stroke-dasharray: calc(var(--path-length) * 0.02),
+      calc(var(--path-length) * 0.98);
+    stroke-dashoffset: calc(var(--path-length) * -1);
+  }
+}
+
+@keyframes gradient {
+  0%,
+  100% {
+    stroke: red;
+  }
+
+  25% {
+    stroke: blue;
+  }
+
+  50% {
+    stroke: green;
+  }
+
+  75% {
+    stroke: yellow;
+  }
+}

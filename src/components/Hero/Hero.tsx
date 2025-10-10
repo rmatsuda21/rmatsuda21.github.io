@@ -1,12 +1,5 @@
 import { useRef, useEffect } from "react";
-import cn from "classnames";
-import {
-  FaCss3,
-  FaHatCowboySide,
-  FaHeart,
-  FaNodeJs,
-  FaReact,
-} from "react-icons/fa6";
+import { FaHatCowboySide, FaNodeJs, FaReact } from "react-icons/fa6";
 import { GiTexas } from "react-icons/gi";
 import {
   TbBrandNextjs,
@@ -14,6 +7,8 @@ import {
   TbBrandTypescript,
   TbBrandVite,
 } from "react-icons/tb";
+
+import { CSSGallery } from "./CSSGallery/CSSGallery";
 
 import styles from "./Hero.module.scss";
 
@@ -37,7 +32,7 @@ export const Hero = () => {
 
   return (
     <div className={styles.hero}>
-      <div className={styles.block}>
+      <div className={styles.title}>
         <p>
           <span>Howdy</span> <FaHatCowboySide />
         </p>
@@ -51,19 +46,10 @@ export const Hero = () => {
         </p>
       </div>
       <hr />
-      <div ref={heartRef} className={cn(styles.IHeartCss, "hideScrollbar")}>
-        <div>
-          I
-          <div className={styles.heart}>
-            <FaHeart />
-            <FaHeart className={styles.heart2} />
-          </div>
-          <FaCss3 />
-        </div>
-      </div>
+      <CSSGallery />
       <hr />
       <h3 className={styles.center}>My Tech Stack</h3>
-      <div className={styles.stack}>
+      <div className={styles.techStack}>
         <FaReact />
         <FaNodeJs />
         <TbBrandTypescript />

@@ -6,7 +6,8 @@
 }
 
 html:has(a:hover),
-html:has(button:hover) {
+html:has(button:hover),
+html:has(input:hover) {
   --cursor-size: 15px;
   --cursor-clip-path: inset(0 round 10%);
 }
@@ -30,6 +31,15 @@ html:has(button:hover) {
 
   &.leftClick {
     --cursor-clip-path: inset(0 round 30% 50% 50% 30%);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
   }
 }
 

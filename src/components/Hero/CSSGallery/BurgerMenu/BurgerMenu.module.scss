@@ -1,0 +1,80 @@
+.burger {
+  --burger-size: 50px;
+  --burger-stroke-width: 5px;
+  position: relative;
+
+  width: var(--burger-size);
+  height: var(--burger-size);
+}
+
+.burger input {
+  appearance: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.burger:before,
+.burger:after,
+.mid {
+  content: " ";
+  position: absolute;
+  pointer-events: none;
+
+  width: 40%;
+  height: var(--burger-stroke-width);
+
+  border-radius: calc(var(--burger-stroke-width) / 2);
+  background-color: white;
+  transition: transform 0.3s ease-in-out, width 0.2s ease-in-out;
+}
+
+.mid {
+  top: 50%;
+  left: 50%;
+  width: 70%;
+  transform: translate(-50%, -50%);
+  transform-origin: center center;
+}
+
+.burger:before {
+  top: 0;
+  left: 0;
+  transform-origin: center left;
+}
+
+.burger:after {
+  bottom: 0;
+  right: 0;
+  transform-origin: center right;
+}
+
+.burger.spinning:before {
+  transform-origin: center right;
+}
+
+.burger.spinning:after {
+  transform-origin: center left;
+}
+
+.burger:hover .mid {
+  transform: translate(-50%, -50%) rotateZ(-5deg);
+}
+
+.burger:hover:before,
+.burger:hover:after {
+  transform: rotateZ(5deg);
+}
+
+.burger:has(input:checked) .mid {
+  transform: translate(-50%, -50%) rotateZ(-45deg);
+  width: 135%;
+}
+
+.burger:has(input:checked):before,
+.burger:has(input:checked):after {
+  transform: rotateZ(43deg);
+  width: 65%;
+}
