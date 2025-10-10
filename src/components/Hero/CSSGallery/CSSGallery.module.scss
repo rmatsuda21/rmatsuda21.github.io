@@ -16,8 +16,8 @@
 
 .content {
   position: relative;
-  width: 200%;
-  height: 200%;
+  width: 150%;
+  height: 150%;
 
   > * {
     position: absolute;
@@ -43,6 +43,11 @@
 .burgerMenu {
   top: 70%;
   left: 26%;
+}
+
+.moreToCome {
+  top: 80%;
+  left: 58%;
 }
 
 .codepen {

@@ -41,6 +41,7 @@ export const CSSGallery = () => {
         >
           Visit my <FaCodepen />
         </a>
+        <div className={styles.moreToCome}>More to come...</div>
       </div>
     </div>
   );
