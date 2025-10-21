@@ -20,6 +20,7 @@
   transition: background-image 0.3s ease-in-out;
 
   color: var(--text-color);
+  outline: 2px solid rgba(255, 255, 255, 0.2);
 
   &::before,
   h2,
