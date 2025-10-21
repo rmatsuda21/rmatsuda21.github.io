@@ -1,4 +1,4 @@
-@use "../../styles" as *;
+@use "@/styles" as *;
 
 .body {
   flex: 1;
@@ -43,6 +43,8 @@
     grid-template-rows: 1fr 1fr;
     gap: 12px;
     padding: 12px;
+
+    margin-left: 0;
 
     > div {
       min-width: 0;

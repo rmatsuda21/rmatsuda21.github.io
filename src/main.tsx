@@ -5,7 +5,7 @@ import { IconContext } from "react-icons";
 import "./reset.css";
 import "./index.css";
 
-import { Home } from "./components/Home/Home.tsx";
+import { Home } from "@/components/Home/Home.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

@@ -8,6 +8,7 @@ import { BurgerMenu } from "./BurgerMenu/BurgerMenu";
 
 import styles from "./CSSGallery.module.scss";
 import { FaCodepen } from "react-icons/fa6";
+import { ScrollableContainer } from "./ScrollableContainer/ScrollableContainer";
 
 export const CSSGallery = () => {
   const heartRef = useRef<HTMLDivElement>(null);
@@ -28,7 +29,10 @@ export const CSSGallery = () => {
   }, []);
 
   return (
-    <div ref={heartRef} className={cn(styles.window, "hideScrollbar")}>
+    <ScrollableContainer
+      ref={heartRef}
+      className={cn(styles.window, "hideScrollbar")}
+    >
       <div className={styles.content}>
         <IHeartCss className={styles.iHeartCss} />
         <Loader className={styles.loader} />
@@ -43,6 +47,6 @@ export const CSSGallery = () => {
         </a>
         <div className={styles.moreToCome}>More to come...</div>
       </div>
-    </div>
+    </ScrollableContainer>
   );
 };

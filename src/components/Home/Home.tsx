@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 
-import { CustomCursor } from "../CustomCursor/CustomCursor";
-import { MobileNav } from "../MobileNav/MobileNav";
-import { Hero } from "../Hero/Hero";
-import { Experience } from "../Experience/Experience";
-import { Project } from "../Project/Project";
+import { CustomCursor } from "@/components/CustomCursor/CustomCursor";
+import { MobileNav } from "@/components/MobileNav/MobileNav";
+import { Hero } from "@/components/Hero/Hero";
+import { Experience } from "@/components/Experience/Experience";
+import { Project } from "@/components/Project/Project";
 
 import styles from "./Home.module.scss";
 
