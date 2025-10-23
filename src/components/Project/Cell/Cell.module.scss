@@ -7,9 +7,11 @@
   justify-content: space-between;
   align-items: center;
 
+  color: var(--text-color);
   padding: 12px;
   border-radius: 12px;
   aspect-ratio: 1 / 1;
+  outline: 2px solid rgba(255, 255, 255, 0.2);
 
   background-color: none;
   background: var(--bg);
@@ -17,10 +19,7 @@
   background-position: center;
   background-repeat: no-repeat;
 
-  transition: background-image 0.3s ease-in-out;
-
-  color: var(--text-color);
-  outline: 2px solid rgba(255, 255, 255, 0.2);
+  transition: background-image 0.3s ease-in-out, outline 0.3s ease-in-out;
 
   &::before,
   h2,
@@ -67,8 +66,10 @@
 }
 
 @include on(desktop) {
-  .cell {
-    &.gif:hover {
+  .cell:hover {
+    outline: 2px solid rgba(255, 255, 255, 0.6);
+
+    &.gif {
       background-image: var(--gif);
       color: var(--gif-text-color);
 
