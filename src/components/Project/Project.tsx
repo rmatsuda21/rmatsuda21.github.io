@@ -1,7 +1,11 @@
 import { useState } from "react";
+import { createPortal } from "react-dom";
+import { FaGithub } from "react-icons/fa6";
+import { FaExternalLinkAlt } from "react-icons/fa";
 
 import type { ProjectType } from "@/types/ProjectType";
-import { projects } from "@/constants/Projects";
+import { PROJECTS } from "@/constants/Projects";
+import { Icons } from "@/constants/Icons";
 import { Cell } from "./Cell/Cell";
 import { Modal } from "./Modal/Modal";
 
@@ -12,10 +16,7 @@ export const Project = () => {
 
   const handleCellClick = (content: ProjectType) => {
     setModalContent({
-      img: content.img,
-      gif: content.gif,
-      title: content.title,
-      techStack: content.techStack,
+      ...content,
     });
   };
 
@@ -28,7 +29,7 @@ export const Project = () => {
       <div className={styles.wrapper}>
         <h1>Projects</h1>
         <div className={styles.content}>
-          {projects.map((project) => (
+          {PROJECTS.map((project) => (
             <Cell
               key={project.title}
               project={project}
@@ -38,9 +39,42 @@ export const Project = () => {
         </div>
       </div>
 
-      <Modal onClose={handleModalClose} open={!!modalContent}>
-        <div>Under construction...</div>
-      </Modal>
+      {createPortal(
+        <Modal
+          className={styles.modal}
+          onClose={handleModalClose}
+          open={!!modalContent}
+        >
+          <h2>{modalContent?.title}</h2>
+
+          <div className={styles.content}>
+            <div className={styles.info}>
+              <img src={modalContent?.img} alt={modalContent?.title} />
+
+              <h3>Tech Stack</h3>
+              <div className={styles.techStack}>
+                {modalContent?.techStack?.map((tech) => (
+                  <span key={tech}>{Icons[tech].icon}</span>
+                ))}
+              </div>
+            </div>
+
+            <div className={styles.description}>
+              {modalContent?.description}
+
+              <div className={styles.links}>
+                <a href={modalContent?.link} target="_blank">
+                  <FaExternalLinkAlt />
+                </a>
+                <a href={modalContent?.github} target="_blank">
+                  <FaGithub />
+                </a>
+              </div>
+            </div>
+          </div>
+        </Modal>,
+        document.body
+      )}
     </>
   );
 };

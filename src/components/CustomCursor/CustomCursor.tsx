@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import cn from "classnames";
 
 import styles from "./CustomCursor.module.scss";
+import { createPortal } from "react-dom";
 
 export const CustomCursor = () => {
   const cursorRef = useRef<HTMLDivElement>(null);
@@ -37,10 +38,11 @@ export const CustomCursor = () => {
     }
   }, []);
 
-  return (
+  return createPortal(
     <div
       ref={cursorRef}
       className={cn(styles.body, { [styles.leftClick]: leftClick })}
-    />
+    />,
+    document.body
   );
 };

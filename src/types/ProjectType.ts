@@ -4,5 +4,8 @@ export type ProjectType = {
   img: string;
   gif?: string;
   title: string;
-  techStack?: (keyof typeof Icons)[];
+  techStack: (keyof typeof Icons)[];
+  link: string;
+  github: string;
+  description: React.ReactNode;
 };
