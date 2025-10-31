@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+import { animate } from "motion";
 import {
   motion,
   useMotionValue,
@@ -9,8 +11,6 @@ import cn from "classnames";
 import { Icons, type IconKeys } from "@/constants/Icons";
 
 import styles from "./TechCarousel.module.scss";
-import { useEffect, useState } from "react";
-import { animate } from "motion";
 
 type Props = {
   techStack: IconKeys[];

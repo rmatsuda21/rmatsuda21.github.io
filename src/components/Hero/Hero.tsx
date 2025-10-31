@@ -29,7 +29,7 @@ export const Hero = () => {
     <div className={styles.hero}>
       <div className={styles.title}>
         <p>
-          <span>Howdy</span> <FaHatCowboySide />
+          <span>Howdy</span> <FaHatCowboySide className={styles.hat} />
         </p>
         <p className={styles.center}>I'm Reo Matsuda</p>
         <p className={styles.right}>
@@ -46,7 +46,16 @@ export const Hero = () => {
       <h3 className={styles.center}>My Tech Stack</h3>
       <TechCarousel
         className={styles.techCarousel}
-        techStack={["react", "next", "typescript", "sass", "vercel"]}
+        techStack={[
+          "react",
+          "next",
+          "typescript",
+          "sass",
+          "motion",
+          "vercel",
+          "vite",
+          "jest",
+        ]}
       />
     </div>
   );

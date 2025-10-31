@@ -57,8 +57,10 @@
 
 @include on(desktop) {
   .codepen:hover {
-    svg {
-      animation: float 1.5s ease-in-out infinite;
+    @media (prefers-reduced-motion: no-preference) {
+      svg {
+        animation: float 1.5s ease-in-out infinite;
+      }
     }
   }
 }

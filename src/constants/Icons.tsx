@@ -5,13 +5,14 @@ import {
   FaPython,
   FaReact,
 } from "react-icons/fa6";
-import { SiTailwindcss, SiVercel, SiWebpack } from "react-icons/si";
+import { SiJest, SiTailwindcss, SiVercel, SiWebpack } from "react-icons/si";
 import {
   TbBrandNextjs,
   TbBrandSass,
   TbBrandTypescript,
   TbBrandCSharp,
   TbBrandVite,
+  TbBrandFramerMotion,
 } from "react-icons/tb";
 
 export const Icons = {
@@ -66,6 +67,14 @@ export const Icons = {
   tailwind: {
     name: "Tailwind CSS",
     icon: <SiTailwindcss key="tailwind" />,
+  },
+  motion: {
+    name: "Motion",
+    icon: <TbBrandFramerMotion key="motion" />,
+  },
+  jest: {
+    name: "Jest",
+    icon: <SiJest key="jest" />,
   },
 } as const;
 
