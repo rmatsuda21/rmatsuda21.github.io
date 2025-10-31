@@ -78,7 +78,7 @@ export const Experience = () => {
           company="Knowledge Based Systems Inc."
           title="Software Engineer Intern"
           date="Jun. 2018 - May 2022"
-          techStack={["angular", "java", "csharp"]}
+          techStack={["angular", "java", "csharp", "unity"]}
         >
           <ul>
             <li>

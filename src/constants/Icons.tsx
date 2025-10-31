@@ -4,6 +4,7 @@ import {
   FaNodeJs,
   FaPython,
   FaReact,
+  FaUnity,
 } from "react-icons/fa6";
 import { SiJest, SiTailwindcss, SiVercel, SiWebpack } from "react-icons/si";
 import {
@@ -75,6 +76,10 @@ export const Icons = {
   jest: {
     name: "Jest",
     icon: <SiJest key="jest" />,
+  },
+  unity: {
+    name: "Unity",
+    icon: <FaUnity key="unity" />,
   },
 } as const;
 

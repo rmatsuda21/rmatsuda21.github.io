@@ -53,7 +53,11 @@ export const MobileNav = ({
     >
       <FaHatCowboySide className={styles.icon} onClick={() => setIndex(0)} />
       <FaBriefcase className={styles.icon} onClick={() => setIndex(1)} />
-      <FaFolderOpen className={styles.icon} onClick={() => setIndex(2)} />
+      <FaFolderOpen
+        style={{ scale: 0.9 }}
+        className={styles.icon}
+        onClick={() => setIndex(2)}
+      />
       <div className={cn(styles.arrows, { [styles.fade]: hasBeenSwiped })}>
         <MdArrowRightAlt className={cn(styles.arrow, styles.left)} />
         <span>Swipe</span>
