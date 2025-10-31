@@ -1,14 +1,9 @@
 import { useRef, useEffect } from "react";
-import { FaHatCowboySide, FaNodeJs, FaReact } from "react-icons/fa6";
+import { FaHatCowboySide } from "react-icons/fa6";
 import { GiTexas } from "react-icons/gi";
-import {
-  TbBrandNextjs,
-  TbBrandSass,
-  TbBrandTypescript,
-  TbBrandVite,
-} from "react-icons/tb";
 
-import { CSSGallery } from "./CSSGallery/CSSGallery";
+import { CSSGallery } from "@/components/Hero/CSSGallery/CSSGallery";
+import TechCarousel from "@/components/TechCarousel/TechCarousel";
 
 import styles from "./Hero.module.scss";
 
@@ -49,14 +44,10 @@ export const Hero = () => {
       <CSSGallery />
       <hr />
       <h3 className={styles.center}>My Tech Stack</h3>
-      <div className={styles.techStack}>
-        <FaReact />
-        <FaNodeJs />
-        <TbBrandTypescript />
-        <TbBrandVite />
-        <TbBrandNextjs />
-        <TbBrandSass />
-      </div>
+      <TechCarousel
+        className={styles.techCarousel}
+        techStack={["react", "next", "typescript", "sass", "vercel"]}
+      />
     </div>
   );
 };

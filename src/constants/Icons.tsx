@@ -1,10 +1,17 @@
-import { FaAngular, FaJava, FaPython, FaReact } from "react-icons/fa6";
-import { SiVercel, SiWebpack } from "react-icons/si";
+import {
+  FaAngular,
+  FaJava,
+  FaNodeJs,
+  FaPython,
+  FaReact,
+} from "react-icons/fa6";
+import { SiTailwindcss, SiVercel, SiWebpack } from "react-icons/si";
 import {
   TbBrandNextjs,
   TbBrandSass,
   TbBrandTypescript,
   TbBrandCSharp,
+  TbBrandVite,
 } from "react-icons/tb";
 
 export const Icons = {
@@ -13,7 +20,7 @@ export const Icons = {
     icon: <FaReact key="react" />,
   },
   next: {
-    name: "Next",
+    name: "Next.js",
     icon: <TbBrandNextjs key="next" />,
   },
   typescript: {
@@ -48,4 +55,18 @@ export const Icons = {
     name: "Vercel",
     icon: <SiVercel key="vercel" />,
   },
+  node: {
+    name: "Node.js",
+    icon: <FaNodeJs key="node" />,
+  },
+  vite: {
+    name: "Vite",
+    icon: <TbBrandVite key="vite" />,
+  },
+  tailwind: {
+    name: "Tailwind CSS",
+    icon: <SiTailwindcss key="tailwind" />,
+  },
 } as const;
+
+export type IconKeys = keyof typeof Icons;

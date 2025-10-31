@@ -1,52 +1,29 @@
-import { useEffect, useRef } from "react";
 import cn from "classnames";
+import { FaCodepen } from "react-icons/fa6";
 
-import { IHeartCss } from "./IHeartCSS/IHeartCss";
-import { Loader } from "./Loader/Loader";
-import { Switch } from "./Switch/Switch";
-import { BurgerMenu } from "./BurgerMenu/BurgerMenu";
+import { IHeartCss } from "@/components/Hero/CSSGallery/IHeartCSS/IHeartCss";
+import { Loader } from "@/components/Hero/CSSGallery/Loader/Loader";
+import { Switch } from "@/components/Hero/CSSGallery/Switch/Switch";
+import { BurgerMenu } from "@/components/Hero/CSSGallery/BurgerMenu/BurgerMenu";
+import { ScrollableContainer } from "@/components/Hero/CSSGallery/ScrollableContainer/ScrollableContainer";
 
 import styles from "./CSSGallery.module.scss";
-import { FaCodepen } from "react-icons/fa6";
-import { ScrollableContainer } from "./ScrollableContainer/ScrollableContainer";
 
 export const CSSGallery = () => {
-  const heartRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (heartRef.current) {
-      const containerSize = heartRef.current
-        .querySelector("div")
-        ?.getBoundingClientRect();
-
-      if (containerSize) {
-        heartRef.current.scrollLeft =
-          containerSize.width / 2 - heartRef.current.offsetWidth / 2;
-        heartRef.current.scrollTop =
-          containerSize.height / 2 - heartRef.current.offsetHeight / 2;
-      }
-    }
-  }, []);
-
   return (
-    <ScrollableContainer
-      ref={heartRef}
-      className={cn(styles.window, "hideScrollbar")}
-    >
-      <div className={styles.content}>
-        <IHeartCss className={styles.iHeartCss} />
-        <Loader className={styles.loader} />
-        <Switch className={styles.switch} />
-        <BurgerMenu className={styles.burgerMenu} />
-        <a
-          className={styles.codepen}
-          href="https://codepen.io/rmatsuda"
-          target="_blank"
-        >
-          Visit my <FaCodepen />
-        </a>
-        <div className={styles.moreToCome}>More to come...</div>
-      </div>
+    <ScrollableContainer className={cn(styles.window, "hideScrollbar")}>
+      <IHeartCss className={cn(styles.items, styles.iHeartCss)} />
+      <Loader className={cn(styles.items, styles.loader)} />
+      <Switch className={cn(styles.items, styles.switch)} />
+      <BurgerMenu className={cn(styles.items, styles.burgerMenu)} />
+      <a
+        className={cn(styles.items, styles.codepen)}
+        href="https://codepen.io/rmatsuda"
+        target="_blank"
+      >
+        Visit my <FaCodepen />
+      </a>
+      <div className={cn(styles.items, styles.moreToCome)}>More to come...</div>
     </ScrollableContainer>
   );
 };

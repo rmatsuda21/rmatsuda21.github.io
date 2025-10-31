@@ -31,35 +31,18 @@
     }
   }
 
-  .techStack {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 12px;
-
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 8px 12px;
-    border-radius: 12px;
-
-    svg {
-      height: 35px;
-      width: 35px;
-      transform: rotate(0deg);
-    }
-
-    svg:hover {
-      animation: float 0.25s cubic-bezier(0.455, 0.03, 0.515, 0.955);
-    }
+  .techCarousel {
+    width: calc(100% + var(--content-padding) * 2);
   }
 
   hr {
-    width: calc(100% + 24px);
+    width: calc(100% + var(--content-padding) * 2);
     height: 3px;
     background-color: var(--text-color);
     opacity: 0.3;
 
-    margin-block: 12px;
-    margin-left: -12px;
+    margin-block: var(--content-padding);
+    margin-left: calc(var(--content-padding) * -1);
   }
 }
 

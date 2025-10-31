@@ -6,6 +6,7 @@
 
   --grid-size: 100px;
   --selected-index: 0;
+  --content-padding: 12px;
   background: repeating-conic-gradient(#000 0% 25%, #040404 0% 50%)
     var(--grid-size) / var(--grid-size) var(--grid-size);
   background-position: 25px 25px;
@@ -24,8 +25,9 @@
     min-width: 100vw;
     height: 100svh;
     scroll-snap-align: start;
+    overflow: hidden;
 
-    padding: 12px;
+    padding: var(--content-padding);
   }
 }
 

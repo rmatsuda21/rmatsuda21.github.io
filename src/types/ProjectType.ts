@@ -1,10 +1,10 @@
-import type { Icons } from "@/constants/Icons";
+import type { IconKeys } from "@/constants/Icons";
 
 export type ProjectType = {
   img: string;
   gif?: string;
   title: string;
-  techStack: (keyof typeof Icons)[];
+  techStack: IconKeys[];
   link: string;
   github: string;
   description: React.ReactNode;

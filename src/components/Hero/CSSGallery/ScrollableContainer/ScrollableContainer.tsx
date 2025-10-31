@@ -1,59 +1,70 @@
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
+import { motion } from "motion/react";
 
-const SCROLL_SPEED = 1;
+const SIZE_MULTIPLIER = 1.5;
 
 export const ScrollableContainer = ({
   className,
   children,
-  ref,
-}: {
-  ref: React.RefObject<HTMLDivElement | null>;
-} & React.HTMLAttributes<HTMLDivElement>) => {
-  const [isDragging, setIsDragging] = useState(false);
-  const [startPos, setStartPos] = useState<[number, number]>([0, 0]);
-  const [scrollPos, setScrollPos] = useState<[number, number]>([0, 0]);
+}: React.HTMLAttributes<HTMLDivElement>) => {
+  const contentRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [offset, setOffset] = useState<{ x: number; y: number }>({
+    x: 0,
+    y: 0,
+  });
+  const [constraints, setConstraints] = useState<{
+    left: number;
+    right: number;
+    top: number;
+    bottom: number;
+  }>({
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+  });
 
-  const [isDesktop, setIsDesktop] = useState(true);
+  useLayoutEffect(() => {
+    const container = containerRef.current;
+    const content = contentRef.current;
+    if (!container || !content) {
+      return;
+    }
 
-  useEffect(() => {
-    const hasTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0;
-    setIsDesktop(!hasTouch);
+    const contentSize = container.offsetWidth * SIZE_MULTIPLIER;
+    content.style.width = contentSize + "px";
+    content.style.height = contentSize + "px";
+
+    const containerRect = container.getBoundingClientRect();
+
+    const offset = {
+      x: (containerRect.width - contentSize) / 2,
+      y: (containerRect.height - contentSize) / 2,
+    };
+
+    const constraints = {
+      left: containerRect.width - contentSize,
+      right: 0,
+      top: containerRect.height - contentSize,
+      bottom: 0,
+    };
+
+    setOffset(offset);
+    setConstraints(constraints);
   }, []);
 
-  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!isDesktop || !ref.current) return;
-    setIsDragging(true);
-    const rect = ref.current!.getBoundingClientRect();
-    setStartPos([e.pageX - rect.left, e.pageY - rect.top]);
-    setScrollPos([ref.current.scrollLeft, ref.current.scrollTop]);
-  };
-
-  const handleMouseUp = () => isDesktop && setIsDragging(false);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!isDesktop || !isDragging || !ref.current) return;
-    e.preventDefault();
-
-    const rect = ref.current.getBoundingClientRect();
-    const x = e.pageX - rect.left;
-    const y = e.pageY - rect.top;
-
-    const walkX = (x - startPos[0]) * SCROLL_SPEED;
-    const walkY = (y - startPos[1]) * SCROLL_SPEED;
-
-    ref.current.scrollLeft = scrollPos[0] - walkX;
-    ref.current.scrollTop = scrollPos[1] - walkY;
-  };
-
   return (
-    <div
-      ref={ref}
-      onMouseDown={handleMouseDown}
-      onMouseUp={handleMouseUp}
-      onMouseMove={handleMouseMove}
-      className={className}
-    >
-      {children}
+    <div ref={containerRef} className={className}>
+      <motion.div
+        ref={contentRef}
+        drag
+        dragElastic={0.2}
+        style={{ x: offset.x, y: offset.y }}
+        dragConstraints={constraints}
+      >
+        {children}
+      </motion.div>
     </div>
   );
 };
