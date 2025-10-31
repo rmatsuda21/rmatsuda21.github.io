@@ -1,12 +1,19 @@
 @use "@/styles" as *;
 
 .modal {
+  --init-modal-x: 50%;
+  --final-modal-x: 0;
+  --init-modal-opacity: 0;
+  --final-modal-opacity: 1;
+  --init-modal-scale: 1;
+  --final-modal-scale: 1;
+
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100svh;
-  z-index: 900;
+  z-index: 500;
 
   opacity: 0;
   pointer-events: none;
@@ -67,6 +74,13 @@
 
 @include on(desktop) {
   .modal {
+    --init-modal-x: 0;
+    --final-modal-x: 0;
+    --init-modal-opacity: 0;
+    --final-modal-opacity: 1;
+    --init-modal-scale: 0.8;
+    --final-modal-scale: 1;
+
     .content {
       padding: 20px;
       width: 100%;
@@ -78,5 +92,14 @@
       border: 2px solid rgba(255, 255, 255, 0.1);
       border-radius: 12px;
     }
+  }
+}
+
+@keyframes zoom-in {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
   }
 }

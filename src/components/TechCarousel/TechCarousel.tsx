@@ -117,10 +117,13 @@ const TechCarousel = ({ techStack, className }: Props) => {
         <AnimatePresence mode="popLayout">
           <motion.span
             key={techStack[index]}
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 0.4, y: 0 }}
-            exit={{ opacity: 0, y: -15 }}
-            transition={{ duration: 0.1, ease: "easeInOut" }}
+            initial={{ opacity: 0, y: 25, rotate: "0deg" }}
+            animate={{ opacity: 0.4, y: 0, rotate: "1.5deg" }}
+            exit={{ opacity: 0, y: -25, rotate: "0deg" }}
+            transition={{
+              duration: 0.15,
+              ease: "easeInOut",
+            }}
           >
             {Icons[techStack[index]].name}
           </motion.span>
