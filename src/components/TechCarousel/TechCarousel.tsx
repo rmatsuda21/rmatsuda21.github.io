@@ -20,6 +20,20 @@ type Props = {
 const ITEM_WIDTH = 35;
 const ITEM_GAP = 20;
 
+const getNewIndex = ({
+  lastActiveIndex,
+  offset,
+  techStackLength,
+}: {
+  lastActiveIndex: number;
+  offset: number;
+  techStackLength: number;
+}) => {
+  const offsetIndex = Math.round(-offset / (ITEM_WIDTH + ITEM_GAP));
+  const newIndex = lastActiveIndex + offsetIndex;
+  return Math.max(0, Math.min(techStackLength - 1, newIndex));
+};
+
 const TechCarousel = ({ techStack, className }: Props) => {
   const [index, setIndex] = useState(0);
   const [lastActiveIndex, setLastActiveIndex] = useState(0);
@@ -27,16 +41,14 @@ const TechCarousel = ({ techStack, className }: Props) => {
 
   const x = useMotionValue(0);
 
-  const getNewIndex = (lastActiveIndex: number, offset: number) => {
-    const offsetIndex = Math.round(-offset / (ITEM_WIDTH + ITEM_GAP));
-    const newIndex = lastActiveIndex + offsetIndex;
-    return Math.max(0, Math.min(techStack.length - 1, newIndex));
-  };
-
   const handleDragEnd = (_: any, info: PanInfo) => {
     setIsDragging(false);
     const offset = info.offset.x;
-    const newIndex = getNewIndex(lastActiveIndex, offset);
+    const newIndex = getNewIndex({
+      lastActiveIndex,
+      offset,
+      techStackLength: techStack.length,
+    });
     setLastActiveIndex(newIndex);
     setIndex(newIndex);
   };
@@ -44,7 +56,11 @@ const TechCarousel = ({ techStack, className }: Props) => {
   const handleDrag = (_: any, info: PanInfo) => {
     setIsDragging(true);
     const offset = info.offset.x;
-    const newIndex = getNewIndex(lastActiveIndex, offset);
+    const newIndex = getNewIndex({
+      lastActiveIndex,
+      offset,
+      techStackLength: techStack.length,
+    });
     setIndex(newIndex);
   };
 
@@ -98,12 +114,12 @@ const TechCarousel = ({ techStack, className }: Props) => {
       </div>
 
       <div className={styles.nameList}>
-        <AnimatePresence mode="wait">
+        <AnimatePresence mode="popLayout">
           <motion.span
             key={techStack[index]}
-            initial={{ opacity: 0, x: 15 }}
-            animate={{ opacity: 0.4, x: 0 }}
-            exit={{ opacity: 0, x: -15 }}
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 0.4, y: 0 }}
+            exit={{ opacity: 0, y: -15 }}
             transition={{ duration: 0.1, ease: "easeInOut" }}
           >
             {Icons[techStack[index]].name}
