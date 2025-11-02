@@ -32,26 +32,32 @@ export const ScrollableContainer = ({
       return;
     }
 
-    const contentSize = container.offsetWidth * SIZE_MULTIPLIER;
-    content.style.width = contentSize + "px";
-    content.style.height = contentSize + "px";
+    const resize = () => {
+      const contentSize = container.offsetWidth * SIZE_MULTIPLIER;
+      content.style.width = contentSize + "px";
+      content.style.height = contentSize + "px";
 
-    const containerRect = container.getBoundingClientRect();
+      const containerRect = container.getBoundingClientRect();
 
-    const offset = {
-      x: (containerRect.width - contentSize) / 2,
-      y: (containerRect.height - contentSize) / 2,
+      const offset = {
+        x: (containerRect.width - contentSize) / 2,
+        y: (containerRect.height - contentSize) / 2,
+      };
+
+      const constraints = {
+        left: containerRect.width - contentSize,
+        right: 0,
+        top: containerRect.height - contentSize,
+        bottom: 0,
+      };
+
+      setOffset(offset);
+      setConstraints(constraints);
     };
 
-    const constraints = {
-      left: containerRect.width - contentSize,
-      right: 0,
-      top: containerRect.height - contentSize,
-      bottom: 0,
-    };
-
-    setOffset(offset);
-    setConstraints(constraints);
+    resize();
+    window.addEventListener("resize", resize);
+    return () => window.removeEventListener("resize", resize);
   }, []);
 
   return (
@@ -60,7 +66,7 @@ export const ScrollableContainer = ({
         ref={contentRef}
         drag
         dragElastic={0.2}
-        style={{ x: offset.x, y: offset.y }}
+        style={{ x: offset.x, y: offset.y, position: "relative" }}
         dragConstraints={constraints}
       >
         {children}

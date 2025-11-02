@@ -26,7 +26,7 @@ export const Hero = () => {
   }, []);
 
   return (
-    <div className={styles.hero}>
+    <div id="hero" className={styles.hero}>
       <div className={styles.title}>
         <p>
           <span>Howdy</span> <FaHatCowboySide className={styles.hat} />

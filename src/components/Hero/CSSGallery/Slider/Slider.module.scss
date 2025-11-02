@@ -1,0 +1,60 @@
+.track {
+  --track-color: white;
+  --progress-color: purple;
+  --indicator-color: white;
+  --indicator-offset: 10px;
+  --handle-size: 25px;
+  --track-height: 15px;
+
+  position: relative;
+  background-color: var(--track-color);
+  color: black;
+
+  width: 100%;
+  height: var(--track-height);
+  border-radius: calc(var(--track-height) / 2);
+}
+
+.progress {
+  position: absolute;
+  height: 100%;
+  background-color: var(--progress-color);
+  border-radius: calc(var(--track-height) / 2);
+}
+
+.thumb {
+  position: absolute;
+  user-select: none;
+  height: 100%;
+
+  .handle {
+    position: absolute;
+
+    top: calc((var(--handle-size) - var(--track-height)) / -2);
+    transform: translate(-50%, 0);
+    border-radius: 50%;
+    width: var(--handle-size);
+    height: var(--handle-size);
+    background-color: white;
+    border: 3px solid grey;
+    box-sizing: border-box;
+
+    transition: transform 0.1s ease-in-out;
+
+    &:hover {
+      transform: translate(-50%, 0) scale(1.1);
+    }
+  }
+
+  .indicator {
+    position: absolute;
+    bottom: 100%;
+    margin-bottom: var(--indicator-offset);
+    padding: 2px;
+    transform-origin: center bottom;
+
+    background-color: var(--progress-color);
+    border-radius: 4px;
+    color: var(--indicator-color);
+  }
+}

@@ -6,6 +6,8 @@ import { Loader } from "@/components/Hero/CSSGallery/Loader/Loader";
 import { Switch } from "@/components/Hero/CSSGallery/Switch/Switch";
 import { BurgerMenu } from "@/components/Hero/CSSGallery/BurgerMenu/BurgerMenu";
 import { ScrollableContainer } from "@/components/Hero/CSSGallery/ScrollableContainer/ScrollableContainer";
+import { RandomText } from "@/components/Hero/CSSGallery/RandomText/RandomText";
+import { Slider } from "@/components/Hero/CSSGallery/Slider/Slider";
 
 import styles from "./CSSGallery.module.scss";
 
@@ -16,6 +18,15 @@ export const CSSGallery = () => {
       <Loader className={cn(styles.items, styles.loader)} />
       <Switch className={cn(styles.items, styles.switch)} />
       <BurgerMenu className={cn(styles.items, styles.burgerMenu)} />
+      <RandomText className={cn(styles.items, styles.randomText)} />
+      <Slider
+        className={cn(styles.items, styles.slider)}
+        min={0}
+        max={100}
+        step={1}
+        defaultValue={50}
+        onChange={() => {}}
+      />
       <a
         className={cn(styles.items, styles.codepen)}
         href="https://codepen.io/rmatsuda"

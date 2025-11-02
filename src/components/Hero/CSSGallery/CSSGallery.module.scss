@@ -3,9 +3,9 @@
 .window {
   flex: 1;
   position: relative;
+  overflow: hidden;
 
   margin: -12px;
-  overflow: scroll;
 
   transition: background-color 0.2s ease-in-out;
 
@@ -44,6 +44,18 @@
   left: 58%;
 }
 
+.randomText {
+  bottom: 5%;
+  left: 15%;
+}
+
+.slider {
+  top: 20%;
+  left: 65%;
+
+  width: 175px;
+}
+
 .codepen {
   top: 37%;
   left: 56%;
@@ -62,6 +74,10 @@
         animation: float 1.5s ease-in-out infinite;
       }
     }
+  }
+
+  .slider {
+    width: 250px;
   }
 }
 

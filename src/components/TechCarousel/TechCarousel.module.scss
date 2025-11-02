@@ -1,6 +1,9 @@
 @use "@/styles" as *;
 
 .container {
+  overflow-x: hidden;
+  overflow-y: visible;
+
   position: relative;
   display: flex;
   align-items: center;
@@ -8,7 +11,7 @@
   width: 100%;
   margin-left: -12px;
 
-  padding-block: 5px;
+  padding-block: 8px;
   height: var(--item-width);
   box-sizing: content-box;
 
