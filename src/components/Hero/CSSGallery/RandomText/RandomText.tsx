@@ -1,6 +1,8 @@
 import { useEffect, useRef } from "react";
 import cn from "classnames";
 
+import "@fontsource/unifontex";
+
 import styles from "./RandomText.module.scss";
 
 const INTERVAL = 30;
