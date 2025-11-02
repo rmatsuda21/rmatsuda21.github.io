@@ -43,6 +43,13 @@ html:has(input:hover) {
   }
 }
 
+@media (pointer: coarse) {
+  .body {
+    display: none;
+    pointer-events: none;
+  }
+}
+
 @include on(mobile) {
   .body {
     display: none;
