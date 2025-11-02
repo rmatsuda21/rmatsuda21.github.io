@@ -1,5 +1,4 @@
 import { useState, lazy, Suspense } from "react";
-import { createPortal } from "react-dom";
 import { FaGithub } from "react-icons/fa6";
 import { FaExternalLinkAlt } from "react-icons/fa";
 
@@ -44,44 +43,41 @@ export const Project = () => {
         </div>
       </div>
 
-      {createPortal(
-        <Suspense fallback={null}>
-          <Modal
-            className={styles.modal}
-            onClose={handleModalClose}
-            open={!!modalContent}
-          >
-            <h2>{modalContent?.title}</h2>
+      <Suspense fallback={null}>
+        <Modal
+          className={styles.modal}
+          onClose={handleModalClose}
+          open={!!modalContent}
+        >
+          <h2>{modalContent?.title}</h2>
 
-            <div className={styles.content}>
-              <div className={styles.info}>
-                <img src={modalContent?.img} alt={modalContent?.title} />
+          <div className={styles.content}>
+            <div className={styles.info}>
+              <img src={modalContent?.img} alt={modalContent?.title} />
 
-                <h3>Tech Stack</h3>
-                <div className={styles.techStack}>
-                  {modalContent?.techStack?.map((tech) => (
-                    <span key={tech}>{Icons[tech].icon}</span>
-                  ))}
-                </div>
-              </div>
-
-              <div className={styles.description}>
-                {modalContent?.description}
-
-                <div className={styles.links}>
-                  <a href={modalContent?.link} target="_blank">
-                    <FaExternalLinkAlt />
-                  </a>
-                  <a href={modalContent?.github} target="_blank">
-                    <FaGithub />
-                  </a>
-                </div>
+              <h3>Tech Stack</h3>
+              <div className={styles.techStack}>
+                {modalContent?.techStack?.map((tech) => (
+                  <span key={tech}>{Icons[tech].icon}</span>
+                ))}
               </div>
             </div>
-          </Modal>
-        </Suspense>,
-        document.body
-      )}
+
+            <div className={styles.description}>
+              {modalContent?.description}
+
+              <div className={styles.links}>
+                <a href={modalContent?.link} target="_blank">
+                  <FaExternalLinkAlt />
+                </a>
+                <a href={modalContent?.github} target="_blank">
+                  <FaGithub />
+                </a>
+              </div>
+            </div>
+          </div>
+        </Modal>
+      </Suspense>
     </>
   );
 };

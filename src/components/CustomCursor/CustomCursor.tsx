@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import cn from "classnames";
+import { createPortal } from "react-dom";
 
 import styles from "./CustomCursor.module.scss";
-import { createPortal } from "react-dom";
 
 export const CustomCursor = () => {
   const cursorRef = useRef<HTMLDivElement>(null);

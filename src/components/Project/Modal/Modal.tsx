@@ -4,11 +4,13 @@ import { AnimatePresence, motion, type Transition } from "motion/react";
 import { FaTimes } from "react-icons/fa";
 
 import styles from "./Modal.module.scss";
+import { createPortal } from "react-dom";
 
 type ModalProps = {
   open: boolean;
   onClose: () => void;
   className?: string;
+  rootElement?: HTMLElement;
 };
 
 export const Modal = ({
@@ -16,6 +18,7 @@ export const Modal = ({
   open,
   onClose,
   className,
+  rootElement = document.body,
 }: React.PropsWithChildren<ModalProps>) => {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -32,7 +35,7 @@ export const Modal = ({
 
   const transition: Transition = { duration: 0.15, ease: "easeInOut" };
 
-  return (
+  return createPortal(
     <AnimatePresence>
       {open && (
         <div className={cn(styles.modal, { [styles.open]: open })}>
@@ -78,6 +81,7 @@ export const Modal = ({
           </motion.div>
         </div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    rootElement
   );
 };

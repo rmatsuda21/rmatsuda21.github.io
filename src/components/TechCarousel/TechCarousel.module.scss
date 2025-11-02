@@ -1,9 +1,6 @@
 @use "@/styles" as *;
 
 .container {
-  overflow-x: hidden;
-  overflow-y: visible;
-
   position: relative;
   display: flex;
   align-items: center;
