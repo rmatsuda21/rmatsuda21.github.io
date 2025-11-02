@@ -2,6 +2,9 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { IconContext } from "react-icons";
 
+import "@fontsource-variable/rubik";
+import "@fontsource/unifontex";
+
 import "./reset.css";
 import "./index.css";
 
