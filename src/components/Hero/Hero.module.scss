@@ -35,6 +35,13 @@
     }
   }
 
+  .loader {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .techCarousel {
     width: calc(100% + var(--content-padding) * 2);
   }

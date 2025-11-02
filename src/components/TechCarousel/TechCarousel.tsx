@@ -34,7 +34,7 @@ const getNewIndex = ({
   return Math.max(0, Math.min(techStackLength - 1, newIndex));
 };
 
-const TechCarousel = ({ techStack, className }: Props) => {
+export const TechCarousel = ({ techStack, className }: Props) => {
   const [index, setIndex] = useState(0);
   const [lastActiveIndex, setLastActiveIndex] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
@@ -132,5 +132,3 @@ const TechCarousel = ({ techStack, className }: Props) => {
     </div>
   );
 };
-
-export default TechCarousel;
