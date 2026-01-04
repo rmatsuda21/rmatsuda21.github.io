@@ -8,6 +8,7 @@ import { BurgerMenu } from "@/components/Hero/CSSGallery/BurgerMenu/BurgerMenu";
 import { ScrollableContainer } from "@/components/Hero/CSSGallery/ScrollableContainer/ScrollableContainer";
 import { RandomText } from "@/components/Hero/CSSGallery/RandomText/RandomText";
 import { Slider } from "@/components/Hero/CSSGallery/Slider/Slider";
+import { RadixSpinner } from "@/components/Hero/CSSGallery/RadixSpinner/RadixSpinner";
 
 import styles from "./CSSGallery.module.scss";
 
@@ -27,6 +28,7 @@ export const CSSGallery = () => {
         defaultValue={50}
         onChange={() => {}}
       />
+      <RadixSpinner className={cn(styles.items, styles.radixSpinner)} />
       <a
         className={cn(styles.items, styles.codepen)}
         href="https://codepen.io/rmatsuda"
