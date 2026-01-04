@@ -28,23 +28,17 @@ export const Home = () => {
   };
 
   const incrementIndex = () => {
-    setIndex(
-      Math.min(
-        Number(contentRef.current?.style.getPropertyValue("--selected-index")) +
-          1,
-        2
-      )
+    const currentIndex = Number(
+      contentRef.current?.style.getPropertyValue("--selected-index")
     );
+    setIndex(Math.min(currentIndex + 1, 2));
   };
 
   const decrementIndex = () => {
-    setIndex(
-      Math.max(
-        Number(contentRef.current?.style.getPropertyValue("--selected-index")) -
-          1,
-        0
-      )
+    const currentIndex = Number(
+      contentRef.current?.style.getPropertyValue("--selected-index")
     );
+    setIndex(Math.max(currentIndex - 1, 0));
   };
 
   return (

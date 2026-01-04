@@ -31,7 +31,7 @@ export const Modal = ({
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, []);
+  }, [onClose]);
 
   const transition: Transition = { duration: 0.15, ease: "easeInOut" };
 

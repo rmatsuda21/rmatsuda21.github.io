@@ -1,4 +1,5 @@
 import cn from "classnames";
+import { motion } from "motion/react";
 
 import { Icons } from "@/constants/Icons";
 import type { ProjectType } from "@/types/ProjectType";
@@ -10,6 +11,7 @@ type CellProps = {
   onClick: () => void;
   className?: string;
   dark?: boolean;
+  layoutId?: string;
 };
 
 export const Cell = ({
@@ -17,6 +19,7 @@ export const Cell = ({
   onClick,
   className,
   dark = true,
+  layoutId,
 }: CellProps) => {
   const { img, gif, title, techStack } = project;
 
@@ -26,7 +29,7 @@ export const Cell = ({
   } as React.CSSProperties;
 
   return (
-    <button
+    <motion.button
       className={cn(
         styles.cell,
         { [styles.gif]: gif, [styles.dark]: dark },
@@ -34,6 +37,8 @@ export const Cell = ({
       )}
       style={style}
       onClick={onClick}
+      layoutId={layoutId}
+      type="button"
     >
       <h2>{title}</h2>
       {techStack?.length && techStack.length > 0 && (
@@ -41,6 +46,6 @@ export const Cell = ({
           {techStack.map((tech) => Icons[tech].icon)}
         </div>
       )}
-    </button>
+    </motion.button>
   );
 };

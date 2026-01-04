@@ -3,8 +3,26 @@ import cstatGatchaComGif from "@/assets/projects/cstat-gatcha-com.gif";
 import cstatGatchaComImg from "@/assets/projects/cstat-gatcha-com.png";
 import pitchIoImg from "@/assets/projects/pitch-io.png";
 import pitchIoGif from "@/assets/projects/pitch-io.gif";
+import smashRankerImg from "@/assets/projects/smash-ranker.png";
+import smashRankerGif from "@/assets/projects/smash-ranker.gif";
 
 export const PROJECTS = Object.freeze([
+  {
+    img: smashRankerImg,
+    gif: smashRankerGif,
+    title: "Smash Ranker",
+    techStack: ["react", "typescript", "vite", "sass", "vercel"],
+    link: "https://smash-ranker.vercel.app/ranker",
+    github: "https://github.com/rmatsuda21/smash-ranker",
+    description: (
+      <>
+        <p>
+          The next gen tool for creating awesome graphics for your Smash Bros.
+          tournament!
+        </p>
+      </>
+    ),
+  },
   {
     img: cstatGatchaComImg,
     gif: cstatGatchaComGif,
