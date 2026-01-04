@@ -6,7 +6,13 @@ import {
   FaReact,
   FaUnity,
 } from "react-icons/fa6";
-import { SiJest, SiTailwindcss, SiVercel, SiWebpack } from "react-icons/si";
+import {
+  SiGraphql,
+  SiJest,
+  SiTailwindcss,
+  SiVercel,
+  SiWebpack,
+} from "react-icons/si";
 import {
   TbBrandNextjs,
   TbBrandSass,
@@ -80,6 +86,10 @@ export const Icons = {
   unity: {
     name: "Unity",
     icon: <FaUnity key="unity" />,
+  },
+  graphql: {
+    name: "GraphQL",
+    icon: <SiGraphql key="graphql" />,
   },
 } as const;
 

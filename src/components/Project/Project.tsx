@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, LayoutGroup } from "motion/react";
+import cn from "classnames";
 
 import type { ProjectType } from "@/types/ProjectType";
 import { PROJECTS } from "@/constants/Projects";
@@ -48,7 +49,7 @@ export const Project = () => {
 
   return (
     <LayoutGroup>
-      <div className={styles.wrapper}>
+      <div className={cn(styles.wrapper, "hideScrollbar")}>
         <h1>Projects</h1>
         <div className={styles.content}>
           {PROJECTS.map((project) => {

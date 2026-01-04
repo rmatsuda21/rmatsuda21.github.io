@@ -49,8 +49,8 @@
 }
 
 .modal {
-  h2 {
-    font-size: 1.5rem;
+  .projectTitle {
+    font-size: 1.3rem;
     line-height: 1;
     font-weight: 600;
   }
@@ -58,7 +58,7 @@
   img {
     border: 2px solid rgba(255, 255, 255, 0.8);
     border-radius: 6px;
-    margin-block: 24px 8px;
+    margin-block: 12px 8px;
   }
 
   h3 {
@@ -69,36 +69,59 @@
     text-align: center;
   }
 
-  .content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-  }
-
   .info {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 12px;
-  }
+    gap: 4px;
 
-  .techStack {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
+    .title {
+      margin: 0;
+      font-size: 18px;
+    }
 
-    svg {
-      height: 32px;
-      width: 32px;
+    .techStack {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+
+      svg {
+        height: 20px;
+        width: 20px;
+      }
+    }
+
+    hr {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(
+        to right,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+      );
+      border: none;
+      margin-block: 4px;
     }
   }
 
-  p {
-    margin-block: 12px;
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .description {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    font-weight: 400;
+    font-size: 14px;
   }
 
   .links {
@@ -108,17 +131,23 @@
     align-items: center;
     gap: 12px;
 
+    font-size: 12px;
+    font-weight: 700;
+    --icon-size: 18px;
+
     a {
-      width: 24px;
-      height: 24px;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 6px;
+      padding: 8px 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-    }
+      gap: 8px;
 
-    svg {
-      height: 100%;
-      width: 100%;
+      svg {
+        height: var(--icon-size);
+        width: var(--icon-size);
+      }
     }
   }
 }
@@ -139,6 +168,10 @@
   .modal {
     position: relative;
 
+    .projectTitle {
+      margin-bottom: 18px;
+    }
+
     .content {
       height: 100%;
       flex-direction: row;
@@ -150,6 +183,10 @@
       flex: 1;
       max-width: 350px;
       justify-content: flex-start;
+
+      img {
+        margin-top: 0;
+      }
     }
 
     .description {
@@ -163,6 +200,15 @@
       position: absolute;
       top: 0;
       right: 20px;
+      margin-top: -4px;
+
+      a {
+        transition: background-color 0.2s ease-in-out;
+      }
+
+      a:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
     }
   }
 }

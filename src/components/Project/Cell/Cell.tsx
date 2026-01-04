@@ -43,7 +43,7 @@ export const Cell = ({
       <h2>{title}</h2>
       {techStack?.length && techStack.length > 0 && (
         <div className={styles.techStack}>
-          {techStack.map((tech) => Icons[tech].icon)}
+          {techStack.map((tech) => Icons[tech]?.icon ?? null)}
         </div>
       )}
     </motion.button>

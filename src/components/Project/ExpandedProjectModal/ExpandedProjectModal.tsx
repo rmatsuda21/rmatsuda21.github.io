@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { motion } from "motion/react";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa6";
@@ -51,7 +52,7 @@ export const ExpandedProjectModal = ({
         onClick={(e) => e.stopPropagation()}
       >
         <div className={styles.modal}>
-          <h2>{project.title}</h2>
+          <h1 className={styles.projectTitle}>{project.title}</h1>
 
           <motion.div
             className={styles.content}
@@ -66,13 +67,14 @@ export const ExpandedProjectModal = ({
           >
             <div className={styles.info}>
               <img src={project.img} alt={project.title} />
-
-              <h3>Tech Stack</h3>
+              <hr />
+              <h3 className={styles.title}>Tech Stack</h3>
               <div className={styles.techStack}>
                 {project.techStack?.map((tech) => (
-                  <span key={tech}>{Icons[tech].icon}</span>
+                  <Fragment key={tech}>{Icons[tech].icon}</Fragment>
                 ))}
               </div>
+              <hr />
             </div>
 
             <div className={styles.description}>
@@ -80,10 +82,10 @@ export const ExpandedProjectModal = ({
 
               <div className={styles.links}>
                 <a href={project.link} target="_blank" rel="noreferrer">
-                  <FaExternalLinkAlt />
+                  <FaExternalLinkAlt /> Visit Project
                 </a>
                 <a href={project.github} target="_blank" rel="noreferrer">
-                  <FaGithub />
+                  <FaGithub /> Github
                 </a>
               </div>
             </div>
