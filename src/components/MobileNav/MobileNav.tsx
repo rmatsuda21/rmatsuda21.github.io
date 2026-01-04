@@ -46,6 +46,7 @@ export const MobileNav = ({
 
   return (
     <nav
+      id="mobile-nav"
       className={styles.nav}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}

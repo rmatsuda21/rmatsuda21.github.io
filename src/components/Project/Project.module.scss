@@ -22,6 +22,15 @@
   }
 }
 
+.hiddenCell {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.floatingCell {
+  pointer-events: none;
+}
+
 @include on(desktop) {
   .wrapper {
     .content {

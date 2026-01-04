@@ -8,10 +8,11 @@ import styles from "./Cell.module.scss";
 
 type CellProps = {
   project: ProjectType;
-  onClick: () => void;
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
   className?: string;
   dark?: boolean;
   layoutId?: string;
+  style?: React.CSSProperties;
 };
 
 export const Cell = ({
@@ -20,12 +21,14 @@ export const Cell = ({
   className,
   dark = true,
   layoutId,
+  style: styleOverride,
 }: CellProps) => {
   const { img, gif, title, techStack } = project;
 
   const style = {
     "--bg": `url(${img})`,
     ...(gif && { "--gif": `url(${gif})` }),
+    ...styleOverride,
   } as React.CSSProperties;
 
   return (
