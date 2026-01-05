@@ -34,6 +34,26 @@
 
     animation: rotate 7s linear infinite;
   }
+
+  .scrollText {
+    display: flex;
+    width: max-content;
+    align-items: center;
+    gap: 4px;
+
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 100%);
+    text-wrap: nowrap;
+    font-size: 12px;
+
+    svg {
+      display: block;
+      width: 12px;
+      height: 12px;
+    }
+  }
 }
 
 @keyframes rotate {

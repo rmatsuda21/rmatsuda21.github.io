@@ -33,6 +33,7 @@ export const CSSGallery = () => {
         className={cn(styles.items, styles.codepen)}
         href="https://codepen.io/rmatsuda"
         target="_blank"
+        draggable={false}
       >
         Visit my <FaCodepen />
       </a>
