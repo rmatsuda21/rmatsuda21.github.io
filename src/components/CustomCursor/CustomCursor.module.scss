@@ -7,7 +7,8 @@
 
 html:has(a:hover),
 html:has(button:hover),
-html:has(input:hover) {
+html:has(input:hover),
+html:has(summary:hover) {
   --cursor-size: 15px;
   --cursor-clip-path: inset(0 round 10%);
 }

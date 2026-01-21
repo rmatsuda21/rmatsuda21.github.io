@@ -2,8 +2,9 @@ import { useRef, useEffect, Suspense, lazy } from "react";
 import { FaHatCowboySide } from "react-icons/fa6";
 import { GiTexas } from "react-icons/gi";
 
+import { Loader } from "@/components/Hero/CSSGallery/Loader/Loader";
+
 import styles from "./Hero.module.scss";
-import { Loader } from "./CSSGallery/Loader/Loader";
 
 const CSSGallery = lazy(() =>
   import("@/components/Hero/CSSGallery/CSSGallery").then((m) => ({
