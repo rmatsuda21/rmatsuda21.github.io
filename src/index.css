@@ -17,7 +17,13 @@ html {
   background-color: var(--background-color);
   color: var(--text-color);
 
-  cursor: none;
+  * {
+    cursor: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+  }
 
   *:hover {
     cursor: none;

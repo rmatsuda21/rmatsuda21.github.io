@@ -1,8 +1,8 @@
 import { useRef, useEffect, Suspense, lazy } from "react";
 import { FaHatCowboySide } from "react-icons/fa6";
-import { GiTexas } from "react-icons/gi";
 
 import { Loader } from "@/components/Hero/CSSGallery/Loader/Loader";
+import { InfoCard } from "@/components/Hero/InfoCard/InfoCard";
 
 import styles from "./Hero.module.scss";
 
@@ -42,13 +42,11 @@ export const Hero = () => {
         <p>
           <span>Howdy</span> <FaHatCowboySide className={styles.hat} />
         </p>
-        <p className={styles.center}>I'm Reo Matsuda</p>
+        <p className={styles.center}>
+          I'm <InfoCard />
+        </p>
         <p className={styles.right}>
-          <span>
-            A web developer <br />
-            based in Texas
-          </span>
-          <GiTexas />
+          I love creating<br />experiences ✨
         </p>
       </div>
       <hr />
@@ -85,6 +83,7 @@ export const Hero = () => {
           ]}
         />
       </Suspense>
+
     </div>
   );
 };

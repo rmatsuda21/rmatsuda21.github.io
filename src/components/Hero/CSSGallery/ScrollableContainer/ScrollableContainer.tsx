@@ -10,10 +10,7 @@ export const ScrollableContainer = ({
 }: React.HTMLAttributes<HTMLDivElement>) => {
   const contentRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const [offset, setOffset] = useState<{ x: number; y: number }>({
-    x: 0,
-    y: 0,
-  });
+  const [isReady, setIsReady] = useState(false);
   const [constraints, setConstraints] = useState<{
     left: number;
     right: number;
@@ -57,10 +54,10 @@ export const ScrollableContainer = ({
         bottom: 0,
       };
 
-      setOffset(newOffset);
       setConstraints(newConstraints);
       x.set(newOffset.x);
       y.set(newOffset.y);
+      setIsReady(true);
     };
 
     resize();
@@ -75,13 +72,13 @@ export const ScrollableContainer = ({
           ref={contentRef}
           drag
           dragElastic={0.2}
-          style={{ x, y, position: "relative" }}
-          dragConstraints={constraints}
-          onDragStart={() => {
-            x.set(x.get());
-            y.set(y.get());
+          style={{
+            x,
+            y,
+            position: "relative",
+            visibility: isReady ? "visible" : "hidden",
           }}
-          initial={{ x: offset.x, y: offset.y }}
+          dragConstraints={constraints}
         >
           {children}
         </motion.div>

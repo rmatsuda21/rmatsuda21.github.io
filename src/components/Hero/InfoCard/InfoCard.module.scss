@@ -1,0 +1,169 @@
+@use "@/styles" as *;
+
+$card-padding-y: 14px;
+$card-padding-x: 16px;
+$card-border-width: 1px;
+$card-padding-y-mobile: 12px;
+$card-padding-x-mobile: 14px;
+
+.card {
+  display: inline-block;
+  position: relative;
+  padding: $card-padding-y $card-padding-x;
+  margin: calc($card-padding-y * -1) calc($card-padding-x * -1);
+  border: $card-border-width solid transparent;
+  border-radius: 12px;
+  background: transparent;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.06);
+  }
+}
+
+.name {
+  position: relative;
+  white-space: nowrap;
+  display: inline-block;
+  animation: pulse 0.8s ease-in-out 1.5s;
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.25);
+  text-underline-offset: 4px;
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  20% {
+    transform: scale(1.03);
+  }
+
+  40% {
+    transform: scale(1);
+  }
+
+  60% {
+    transform: scale(1.03);
+  }
+
+  80% {
+    transform: scale(1);
+  }
+}
+
+.expandedCard {
+  position: absolute;
+  z-index: 800;
+  overflow: hidden;
+  transform: translateX(-50%);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: $card-padding-y $card-padding-x;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 8px;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.expandedName {
+  font-size: 1.5rem;
+  line-height: 1;
+  white-space: nowrap;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.extra {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding-top: 10px;
+  white-space: nowrap;
+
+  font-size: 0.7rem;
+
+  color: rgba(255, 255, 255, 0.5);
+
+  svg {
+    color: rgba(255, 255, 255, 0.5);
+  }
+}
+
+
+.location,
+.game {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  color: var(--text-color);
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.06);
+  transition: background 0.2s;
+
+  svg {
+    width: 18px;
+    height: 18px;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.14);
+  }
+}
+
+@include on(mobile) {
+  .card {
+    padding: $card-padding-y-mobile $card-padding-x-mobile;
+    margin: calc($card-padding-y-mobile * -1) calc($card-padding-x-mobile * -1);
+  }
+
+  .expandedCard {
+    padding: $card-padding-y-mobile $card-padding-x-mobile;
+  }
+
+  .expandedName {
+    font-size: 1.5rem;
+  }
+
+  .extra {
+    padding-top: 8px;
+    font-size: 0.65rem;
+  }
+
+  .link {
+    width: 32px;
+    height: 32px;
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  .links {
+    gap: 4px;
+  }
+}

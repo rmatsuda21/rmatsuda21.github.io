@@ -1,4 +1,5 @@
 import { motion, useSpring, useTransform } from "motion/react";
+
 import { useScrollContext } from "../ScrollableContainer/ScrollContext";
 
 interface GalleryItemProps {
@@ -46,20 +47,21 @@ export const GalleryItem = ({
   const scale = useSpring(rawScale, springConfig);
 
   return (
-    <motion.div
-      className={className}
-      style={{
-        x: parallaxX,
-        y: parallaxY,
-        rotateX,
-        rotateY,
-        scale,
-        transformPerspective: 800,
-        transformStyle: "preserve-3d",
-      }}
-    >
-      {children}
-    </motion.div>
+    <div className={className}>
+      <motion.div
+        style={{
+          x: parallaxX,
+          y: parallaxY,
+          rotateX,
+          rotateY,
+          scale,
+          transformPerspective: 800,
+          transformStyle: "preserve-3d",
+        }}
+      >
+        {children}
+      </motion.div>
+    </div>
   );
 };
 
