@@ -1,18 +1,186 @@
-.wrapper {
-  h1 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 8px;
+@use "@/styles" as *;
+
+.ledger {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  border-bottom: 1px solid var(--rule);
+}
+
+.row {
+  @include flood-row;
+
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 44px;
+  grid-template-areas:
+    "period toggle"
+    "company toggle"
+    "title toggle";
+  align-items: center;
+  gap: 6px 12px;
+
+  width: calc(100% + 2 * var(--pad));
+  margin-inline: calc(-1 * var(--pad));
+  padding: 16px var(--pad);
+  text-align: left;
+}
+
+.period {
+  @include pixel;
+  @include muted;
+
+  grid-area: period;
+}
+
+.company {
+  grid-area: company;
+  font-size: clamp(22px, 2vw, 26px);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.title {
+  grid-area: title;
+  font-size: 17px;
+  font-weight: 400;
+}
+
+.stack {
+  @include pixel;
+  @include muted;
+
+  display: none;
+  grid-area: stack;
+}
+
+.toggle {
+  @include pixel(32px);
+
+  grid-area: toggle;
+  justify-self: end;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid currentColor;
+}
+
+.panel {
+  overflow: hidden;
+}
+
+.initiatives {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  border-top: 1px solid var(--rule);
+}
+
+.initiative {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-block: 24px 28px;
+  border-bottom: 1px solid var(--rule);
+
+  &:last-child {
+    border-bottom: 0;
   }
 
-  h2 {
-    font-size: 1rem;
-    font-weight: 600;
+  h3 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.25;
   }
 
-  .list {
+  p {
+    @include body-text(16px);
+    @include muted;
+
+    margin: 0;
+    color: color-mix(in srgb, currentColor 84%, transparent);
+  }
+}
+
+.figures {
+  display: grid;
+  grid-auto-flow: column;
+  // A cell never gets narrower than its value, so long values cannot spill.
+  grid-auto-columns: minmax(min-content, 1fr);
+  margin: 0;
+  border: 1px solid var(--fg);
+
+  > div {
     display: flex;
     flex-direction: column;
     gap: 8px;
+    padding: 12px;
+    border-left: 1px solid var(--fg);
+
+    &:first-child {
+      border-left: 0;
+    }
+  }
+
+  dd {
+    @include pixel(32px);
+
+    margin: 0;
+    letter-spacing: 0;
+    white-space: nowrap;
+  }
+
+  dt {
+    @include pixel;
+    @include muted;
+  }
+}
+
+.highlights {
+  margin: 0;
+  padding-left: 18px;
+
+  li {
+    @include body-text(15px);
+
+    margin-bottom: 4px;
+    color: color-mix(in srgb, currentColor 84%, transparent);
+  }
+}
+
+@media (min-width: 720px) {
+  .initiative {
+    padding-inline: 28px;
+    border-bottom: 0;
+    border-left: 1px solid var(--rule);
+
+    &:first-child {
+      padding-left: 16px;
+      border-left: 0;
+    }
+
+    &:last-child {
+      padding-right: 16px;
+    }
+  }
+}
+
+@include on(desktop) {
+  .row {
+    grid-template-columns: 2fr 4fr 3fr 2fr 1fr;
+    grid-template-areas: "period company title stack toggle";
+    gap: 0;
+
+    width: 100%;
+    min-height: 72px;
+    margin-inline: 0;
+    padding: 0 16px;
+  }
+
+  .stack {
+    display: block;
   }
 }

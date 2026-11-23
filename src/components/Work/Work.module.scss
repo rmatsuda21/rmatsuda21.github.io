@@ -1,0 +1,227 @@
+@use "@/styles" as *;
+
+.index {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  border-bottom: 1px solid var(--rule);
+}
+
+.row {
+  @include flood-row;
+
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 44px;
+  grid-template-areas:
+    "no toggle"
+    "heading toggle";
+  align-items: center;
+  gap: 6px 12px;
+
+  width: calc(100% + 2 * var(--pad));
+  margin-inline: calc(-1 * var(--pad));
+  padding: 16px var(--pad);
+  text-align: left;
+}
+
+.no {
+  @include pixel;
+  @include muted;
+
+  grid-area: no;
+}
+
+.heading {
+  grid-area: heading;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.title {
+  font-size: clamp(28px, 2.6vw, 34px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.tagline {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+.stack {
+  @include pixel;
+  @include muted;
+
+  display: none;
+  grid-area: stack;
+}
+
+.toggle {
+  @include pixel(32px);
+
+  grid-area: toggle;
+  justify-self: end;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid currentColor;
+}
+
+.thumb,
+.frame {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--fg);
+  -webkit-touch-callout: none;
+
+  // One fixed shape for every project, so the figure never changes size as
+  // the preview swaps. Screenshots are cropped from the top to fit.
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    // Screenshots stay inside the two-colour sheet until they are enlarged.
+    filter: grayscale(1) contrast(1.1);
+  }
+}
+
+.thumb {
+  margin-bottom: 16px;
+}
+
+.panel {
+  overflow: hidden;
+}
+
+.case {
+  padding-bottom: 24px;
+  max-width: 62ch;
+
+  p {
+    @include body-text;
+
+    margin: 0 0 12px;
+  }
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 20px;
+
+  a {
+    @include pixel;
+
+    display: inline-flex;
+    align-items: center;
+    height: 48px;
+    padding-inline: 16px;
+    border: 1px solid var(--fg);
+
+    @include fine-pointer {
+      &:hover {
+        background-color: var(--fg);
+        color: var(--bg);
+      }
+    }
+  }
+}
+
+.pane {
+  display: none;
+  margin: 0;
+
+  figcaption {
+    @include pixel;
+    @include muted;
+
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 12px;
+  }
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+
+  display: grid;
+  place-items: center;
+  padding: clamp(16px, 4vw, 56px);
+
+  img {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: calc(100svh - 2 * clamp(16px, 4vw, 56px));
+    border: 1px solid #fff;
+  }
+}
+
+.close {
+  @include pixel;
+
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  height: 44px;
+  padding-inline: 14px;
+  background-color: #fff;
+  color: #000;
+}
+
+@include on(desktop) {
+  .layout {
+    display: grid;
+    grid-template-columns: 7fr 5fr;
+    align-items: start;
+  }
+
+  .row {
+    grid-template-columns: 1fr 4fr 2fr 44px;
+    grid-template-areas: "no heading stack toggle";
+    gap: 0;
+
+    width: 100%;
+    min-height: 104px;
+    margin-inline: 0;
+    padding: 12px 16px;
+  }
+
+  .stack {
+    display: block;
+  }
+
+  .thumb {
+    display: none;
+  }
+
+  .case {
+    // Lines up with the title column of the row above.
+    padding: 4px 16px 28px calc((100% - 76px) / 7 + 16px);
+  }
+
+  .pane {
+    display: block;
+    position: sticky;
+    top: calc(var(--bar-height) + 24px);
+    padding-left: 48px;
+  }
+}

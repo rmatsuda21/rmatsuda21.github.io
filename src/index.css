@@ -1,7 +1,43 @@
+/*
+ * UnifontEX, subset to the characters this site uses (Basic Latin plus a few
+ * dashes, arrows and blocks). The full file is 2 MB; this one is 3 KB.
+ * Regenerate with fonttools:
+ *   pyftsubset unifontex-latin-400-normal.woff2 --flavor=woff2 \
+ *     --unicodes="U+0020-007E,U+00A0,U+00B7,U+00D7,U+2013,U+2014,U+2018,U+2019,U+201C,U+201D,U+2026,U+2190-2194,U+2196-2199,U+2212,U+25AE,U+25AF,U+2588" \
+ *     --layout-features="" --drop-tables+=BASE,GSUB,GPOS,GDEF
+ */
+@font-face {
+  font-family: "UnifontEX";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./assets/fonts/unifontex-subset.woff2") format("woff2");
+}
+
 :root {
-  --text-color: #fff;
-  --background-color: #000;
-  --mobile-breakpoint: 768px;
+  --fg: #fff;
+  --bg: #000;
+  --rule: color-mix(in srgb, var(--fg) 24%, transparent);
+  --grid: color-mix(in srgb, var(--fg) 7%, transparent);
+  --pad: clamp(20px, 3.4vw, 48px);
+  --cols: 4;
+  --bar-height: 56px;
+  --font-pixel: "UnifontEX", ui-monospace, monospace;
+
+  /* Aliases used by the Lab toys. */
+  --text-color: var(--fg);
+  --background-color: var(--bg);
+}
+
+html[data-rev="light"] {
+  --fg: #000;
+  --bg: #fff;
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --cols: 12;
+  }
 }
 
 html {
@@ -13,50 +49,59 @@ html {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
 
-  background-color: var(--background-color);
-  color: var(--text-color);
+  background-color: var(--bg);
+  color: var(--fg);
+}
 
-  * {
+/* The lens replaces the pointer only where there is a real, precise pointer. */
+@media (hover: hover) and (pointer: fine) {
+  html,
+  html * {
     cursor: none;
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
   }
+}
 
-  *:hover {
-    cursor: none;
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
   }
 }
 
 body {
-  display: flex;
-  min-width: 100vw;
-  min-height: 100svh;
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--fg);
+  overflow-x: clip;
+}
 
-  #root {
-    display: flex;
-    flex: 1;
-  }
+section[id] {
+  scroll-margin-top: calc(var(--bar-height) + 8px);
 }
 
 a {
   color: inherit;
   text-decoration: none;
-  /* text-shadow: red 0 0 3px; */
 }
 
 button {
   color: inherit;
+  font: inherit;
   background-color: transparent;
   border: none;
   padding: 0;
   margin: 0;
+}
+
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+::selection {
+  background-color: var(--fg);
+  color: var(--bg);
 }
 
 .react-icon {
@@ -72,4 +117,87 @@ button {
 
 .hideScrollbar::-webkit-scrollbar {
   display: none;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/*
+ * Revision toggle.
+ *
+ * The switch does not swap the palette straight away. A full-screen lens
+ * (`.revWipe`, the same backdrop inversion as the cursor) opens in a circle
+ * from the switch, and only once it covers the page is the palette itself
+ * swapped (`html[data-rev="light"]`) and the lens put away. Because the
+ * circle's radius is one registered custom property with a plain CSS
+ * transition, pressing the switch again mid-way simply turns it around.
+ */
+@property --rev-r {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    transition: --rev-r 0.55s cubic-bezier(0.3, 0, 0.2, 1);
+  }
+}
+
+.revWipe {
+  position: fixed;
+  inset: 0;
+  /* Above the page and its bars, below the lightbox and the cursor. */
+  z-index: 400;
+  pointer-events: none;
+
+  backdrop-filter: invert(1);
+  -webkit-backdrop-filter: invert(1);
+  clip-path: circle(var(--rev-r) at var(--rev-x, 0px) var(--rev-y, 0px));
+}
+
+/*
+ * Photos must not turn negative while the lens is over them. Each one carries
+ * its own inverting layer clipped to the same circle, so inside the circle it
+ * is inverted twice and comes out unchanged.
+ */
+[data-rev-keep] {
+  position: relative;
+}
+
+[data-rev-keep]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  backdrop-filter: invert(1);
+  -webkit-backdrop-filter: invert(1);
+  clip-path: circle(var(--rev-r) at var(--keep-x, 0px) var(--keep-y, 0px));
+}
+
+html[data-rev="light"] .revWipe,
+html[data-rev="light"] [data-rev-keep]::after {
+  display: none;
+}
+
+/*
+ * Press-and-hold measures an element on touch screens. Without this, the same
+ * gesture starts a text selection or opens the image call-out instead.
+ */
+@media (hover: none) {
+  [data-measure] {
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+  }
 }

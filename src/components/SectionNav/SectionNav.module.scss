@@ -1,0 +1,55 @@
+@use "@/styles" as *;
+
+.nav {
+  --item: 52px;
+  --inset: 6px;
+
+  @include pixel;
+
+  position: fixed;
+  left: 50%;
+  bottom: calc(16px + env(safe-area-inset-bottom));
+  z-index: 200;
+  transform: translateX(-50%);
+
+  display: flex;
+  padding: var(--inset);
+  border-radius: 32px;
+  background-color: var(--fg);
+  color: var(--bg);
+
+  a {
+    display: grid;
+    place-items: center;
+    width: var(--item);
+    height: 48px;
+  }
+
+  // The marker inverts whatever it sits on, like the lens does.
+  &::before {
+    content: "";
+    position: absolute;
+    top: var(--inset);
+    left: var(--inset);
+    width: var(--item);
+    height: 48px;
+    border-radius: 24px;
+    pointer-events: none;
+
+    backdrop-filter: invert(1);
+    -webkit-backdrop-filter: invert(1);
+    transform: translateX(calc(var(--index) * var(--item)));
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    &::before {
+      transition: transform 0.3s cubic-bezier(0.3, 1.4, 0.5, 1);
+    }
+  }
+}
+
+@include on(desktop) {
+  .nav {
+    display: none;
+  }
+}

@@ -1,0 +1,231 @@
+@use "@/styles" as *;
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding-top: clamp(32px, 4vw, 48px);
+  border-top: 1px solid var(--fg);
+}
+
+.title {
+  align-self: flex-start;
+  margin: 0;
+  font-size: clamp(64px, 9.2vw, 140px);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 0.86;
+}
+
+.links {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: clamp(20px, 1.6vw, 22px);
+  font-weight: 500;
+
+  a {
+    @include flood-row;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    min-height: 60px;
+    width: calc(100% + 2 * var(--pad));
+    margin-inline: calc(-1 * var(--pad));
+    padding-inline: var(--pad);
+    border-bottom: 1px solid var(--rule);
+  }
+}
+
+.label,
+.value,
+.arrow {
+  // Above the flood, so the blend flips them along with the row.
+  display: inline-block;
+}
+
+.value {
+  @include pixel;
+
+  // Addresses read better in their own case.
+  text-transform: none;
+  overflow-wrap: anywhere;
+  text-align: right;
+}
+
+.arrow {
+  margin-left: 0.6em;
+}
+
+// On hover the row leans into the click: the label steps in, the address
+// steps toward the arrow, and the arrow takes off up and to the right.
+@media (prefers-reduced-motion: no-preference) {
+  .label,
+  .value,
+  .arrow {
+    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+}
+
+.links a:focus-visible {
+  .label {
+    transform: translateX(10px);
+  }
+
+  .value {
+    transform: translateX(-10px);
+  }
+
+  .arrow {
+    transform: translate(5px, -5px);
+  }
+}
+
+@include fine-pointer {
+  .links a:hover {
+    .label {
+      transform: translateX(10px);
+    }
+
+    .value {
+      transform: translateX(-10px);
+    }
+
+    .arrow {
+      transform: translate(5px, -5px);
+    }
+  }
+
+  // A press pushes everything back the other way, like a button giving.
+  .links a:active {
+    .label {
+      transform: translateX(4px);
+    }
+
+    .value {
+      transform: translateX(-4px);
+    }
+
+    .arrow {
+      transform: translate(9px, -9px);
+    }
+  }
+}
+
+// The drawing's title block.
+.titleBlock {
+  position: relative;
+  margin-top: clamp(48px, 6vw, 80px);
+  border: 1px solid var(--fg);
+}
+
+.cells {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0;
+
+  > div {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+    padding: 12px;
+    border-top: 1px solid var(--rule);
+    border-left: 1px solid var(--rule);
+
+    &:nth-child(2n) {
+      border-left: 0;
+    }
+  }
+
+  // The title cell spans the block on small screens.
+  .wide {
+    grid-column: 1 / -1;
+    border-top: 0;
+    border-left: 0;
+  }
+
+  dt {
+    @include pixel;
+    @include muted;
+  }
+
+  dd {
+    @include pixel;
+
+    margin: 0;
+    min-height: 16px;
+  }
+}
+
+.stamp {
+  position: absolute;
+  // On a phone it hangs off the top corner, over the empty end of the title
+  // row, so it does not hide the cells below.
+  right: 10px;
+  top: -34px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px 9px;
+  transform-origin: 50% 50%;
+
+  // A double rule, like a rubber stamp's frame.
+  border: 2px solid var(--fg);
+  outline: 1px solid var(--fg);
+  outline-offset: 3px;
+  background-color: var(--bg);
+
+  span {
+    @include pixel(32px);
+
+    letter-spacing: 0.06em;
+  }
+
+  small {
+    @include pixel;
+  }
+}
+
+@include on(desktop) {
+  .cells {
+    grid-template-columns: 2fr repeat(4, minmax(0, 1fr)) 260px;
+
+    > div,
+    > div:nth-child(2n) {
+      border-top: 0;
+      border-left: 1px solid var(--rule);
+    }
+
+    .wide {
+      grid-column: auto;
+      border-left: 0;
+    }
+  }
+
+  .stamp {
+    right: 36px;
+    top: 50%;
+    margin-top: -40px;
+  }
+
+  .body {
+    display: grid;
+    grid-template-columns: 7fr 5fr;
+    align-items: end;
+    gap: 0;
+  }
+
+  .links {
+    padding-left: 48px;
+
+    a {
+      width: 100%;
+      margin-inline: 0;
+      padding-inline: 12px;
+    }
+  }
+}

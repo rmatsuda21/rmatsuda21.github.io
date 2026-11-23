@@ -5,11 +5,92 @@
     @media (max-width: $breakpoint-mobile) {
       @content;
     }
-  }
-
-  @else if $breakpoint ==desktop {
+  } @else if $breakpoint == desktop {
     @media (min-width: $breakpoint-desktop) {
       @content;
+    }
+  }
+}
+
+// UnifontEX is a 16px bitmap face: keep it at whole multiples of 16.
+@mixin pixel($size: 16px) {
+  font-family: var(--font-pixel);
+  font-size: $size;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+// Dims relative to whatever colour is inherited, so it survives inversion.
+@mixin muted {
+  color: color-mix(in srgb, currentColor 66%, transparent);
+}
+
+@mixin body-text($size: 17px) {
+  font-size: $size;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+@mixin fine-pointer {
+  @media (hover: hover) and (pointer: fine) {
+    @content;
+  }
+}
+
+// Hovering a row floods it to the opposite polarity, spreading out from the
+// point where the pointer came in. The lens stays a lens the whole time.
+// `--flood-x` / `--flood-y` are set by CustomCursor; they default to the
+// centre, which is what keyboard focus uses.
+@mixin flood-row {
+  --flood-in: 0.45s;
+  // An even spread with a soft landing, rather than a burst.
+  --flood-in-ease: cubic-bezier(0.35, 0.3, 0.3, 1);
+
+  position: relative;
+  overflow: clip;
+
+  // A disc centred on the entry point, scaled up from nothing. CustomCursor
+  // sizes it to just reach the farthest corner; the fallback covers the row
+  // from anywhere. Only the scale animates, so the flood always starts
+  // exactly under the pointer.
+  &::after {
+    content: "";
+    position: absolute;
+    left: var(--flood-x, 50%);
+    top: var(--flood-y, 50%);
+    width: var(--flood-size, 220%);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    pointer-events: none;
+
+    // White in difference mode inverts whatever is underneath, in either
+    // revision, so the row's text and borders flip without being restyled.
+    background-color: #fff;
+    mix-blend-mode: difference;
+    transform: translate(-50%, -50%) scale(0);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    &::after {
+      // This is the drain: quick, so a row never lingers after the pointer
+      // has left. The fill, below, takes its time.
+      transition: transform 0.26s cubic-bezier(0.2, 0.7, 0.3, 1);
+    }
+  }
+
+  &:focus-visible::after {
+    transform: translate(-50%, -50%) scale(1);
+    transition-duration: var(--flood-in);
+    transition-timing-function: var(--flood-in-ease);
+  }
+
+  @include fine-pointer {
+    &:hover::after {
+      transform: translate(-50%, -50%) scale(1);
+      transition-duration: var(--flood-in);
+      transition-timing-function: var(--flood-in-ease);
     }
   }
 }

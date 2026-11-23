@@ -1,89 +1,57 @@
-import { useRef, useEffect, Suspense, lazy } from "react";
-import { FaHatCowboySide } from "react-icons/fa6";
-
-import { Loader } from "@/components/Hero/CSSGallery/Loader/Loader";
-import { InfoCard } from "@/components/Hero/InfoCard/InfoCard";
+import { LINKS } from "@/constants/Site";
+import { Name } from "./Name";
+import { Poke } from "./Poke";
+import { StackRuler } from "./StackRuler";
 
 import styles from "./Hero.module.scss";
 
-const CSSGallery = lazy(() =>
-  import("@/components/Hero/CSSGallery/CSSGallery").then((m) => ({
-    default: m.CSSGallery,
-  }))
-);
-
-const TechCarousel = lazy(() =>
-  import("@/components/TechCarousel/TechCarousel").then((m) => ({
-    default: m.TechCarousel,
-  }))
-);
-
 export const Hero = () => {
-  const heartRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (heartRef.current) {
-      const containerSize = heartRef.current
-        .querySelector("div")
-        ?.getBoundingClientRect();
-
-      if (containerSize) {
-        heartRef.current.scrollLeft =
-          containerSize.width / 2 - heartRef.current.offsetWidth / 2;
-        heartRef.current.scrollTop =
-          containerSize.height / 2 - heartRef.current.offsetHeight / 2;
-      }
-    }
-  }, []);
-
   return (
-    <div id="hero" className={styles.hero}>
-      <div className={styles.title}>
-        <p>
-          <span>Howdy</span> <FaHatCowboySide className={styles.hat} />
-        </p>
-        <p className={styles.center}>
-          I'm <InfoCard />
-        </p>
-        <p className={styles.right}>
-          I love creating<br />experiences ✨
-        </p>
-      </div>
-      <hr />
-      {typeof window !== "undefined" && (
-        <Suspense
-          fallback={
-            <div className={styles.loader}>
-              Loading...
-              <Loader />
-            </div>
-          }
-        >
-          <CSSGallery />
-        </Suspense>
-      )}
-      <hr />
-      <h3 className={styles.center}>My Tech Stack</h3>
-      <Suspense
-        fallback={
-          <p style={{ textAlign: "center", height: "51px" }}>Loading...</p>
-        }
-      >
-        <TechCarousel
-          className={styles.techCarousel}
-          techStack={[
-            "react",
-            "next",
-            "typescript",
-            "sass",
-            "motion",
-            "vercel",
-            "vite",
-            "jest",
-          ]}
-        />
-      </Suspense>
+    <section id="top" className={styles.hero}>
+      <Name />
 
-    </div>
+      <div className={styles.below}>
+        <p className={styles.claim} data-measure>
+          Howdy! I'm a frontend engineer. I like building things that are
+          fast, feel good to use, and don't fall over when a lot of people
+          show up at once.
+        </p>
+
+        <dl className={styles.spec}>
+          <div>
+            <dt>Role</dt>
+            <dd>Software Engineer, React</dd>
+          </div>
+          <div>
+            <dt>Base</dt>
+            <dd>Jersey City, NJ</dd>
+          </div>
+          <div className={styles.stackRow}>
+            <dt>Stack</dt>
+            <dd>
+              <StackRuler />
+            </dd>
+          </div>
+          <div>
+            <dt>Main</dt>
+            <dd>
+              <Poke />
+            </dd>
+          </div>
+          <div>
+            <dt>Contact</dt>
+            <dd className={styles.links}>
+              <a href={`mailto:${LINKS.email}`}>Email</a>
+              <a href={LINKS.github} target="_blank" rel="noreferrer">
+                GitHub
+              </a>
+              <a href={LINKS.linkedin} target="_blank" rel="noreferrer">
+                LinkedIn
+              </a>
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </section>
   );
 };

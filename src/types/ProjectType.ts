@@ -1,11 +1,15 @@
-import type { IconKeys } from "@/constants/Icons";
-
 export type ProjectType = {
-  img: string;
-  gif?: string;
+  no: string;
   title: string;
-  techStack: readonly IconKeys[];
+  tagline: string;
+  /** Short stack line for the index row. */
+  stack: string;
+  img: string;
+  /** Intrinsic size of `img`, so the layout does not shift while it loads. */
+  width: number;
+  height: number;
+  alt: string;
   link: string;
   github: string;
-  description: React.ReactNode;
+  description: readonly string[];
 };

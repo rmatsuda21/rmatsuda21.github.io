@@ -1,0 +1,67 @@
+.track {
+  --track-color: color-mix(in srgb, var(--text-color) 28%, transparent);
+  --progress-color: var(--text-color);
+  --indicator-color: var(--background-color);
+  --indicator-offset: 10px;
+  --handle-size: 25px;
+  --track-height: 15px;
+
+  position: relative;
+  // The slider owns horizontal drags on touch screens too.
+  touch-action: none;
+  background-color: var(--track-color);
+
+  width: 100%;
+  height: var(--track-height);
+  border-radius: calc(var(--track-height) / 2);
+}
+
+.progress {
+  position: absolute;
+  height: 100%;
+  background-color: var(--progress-color);
+  border-radius: calc(var(--track-height) / 2);
+}
+
+.thumb {
+  position: absolute;
+  user-select: none;
+  height: 100%;
+
+  .handle {
+    position: absolute;
+
+    top: calc((var(--handle-size) - var(--track-height)) / -2);
+    transform: translate(-50%, 0);
+    border-radius: 50%;
+    width: var(--handle-size);
+    height: var(--handle-size);
+    background-color: var(--background-color);
+    border: 3px solid var(--text-color);
+    box-sizing: border-box;
+
+    transition: transform 0.1s ease-in-out;
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        transform: translate(-50%, 0) scale(1.1);
+      }
+    }
+  }
+
+  .indicator {
+    position: absolute;
+    bottom: 100%;
+    margin-bottom: var(--indicator-offset);
+    padding: 2px 6px;
+    font-family: var(--font-pixel);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.2;
+    transform-origin: center bottom;
+
+    background-color: var(--progress-color);
+    border-radius: 4px;
+    color: var(--indicator-color);
+  }
+}

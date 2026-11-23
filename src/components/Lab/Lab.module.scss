@@ -1,0 +1,23 @@
+@use "@/styles" as *;
+
+.window {
+  // Short enough on a phone that there is always page above and below it to
+  // scroll from, since touches inside the window drag the canvas.
+  height: clamp(300px, 44svh, 480px);
+  border: 1px solid var(--fg);
+  overflow: hidden;
+
+  // Ruled paper behind the toys.
+  background-image: linear-gradient(var(--grid) 1px, transparent 1px);
+  background-size: 100% 40px;
+}
+
+.loading {
+  @include pixel;
+  @include muted;
+
+  display: grid;
+  place-items: center;
+  height: 100%;
+  margin: 0;
+}

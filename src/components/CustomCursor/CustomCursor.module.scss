@@ -17,10 +17,13 @@ html:has(summary:hover) {
   z-index: 900;
 
   position: fixed;
+  left: -100px;
+  top: -100px;
   transform: translate(-50%, -50%);
   width: var(--cursor-size);
   height: var(--cursor-size);
   pointer-events: none;
+  opacity: 0;
 
   backdrop-filter: invert(1);
   -webkit-backdrop-filter: invert(1);
@@ -30,30 +33,279 @@ html:has(summary:hover) {
   transition: width 0.1s ease-in-out, height 0.1s ease-in-out,
     clip-path 0.1s ease-in-out;
 
-  &.leftClick {
+  &[data-visible] {
+    opacity: 1;
+  }
+
+  &[data-pressed] {
     --cursor-clip-path: inset(0 round 30% 50% 50% 30%);
   }
 }
 
-@keyframes pulse {
+@media (prefers-reduced-motion: reduce) {
+  .body {
+    transition: none;
+  }
+}
+
+// Dimension lines drawn by the measuring lens.
+.measure {
+  @include pixel;
+
+  position: fixed;
+  z-index: 850;
+  pointer-events: none;
+  outline: 1px dashed var(--fg);
+  outline-offset: 3px;
+  mix-blend-mode: difference;
+  color: #fff;
+  outline-color: #fff;
+}
+
+.dimension {
+  position: absolute;
+  background-color: #fff;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    background-color: #fff;
+  }
+}
+
+.horizontal {
+  left: 0;
+  right: 0;
+  top: -18px;
+  height: 1px;
+  transform-origin: left center;
+
+  &::before,
+  &::after {
+    top: -4px;
+    width: 1px;
+    height: 9px;
+  }
+
+  &::before {
+    left: 0;
+  }
+
+  &::after {
+    right: 0;
+  }
+}
+
+.vertical {
+  top: 0;
+  bottom: 0;
+  left: -18px;
+  width: 1px;
+  transform-origin: center top;
+
+  &::before,
+  &::after {
+    left: -4px;
+    width: 9px;
+    height: 1px;
+  }
+
+  &::before {
+    top: 0;
+  }
+
+  &::after {
+    bottom: 0;
+  }
+}
+
+.label {
+  position: absolute;
+  padding: 3px 6px;
+  background-color: #fff;
+  color: #000;
+  white-space: nowrap;
+}
+
+.widthLabel {
+  top: -18px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.heightLabel {
+  left: -18px;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(-90deg);
+}
+
+// Near the top or left edge there is no room outside, so draw inside.
+.measure[data-inside-x] {
+  .vertical,
+  .heightLabel {
+    left: 18px;
+  }
+}
+
+.measure[data-inside-y] {
+  .horizontal,
+  .widthLabel {
+    top: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .horizontal {
+    animation: draw-x 0.28s ease-out both;
+  }
+
+  .vertical {
+    animation: draw-y 0.28s ease-out both;
+  }
+
+  .label {
+    animation: label-in 0.2s 0.2s ease-out both;
+  }
+}
+
+@keyframes draw-x {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes draw-y {
+  from {
+    transform: scaleY(0);
+  }
+}
+
+@keyframes label-in {
+  from {
+    opacity: 0;
+  }
+}
+
+// Touch feedback: each tap stamps a registration mark on the sheet.
+.tapLayer {
+  position: fixed;
+  inset: 0;
+  z-index: 880;
+  pointer-events: none;
+  overflow: hidden;
+
+  // The blend has to be on the layer, not the marks inside it: a fixed layer
+  // is its own stacking context, so a mark blending inside it has nothing but
+  // transparency to blend with and just comes out white. White in difference
+  // mode against the page inverts whatever a mark lands on, in either
+  // revision.
+  mix-blend-mode: difference;
+}
+
+// A zero-size anchor at the tap point.
+.tapMark {
+  position: absolute;
+  width: 0;
+  height: 0;
+  color: #fff;
+}
+
+.tapRing {
+  position: absolute;
+  left: -34px;
+  top: -34px;
+  width: 68px;
+  height: 68px;
+  box-sizing: border-box;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+
+  animation: tap-ring 0.42s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.tapTick {
+  position: absolute;
+  left: -1px;
+  top: -6px;
+  width: 2px;
+  height: 12px;
+  background-color: currentColor;
+
+  animation: tap-tick 0.46s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.tapCoords {
+  @include pixel;
+
+  position: absolute;
+  left: 18px;
+  bottom: 14px;
+  white-space: nowrap;
+
+  // Blinks on like a read-out, holds, then cuts out.
+  animation: tap-coords 0.75s steps(1) both;
+
+  .tapMark[data-flip] & {
+    left: auto;
+    right: 18px;
+  }
+}
+
+@keyframes tap-ring {
   0% {
+    transform: scale(0.15);
     opacity: 1;
   }
-  50% {
-    opacity: 0.5;
+
+  55% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 0;
   }
 }
 
-@media (pointer: coarse) {
-  .body {
-    display: none;
-    pointer-events: none;
+@keyframes tap-tick {
+  0% {
+    transform: rotate(var(--angle)) translateY(-10px) scaleY(0.4);
+    opacity: 1;
+  }
+
+  60% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: rotate(var(--angle)) translateY(-52px) scaleY(1);
+    opacity: 0;
   }
 }
 
-@include on(mobile) {
-  .body {
-    display: none;
-    pointer-events: none;
+@keyframes tap-coords {
+  0% {
+    opacity: 0;
+  }
+
+  8% {
+    opacity: 1;
+  }
+
+  20% {
+    opacity: 0;
+  }
+
+  28% {
+    opacity: 1;
+  }
+
+  88% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
   }
 }

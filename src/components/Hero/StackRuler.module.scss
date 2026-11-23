@@ -1,0 +1,112 @@
+@use "@/styles" as *;
+
+.ruler {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-block: 10px 0;
+}
+
+.readout {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.name {
+  @include pixel(32px);
+
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
+.count {
+  @include pixel;
+  @include muted;
+
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.scale {
+  --tick-min: 7px;
+  --tick-max: 30px;
+
+  display: flex;
+  align-items: flex-end;
+  height: 36px;
+  border-bottom: 1px solid var(--fg);
+  // A finger can run along the scale while the page still scrolls vertically.
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.segment {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  height: 100%;
+  // Ticks sit on the left edge of their slot; the gap keeps the last minor
+  // tick clear of the next segment's major one. (A percentage here is of the
+  // whole scale, hence dividing by the number of segments too.)
+  padding-right: calc(100% / var(--count) / var(--slots) - 1px);
+
+  &:focus-visible {
+    outline-offset: -2px;
+  }
+}
+
+.major,
+.minor,
+.end {
+  display: block;
+  flex: none;
+  width: 1px;
+  background-color: currentColor;
+  transform-origin: bottom;
+}
+
+.minor {
+  height: var(--tick-max);
+  opacity: 0.55;
+  transform: scaleY(
+    calc(
+      (var(--tick-min) + var(--lift, 0) * (var(--tick-max) - var(--tick-min))) /
+        var(--tick-max)
+    )
+  );
+}
+
+.major {
+  --tick-min: 15px;
+
+  width: 2px;
+  height: var(--tick-max);
+  transform: scaleY(
+    calc(
+      (var(--tick-min) + var(--lift, 0) * (var(--tick-max) - var(--tick-min))) /
+        var(--tick-max)
+    )
+  );
+}
+
+// The selected technology keeps its graduation at full height.
+.segment[aria-pressed="true"] .major {
+  transform: scaleY(1);
+}
+
+.end {
+  width: 2px;
+  height: 15px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .major,
+  .minor {
+    transition: transform 0.18s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+}

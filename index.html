@@ -2,13 +2,29 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Reo's Portfolio" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta
+      name="description"
+      content="Reo Matsuda is a frontend engineer working in React. Shared checkout for 55K+ daily users, and two Black Friday launches for 1M+ users."
+    />
+    <meta name="theme-color" content="#000000" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://rmatsuda21.github.io/" />
+    <meta property="og:title" content="Reo Matsuda — Frontend Engineer" />
+    <meta
+      property="og:description"
+      content="Frontend engineer working in React. Experience, projects and a few toys."
+    />
     <link rel="icon" href="/favicon.ico" />
-
-    <link rel="preload" href="/src/assets/projects/cstat-gatcha-com.png" as="image" />
-    <link rel="preload" href="/src/assets/projects/pitch-io.png" as="image" />
-    <title>Reo's Portfolio</title>
+    <title>Reo Matsuda — Frontend Engineer</title>
+    <script>
+      // Apply the saved revision before first paint so the sheet does not flash.
+      try {
+        if (localStorage.getItem("rev") === "light") {
+          document.documentElement.dataset.rev = "light";
+        }
+      } catch (e) {}
+    </script>
   </head>
   <body>
     <div id="root"></div>
