@@ -203,62 +203,62 @@ html:has(summary:hover) {
   mix-blend-mode: difference;
 }
 
-// A zero-size anchor at the tap point.
+// A zero-size anchor at the tap point. Light grey rather than white, so the
+// mark only half inverts what it lands on.
 .tapMark {
   position: absolute;
   width: 0;
   height: 0;
-  color: #fff;
+  color: #b4b4b4;
 }
 
 .tapRing {
   position: absolute;
-  left: -34px;
-  top: -34px;
-  width: 68px;
-  height: 68px;
+  left: -20px;
+  top: -20px;
+  width: 40px;
+  height: 40px;
   box-sizing: border-box;
-  border: 2px solid currentColor;
+  border: 1px solid currentColor;
   border-radius: 50%;
 
-  animation: tap-ring 0.42s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation: tap-ring 0.34s cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
 .tapTick {
   position: absolute;
-  left: -1px;
-  top: -6px;
-  width: 2px;
-  height: 12px;
+  left: -0.5px;
+  top: -3px;
+  width: 1px;
+  height: 6px;
   background-color: currentColor;
 
-  animation: tap-tick 0.46s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation: tap-tick 0.36s cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
 .tapCoords {
   @include pixel;
 
   position: absolute;
-  left: 18px;
-  bottom: 14px;
+  left: 14px;
+  bottom: 12px;
   white-space: nowrap;
 
-  // Blinks on like a read-out, holds, then cuts out.
-  animation: tap-coords 0.75s steps(1) both;
+  animation: tap-coords 0.5s ease-out both;
 
   .tapMark[data-flip] & {
     left: auto;
-    right: 18px;
+    right: 14px;
   }
 }
 
 @keyframes tap-ring {
   0% {
-    transform: scale(0.15);
+    transform: scale(0.3);
     opacity: 1;
   }
 
-  55% {
+  50% {
     opacity: 1;
   }
 
@@ -270,39 +270,25 @@ html:has(summary:hover) {
 
 @keyframes tap-tick {
   0% {
-    transform: rotate(var(--angle)) translateY(-10px) scaleY(0.4);
+    transform: rotate(var(--angle)) translateY(-8px);
     opacity: 1;
   }
 
-  60% {
+  50% {
     opacity: 1;
   }
 
   100% {
-    transform: rotate(var(--angle)) translateY(-52px) scaleY(1);
+    transform: rotate(var(--angle)) translateY(-26px);
     opacity: 0;
   }
 }
 
+// On at once, a short hold, then a fade. No blinking.
 @keyframes tap-coords {
-  0% {
-    opacity: 0;
-  }
-
-  8% {
-    opacity: 1;
-  }
-
-  20% {
-    opacity: 0;
-  }
-
-  28% {
-    opacity: 1;
-  }
-
-  88% {
-    opacity: 0;
+  0%,
+  45% {
+    opacity: 0.75;
   }
 
   100% {

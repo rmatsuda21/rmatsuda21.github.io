@@ -11,13 +11,13 @@ import styles from "./CustomCursor.module.scss";
 
 const TAP_MAX_MOVE = 10;
 const TAP_MAX_MS = 350;
-const MARK_LIFETIME_MS = 800;
+const MARK_LIFETIME_MS = 550;
 const TICKS = 4;
 
 /**
- * Touch feedback. A tap stamps the sheet like a surveyor marking a point: a
- * ring snaps outward, four ticks fly off along the axes, and the tap's
- * coordinates flash up beside it. Scrolling and long presses leave no mark.
+ * Touch feedback. A tap marks the sheet like a surveyor marking a point: a
+ * thin ring opens, four small ticks drift off along the axes, and the tap's
+ * coordinates show briefly beside it. Scrolling and long presses leave no mark.
  */
 export const TouchLens = () => {
   const finePointer = useMediaQuery(FINE_POINTER);
