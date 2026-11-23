@@ -20,7 +20,8 @@ const PRINTED = `${String(today.getMonth() + 1).padStart(2, "0")}.${today.getFul
 // Rubber stamps carry the day they were used.
 const STAMPED = `${today.getFullYear()}.${String(today.getMonth() + 1).padStart(2, "0")}.${String(today.getDate()).padStart(2, "0")}`;
 
-const STAMP_REST = { scale: 1, opacity: 1 };
+/** How much larger than life the stamp starts, before it comes down. */
+const STAMP_DROP_SCALE = 1.9;
 const STAMP_DELAY_MS = 900;
 
 /**
@@ -38,15 +39,21 @@ const TitleBlock = () => {
     // Never lands at quite the same angle twice.
     const rotate = -12 + Math.random() * 9;
 
-    stamp.set({ scale: 2.6, rotate: rotate - 14, opacity: 0 });
+    // Fixed keyframes, not a spring: a spring carries its speed over from an
+    // interrupted run, so rapid presses made each slam overshoot further than
+    // the last. This always starts and ends at the same sizes.
+    stamp.stop();
     stamp.start({
-      ...STAMP_REST,
-      rotate,
-      transition: { type: "spring", stiffness: 700, damping: 24, mass: 0.8 },
+      scale: [STAMP_DROP_SCALE, 0.94, 1],
+      rotate: [rotate - 14, rotate, rotate],
+      opacity: [0, 1, 1],
+      transition: { duration: 0.32, times: [0, 0.7, 1], ease: "easeOut" },
     });
+
+    block.stop();
     block.start({
       y: [0, 4, -1, 0],
-      transition: { duration: 0.28, delay: 0.09, ease: "easeOut" },
+      transition: { duration: 0.28, delay: 0.2, ease: "easeOut" },
     });
   };
 

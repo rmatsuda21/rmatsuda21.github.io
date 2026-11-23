@@ -7,6 +7,11 @@
   flex-direction: column;
   gap: clamp(72px, 9vw, 128px);
 
+  // Anything animating past the sheet's edge (the stamp coming down, say) is
+  // cut off instead of stretching the page and flashing a scrollbar. `clip`
+  // rather than `hidden`, so sticky positioning inside still works.
+  overflow: clip;
+
   padding-inline: var(--pad);
   // Room for the floating section nav on small screens.
   padding-bottom: calc(112px + env(safe-area-inset-bottom));
