@@ -21,6 +21,10 @@ import { Eyes } from "@/components/Lab/CSSGallery/Eyes/Eyes";
 import { HoldButton } from "@/components/Lab/CSSGallery/HoldButton/HoldButton";
 import { Fidget } from "@/components/Lab/CSSGallery/Fidget/Fidget";
 import { Todo } from "@/components/Lab/CSSGallery/Todo/Todo";
+import { TicTacToe } from "@/components/Lab/CSSGallery/TicTacToe/TicTacToe";
+import { SlidePuzzle } from "@/components/Lab/CSSGallery/SlidePuzzle/SlidePuzzle";
+import { Cradle } from "@/components/Lab/CSSGallery/Cradle/Cradle";
+import { Toast } from "@/components/Lab/CSSGallery/Toast/Toast";
 import { GalleryItem } from "@/components/Lab/CSSGallery/GalleryItem/GalleryItem";
 
 import styles from "./CSSGallery.module.scss";
@@ -180,6 +184,38 @@ export const CSSGallery = () => {
         rotationIntensity={1}
       >
         <Todo />
+      </GalleryItem>
+
+      <GalleryItem
+        className={cn(styles.items, styles.ticTacToe)}
+        depth={1.4}
+        rotationIntensity={1.3}
+      >
+        <TicTacToe />
+      </GalleryItem>
+
+      <GalleryItem
+        className={cn(styles.items, styles.slidePuzzle)}
+        depth={1.1}
+        rotationIntensity={1.2}
+      >
+        <SlidePuzzle />
+      </GalleryItem>
+
+      <GalleryItem
+        className={cn(styles.items, styles.cradle)}
+        depth={0.9}
+        rotationIntensity={1}
+      >
+        <Cradle />
+      </GalleryItem>
+
+      <GalleryItem
+        className={cn(styles.items, styles.toast)}
+        depth={1.6}
+        rotationIntensity={1.5}
+      >
+        <Toast />
       </GalleryItem>
 
       <GalleryItem

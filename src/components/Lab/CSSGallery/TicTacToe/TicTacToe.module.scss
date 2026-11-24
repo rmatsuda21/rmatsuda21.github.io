@@ -1,0 +1,82 @@
+.board {
+  --cell: 34px;
+
+  display: grid;
+  grid-template-columns: repeat(3, var(--cell));
+  grid-auto-rows: var(--cell);
+  gap: 2px;
+  // The gaps show through as the grid lines.
+  background-color: var(--text-color);
+
+  button {
+    display: grid;
+    place-items: center;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+
+    &[data-win] {
+      background-color: var(--text-color);
+      color: var(--background-color);
+    }
+  }
+
+  // The mark itself: a ring, or two crossed bars.
+  i {
+    position: relative;
+    width: 18px;
+    height: 18px;
+    box-sizing: border-box;
+    pointer-events: none;
+  }
+
+  [data-mark="o"] i {
+    border: 2px solid currentColor;
+    border-radius: 50%;
+  }
+
+  [data-mark="x"] i {
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 22px;
+      height: 2px;
+      margin: -1px 0 0 -11px;
+      background-color: currentColor;
+      transform: rotate(45deg);
+    }
+
+    &::after {
+      transform: rotate(-45deg);
+    }
+  }
+
+  &[data-draw] i {
+    opacity: 0.35;
+    transition: opacity 0.2s ease;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    [data-mark] i {
+      animation: mark 0.2s cubic-bezier(0.3, 1.6, 0.5, 1) both;
+    }
+  }
+}
+
+@keyframes mark {
+  0% {
+    transform: scale(0.4);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}

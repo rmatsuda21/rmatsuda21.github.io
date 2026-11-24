@@ -1,0 +1,60 @@
+.cradle {
+  --ball: 16px;
+  --left: 0deg;
+  --right: 0deg;
+
+  display: flex;
+  justify-content: center;
+  width: 124px;
+  height: 78px;
+  padding: 0;
+  border: 0;
+  // The bar the balls hang from.
+  border-top: 2px solid var(--text-color);
+  border-radius: 0;
+  background: none;
+  color: var(--text-color);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+
+  i {
+    position: relative;
+    width: var(--ball);
+    height: 60px;
+    transform-origin: 50% 0;
+    pointer-events: none;
+
+    // The string.
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: var(--ball);
+      left: 50%;
+      width: 1px;
+      margin-left: -0.5px;
+      background-color: currentColor;
+      opacity: 0.6;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: var(--ball);
+      height: var(--ball);
+      border-radius: 50%;
+      background-color: currentColor;
+    }
+
+    &:first-child {
+      transform: rotate(var(--left));
+    }
+
+    &:last-child {
+      transform: rotate(var(--right));
+    }
+  }
+}
