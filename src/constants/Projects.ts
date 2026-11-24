@@ -13,8 +13,10 @@ export const PROJECTS: readonly ProjectType[] = [
     width: 1600,
     height: 971,
     alt: "Smash Ranker editor showing a tournament top 8 graphic",
-    link: "https://smash-ranker.vercel.app/",
-    github: "https://github.com/rmatsuda21/smash-ranker",
+    links: [
+      { label: "Visit project", href: "https://smash-ranker.vercel.app/" },
+      { label: "GitHub", href: "https://github.com/rmatsuda21/smash-ranker" },
+    ],
     description: [
       "Smash Ranker is the next gen tool for creating customizable graphics for your Smash Bros. tournaments!",
       "As a tournament organizer myself, this has been a passion project of mine for years and I'm excited to share it with the community!",
@@ -32,8 +34,10 @@ export const PROJECTS: readonly ProjectType[] = [
     width: 1600,
     height: 1044,
     alt: "CSTAT Gacha Com card codex",
-    link: "https://cstat-gacha-com.vercel.app/",
-    github: "https://github.com/rmatsuda21/cstat-gacha-com",
+    links: [
+      { label: "Visit project", href: "https://cstat-gacha-com.vercel.app/" },
+      { label: "GitHub", href: "https://github.com/rmatsuda21/cstat-gacha-com" },
+    ],
     description: [
       "CSTAT Gacha Com is a web viewer for the CSTAT Gacha project.",
       "Data is pulled from the CSTAT Gacha database and displayed in a user-friendly interface complete with a full codex, card searching, and offer viewing!",
@@ -43,18 +47,25 @@ export const PROJECTS: readonly ProjectType[] = [
     no: "003",
     title: "Pitch.io",
     tagline: "Relative pitch and chord trainer",
-    stack: "Svelte · TS",
+    stack: "Svelte · React",
     img: pitchIoImg,
     width: 1600,
     height: 1026,
     alt: "Pitch.io home screen with its three training modes",
-    link: "https://pitch-io-svelte.vercel.app/",
-    github: "https://github.com/rmatsuda21/pitch-io-svelte",
+    links: [
+      { label: "Svelte version", href: "https://pitch-io-svelte.vercel.app/" },
+      {
+        label: "Svelte GitHub",
+        href: "https://github.com/rmatsuda21/pitch-io-svelte",
+      },
+      { label: "React original", href: "https://pitch-io.vercel.app/" },
+      { label: "React GitHub", href: "https://github.com/rmatsuda21/pitch-io" },
+    ],
     description: [
       "Pitch.io is a web based relative pitch and chord identification trainer. It has three modes: Relative Pitch Training, Chord Identification Training, and Freeplay.",
       "This application was created during the 2021 HowdyHack @ Texas A&M University.",
       "Awarded “Best Music Related”!",
-      "The original was built with React and Webpack. In 2026 I rebuilt it with SvelteKit and TypeScript, keeping the look and making the layout responsive.",
+      "The original was built with React and Webpack. In 2026 I rebuilt it with SvelteKit and TypeScript, keeping the look and making the layout responsive. Both versions are linked below.",
     ],
   },
 ];

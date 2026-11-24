@@ -95,12 +95,11 @@ const Row = ({
                 <p key={paragraph}>{paragraph}</p>
               ))}
               <div className={styles.links}>
-                <a href={project.link} target="_blank" rel="noreferrer">
-                  Visit project ↗
-                </a>
-                <a href={project.github} target="_blank" rel="noreferrer">
-                  GitHub ↗
-                </a>
+                {project.links.map(({ label, href }) => (
+                  <a key={href} href={href} target="_blank" rel="noreferrer">
+                    {label} ↗
+                  </a>
+                ))}
               </div>
             </div>
           </motion.div>

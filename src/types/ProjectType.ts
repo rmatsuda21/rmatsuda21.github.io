@@ -9,7 +9,7 @@ export type ProjectType = {
   width: number;
   height: number;
   alt: string;
-  link: string;
-  github: string;
+  /** Buttons under the description, in order. */
+  links: readonly { label: string; href: string }[];
   description: readonly string[];
 };
