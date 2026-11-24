@@ -1,0 +1,52 @@
+.tether {
+  --ball: 36px;
+  --rest: 64px;
+
+  position: relative;
+  width: var(--ball);
+  height: calc(var(--rest) + var(--ball) / 2);
+}
+
+// Zero-size, anchored at the pin; the line draws outside it.
+.cord {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 1px;
+  height: 1px;
+  overflow: visible;
+  pointer-events: none;
+
+  line {
+    stroke: var(--text-color);
+    stroke-width: 2;
+    stroke-linecap: round;
+  }
+}
+
+.pin {
+  position: absolute;
+  left: calc(50% - 4px);
+  top: -4px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--text-color);
+}
+
+.ball {
+  position: absolute;
+  left: 0;
+  top: calc(var(--rest) - var(--ball) / 2);
+  width: var(--ball);
+  height: var(--ball);
+  border-radius: 50%;
+  background-color: var(--text-color);
+  cursor: grab;
+  touch-action: none;
+  -webkit-tap-highlight-color: transparent;
+
+  &:active {
+    cursor: grabbing;
+  }
+}

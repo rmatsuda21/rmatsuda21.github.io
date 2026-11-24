@@ -1,0 +1,72 @@
+.wrap {
+  display: grid;
+  grid-template-columns: repeat(4, 30px);
+  grid-auto-rows: 30px;
+  cursor: pointer;
+  touch-action: none;
+  -webkit-tap-highlight-color: transparent;
+
+  // Each cell is the hit area; the bubble itself is drawn inside it.
+  i {
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 3px;
+      box-sizing: border-box;
+      border: 2px solid var(--text-color);
+      border-radius: 50%;
+      // A highlight, so an unpopped bubble reads as domed.
+      background-image: radial-gradient(
+        circle at 34% 32%,
+        var(--text-color) 0 2.5px,
+        transparent 3.5px
+      );
+      pointer-events: none;
+    }
+
+    &[data-popped]::before {
+      border-style: dashed;
+      border-width: 1px;
+      background-image: none;
+      opacity: 0.45;
+      transform: scale(0.82);
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    i[data-popped]::before {
+      animation: pop 0.22s cubic-bezier(0.3, 1.6, 0.5, 1) both;
+    }
+
+    i[data-regrown]:not([data-popped])::before {
+      animation: regrow 0.3s cubic-bezier(0.3, 1.5, 0.5, 1) both;
+      animation-delay: calc(var(--i) * 18ms);
+    }
+  }
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(1.25);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(0.82);
+    opacity: 0.45;
+  }
+}
+
+@keyframes regrow {
+  0% {
+    transform: scale(0.4);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

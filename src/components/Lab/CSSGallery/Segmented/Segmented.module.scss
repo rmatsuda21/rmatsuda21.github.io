@@ -1,0 +1,62 @@
+.group {
+  --item: 84px;
+  --inset: 4px;
+
+  position: relative;
+  display: flex;
+  padding: var(--inset);
+  border-radius: 24px;
+  box-shadow: inset 0 0 0 2px var(--text-color);
+
+  // The pill that sits under the chosen option.
+  &::before {
+    content: "";
+    position: absolute;
+    top: var(--inset);
+    left: var(--inset);
+    width: var(--item);
+    height: calc(100% - var(--inset) * 2);
+    border-radius: 20px;
+    background-color: var(--text-color);
+    transform: translateX(calc(var(--index) * var(--item)));
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    &::before {
+      transition: transform 0.3s cubic-bezier(0.3, 1.4, 0.5, 1);
+    }
+  }
+}
+
+.option {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: var(--item);
+  height: 36px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+
+  input {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  span {
+    pointer-events: none;
+    transition: color 0.2s ease;
+  }
+
+  input:checked + span {
+    color: var(--background-color);
+  }
+
+  input:focus-visible + span {
+    outline: 2px solid currentColor;
+    outline-offset: 4px;
+  }
+}

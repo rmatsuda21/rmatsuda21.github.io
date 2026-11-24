@@ -10,6 +10,9 @@ import { ScrollContext } from "./ScrollContext";
 // The canvas is larger than its window so there is room to drag.
 const WIDTH_MULTIPLIER = 1.3;
 const HEIGHT_MULTIPLIER = 1.35;
+// ...and never smaller than this, so the toys have room on a phone too.
+const MIN_WIDTH = 1040;
+const MIN_HEIGHT = 860;
 
 // Toys with their own pointer handling (the slider, the toggles) opt out, so
 // using one does not also drag the canvas underneath it.
@@ -50,8 +53,14 @@ export const ScrollableContainer = ({
 
     const resize = () => {
       const containerRect = container.getBoundingClientRect();
-      const contentWidth = containerRect.width * WIDTH_MULTIPLIER;
-      const contentHeight = containerRect.height * HEIGHT_MULTIPLIER;
+      const contentWidth = Math.max(
+        containerRect.width * WIDTH_MULTIPLIER,
+        MIN_WIDTH
+      );
+      const contentHeight = Math.max(
+        containerRect.height * HEIGHT_MULTIPLIER,
+        MIN_HEIGHT
+      );
       content.style.width = contentWidth + "px";
       content.style.height = contentHeight + "px";
 

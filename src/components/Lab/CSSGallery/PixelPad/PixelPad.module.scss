@@ -1,0 +1,51 @@
+.pad {
+  --cell: 16px;
+
+  display: grid;
+  justify-items: start;
+  gap: 6px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(8, var(--cell));
+  grid-auto-rows: var(--cell);
+  border: 2px solid var(--text-color);
+  cursor: crosshair;
+  touch-action: none;
+  -webkit-tap-highlight-color: transparent;
+
+  i {
+    // A faint dot marks each empty cell.
+    background-image: radial-gradient(
+      circle,
+      color-mix(in srgb, var(--text-color) 35%, transparent) 1px,
+      transparent 1.5px
+    );
+
+    &[data-on] {
+      background: var(--text-color);
+    }
+  }
+}
+
+.reset {
+  padding: 2px 0;
+  border: 0;
+  background: none;
+  color: var(--text-color);
+  font-family: var(--font-pixel);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1;
+  text-transform: uppercase;
+  cursor: pointer;
+  opacity: 0.6;
+  -webkit-tap-highlight-color: transparent;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      opacity: 1;
+    }
+  }
+}

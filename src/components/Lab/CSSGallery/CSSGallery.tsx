@@ -9,6 +9,14 @@ import { ScrollableContainer } from "@/components/Lab/CSSGallery/ScrollableConta
 import { RandomText } from "@/components/Lab/CSSGallery/RandomText/RandomText";
 import { Slider } from "@/components/Lab/CSSGallery/Slider/Slider";
 import { RadixSpinner } from "@/components/Lab/CSSGallery/RadixSpinner/RadixSpinner";
+import { Keycap } from "@/components/Lab/CSSGallery/Keycap/Keycap";
+import { Segmented } from "@/components/Lab/CSSGallery/Segmented/Segmented";
+import { Knob } from "@/components/Lab/CSSGallery/Knob/Knob";
+import { PixelPad } from "@/components/Lab/CSSGallery/PixelPad/PixelPad";
+import { Tether } from "@/components/Lab/CSSGallery/Tether/Tether";
+import { Dice } from "@/components/Lab/CSSGallery/Dice/Dice";
+import { BubbleWrap } from "@/components/Lab/CSSGallery/BubbleWrap/BubbleWrap";
+import { Stepper } from "@/components/Lab/CSSGallery/Stepper/Stepper";
 import { GalleryItem } from "@/components/Lab/CSSGallery/GalleryItem/GalleryItem";
 
 import styles from "./CSSGallery.module.scss";
@@ -72,6 +80,70 @@ export const CSSGallery = () => {
         rotationIntensity={2.5}
       >
         <RadixSpinner />
+      </GalleryItem>
+
+      <GalleryItem
+        className={cn(styles.items, styles.keycap)}
+        depth={1.4}
+        rotationIntensity={1.6}
+      >
+        <Keycap />
+      </GalleryItem>
+
+      <GalleryItem
+        className={cn(styles.items, styles.segmented)}
+        depth={0.7}
+        rotationIntensity={1}
+      >
+        <Segmented />
+      </GalleryItem>
+
+      <GalleryItem
+        className={cn(styles.items, styles.knob)}
+        depth={1.6}
+        rotationIntensity={1.8}
+      >
+        <Knob />
+      </GalleryItem>
+
+      <GalleryItem
+        className={cn(styles.items, styles.pixelPad)}
+        depth={1}
+        rotationIntensity={1.3}
+      >
+        <PixelPad />
+      </GalleryItem>
+
+      <GalleryItem
+        className={cn(styles.items, styles.tether)}
+        depth={1.1}
+        rotationIntensity={1.2}
+      >
+        <Tether />
+      </GalleryItem>
+
+      <GalleryItem
+        className={cn(styles.items, styles.dice)}
+        depth={1.7}
+        rotationIntensity={2}
+      >
+        <Dice />
+      </GalleryItem>
+
+      <GalleryItem
+        className={cn(styles.items, styles.bubbleWrap)}
+        depth={0.9}
+        rotationIntensity={1.1}
+      >
+        <BubbleWrap />
+      </GalleryItem>
+
+      <GalleryItem
+        className={cn(styles.items, styles.stepper)}
+        depth={1.3}
+        rotationIntensity={1.5}
+      >
+        <Stepper />
       </GalleryItem>
 
       <GalleryItem

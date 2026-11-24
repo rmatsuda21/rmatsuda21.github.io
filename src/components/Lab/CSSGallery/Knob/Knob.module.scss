@@ -1,0 +1,76 @@
+.knob {
+  --size: 96px;
+  --cap: 60px;
+
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+}
+
+.dial {
+  position: relative;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  cursor: grab;
+  touch-action: none;
+  -webkit-tap-highlight-color: transparent;
+
+  &:active {
+    cursor: grabbing;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--text-color);
+    outline-offset: 2px;
+  }
+}
+
+.tick {
+  position: absolute;
+  left: calc(50% - 1px);
+  top: 0;
+  width: 2px;
+  height: 8px;
+  background-color: var(--text-color);
+  opacity: 0.28;
+  transform-origin: 50% calc(var(--size) / 2);
+  transform: rotate(var(--angle));
+  transition: opacity 0.15s ease;
+
+  &[data-lit] {
+    opacity: 1;
+  }
+}
+
+.cap {
+  position: absolute;
+  inset: calc((var(--size) - var(--cap)) / 2);
+  box-sizing: border-box;
+  border: 2px solid var(--text-color);
+  border-radius: 50%;
+  background-color: var(--background-color);
+  transform: rotate(var(--angle));
+
+  // The pointer line.
+  &::after {
+    content: "";
+    position: absolute;
+    left: calc(50% - 1px);
+    top: 5px;
+    width: 2px;
+    height: 14px;
+    background-color: var(--text-color);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    transition: transform 0.18s cubic-bezier(0.3, 1.4, 0.5, 1);
+  }
+}
+
+.value {
+  font-family: var(--font-pixel);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1;
+}
