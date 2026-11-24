@@ -12,7 +12,7 @@ export const Hero = () => {
 
       <div className={styles.below}>
         <p className={styles.claim} data-measure>
-          Howdy! I'm a frontend engineer. I like building things that are
+          Howdy! I'm a fullstack engineer. I like building things that are
           fast, feel good to use, and don't fall over when a lot of people
           show up at once.
         </p>
