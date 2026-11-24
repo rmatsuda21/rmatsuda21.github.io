@@ -1,0 +1,39 @@
+.eyes {
+  display: flex;
+  gap: 6px;
+}
+
+.eye {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  box-sizing: border-box;
+  border: 2px solid var(--text-color);
+  border-radius: 50%;
+  background-color: var(--background-color);
+
+  i {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: var(--text-color);
+    transition: transform 0.08s ease-out;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    animation: blink 5.5s infinite;
+  }
+}
+
+@keyframes blink {
+  0%,
+  95%,
+  100% {
+    transform: scaleY(1);
+  }
+
+  97.5% {
+    transform: scaleY(0.08);
+  }
+}

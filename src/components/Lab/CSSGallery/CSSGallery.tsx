@@ -17,6 +17,10 @@ import { Tether } from "@/components/Lab/CSSGallery/Tether/Tether";
 import { Dice } from "@/components/Lab/CSSGallery/Dice/Dice";
 import { BubbleWrap } from "@/components/Lab/CSSGallery/BubbleWrap/BubbleWrap";
 import { Stepper } from "@/components/Lab/CSSGallery/Stepper/Stepper";
+import { Eyes } from "@/components/Lab/CSSGallery/Eyes/Eyes";
+import { HoldButton } from "@/components/Lab/CSSGallery/HoldButton/HoldButton";
+import { Fidget } from "@/components/Lab/CSSGallery/Fidget/Fidget";
+import { Todo } from "@/components/Lab/CSSGallery/Todo/Todo";
 import { GalleryItem } from "@/components/Lab/CSSGallery/GalleryItem/GalleryItem";
 
 import styles from "./CSSGallery.module.scss";
@@ -144,6 +148,38 @@ export const CSSGallery = () => {
         rotationIntensity={1.5}
       >
         <Stepper />
+      </GalleryItem>
+
+      <GalleryItem
+        className={cn(styles.items, styles.eyes)}
+        depth={0.6}
+        rotationIntensity={0.8}
+      >
+        <Eyes />
+      </GalleryItem>
+
+      <GalleryItem
+        className={cn(styles.items, styles.holdButton)}
+        depth={1.2}
+        rotationIntensity={1.4}
+      >
+        <HoldButton />
+      </GalleryItem>
+
+      <GalleryItem
+        className={cn(styles.items, styles.fidget)}
+        depth={1.5}
+        rotationIntensity={1.2}
+      >
+        <Fidget />
+      </GalleryItem>
+
+      <GalleryItem
+        className={cn(styles.items, styles.todo)}
+        depth={0.8}
+        rotationIntensity={1}
+      >
+        <Todo />
       </GalleryItem>
 
       <GalleryItem

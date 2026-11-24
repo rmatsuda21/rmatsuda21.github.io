@@ -11,8 +11,8 @@ import { ScrollContext } from "./ScrollContext";
 const WIDTH_MULTIPLIER = 1.3;
 const HEIGHT_MULTIPLIER = 1.35;
 // ...and never smaller than this, so the toys have room on a phone too.
-const MIN_WIDTH = 1040;
-const MIN_HEIGHT = 860;
+const MIN_WIDTH = 900;
+const MIN_HEIGHT = 1000;
 
 // Toys with their own pointer handling (the slider, the toggles) opt out, so
 // using one does not also drag the canvas underneath it.

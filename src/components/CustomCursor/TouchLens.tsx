@@ -13,11 +13,15 @@ const TAP_MAX_MOVE = 10;
 const TAP_MAX_MS = 350;
 const MARK_LIFETIME_MS = 550;
 const TICKS = 4;
+// Taps on a Lab toy are the toy's own business: it answers them itself, and a
+// mark on every poke of a button you are spamming is just noise.
+const NO_MARK_SELECTOR = "#lab :is([data-no-canvas-drag], input, button, a)";
 
 /**
  * Touch feedback. A tap marks the sheet like a surveyor marking a point: a
  * thin ring opens, four small ticks drift off along the axes, and the tap's
- * coordinates show briefly beside it. Scrolling and long presses leave no mark.
+ * coordinates show briefly beside it. Scrolling, long presses and
+ * taps on the Lab's toys leave no mark.
  */
 export const TouchLens = () => {
   const finePointer = useMediaQuery(FINE_POINTER);
@@ -64,6 +68,9 @@ export const TouchLens = () => {
 
     const handleDown = (e: PointerEvent) => {
       if (e.pointerType === "mouse") return;
+      if (e.target instanceof Element && e.target.closest(NO_MARK_SELECTOR)) {
+        return;
+      }
       starts.set(e.pointerId, {
         x: e.clientX,
         y: e.clientY,

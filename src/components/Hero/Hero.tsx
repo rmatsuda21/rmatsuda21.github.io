@@ -20,7 +20,7 @@ export const Hero = () => {
         <dl className={styles.spec}>
           <div>
             <dt>Role</dt>
-            <dd>Software Engineer, React</dd>
+            <dd>Software Engineer, Full Stack</dd>
           </div>
           <div>
             <dt>Base</dt>
