@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { SECTIONS, type SectionId } from "@/constants/Site";
+import { useStrings } from "@/i18n/LanguageContext";
 
 import { scrollToSection } from "@/utils/scrollToSection";
 
@@ -11,6 +12,7 @@ import styles from "./SectionNav.module.scss";
  * whichever section is crossing the middle of the viewport.
  */
 export const SectionNav = () => {
+  const t = useStrings();
   const [active, setActive] = useState<SectionId>("top");
 
   useEffect(() => {
@@ -37,7 +39,7 @@ export const SectionNav = () => {
   return (
     <nav
       className={styles.nav}
-      aria-label="Sections"
+      aria-label={t.topBar.sectionsNav}
       style={{ "--index": index } as React.CSSProperties}
     >
       {SECTIONS.map((section) => (
@@ -45,7 +47,7 @@ export const SectionNav = () => {
           key={section.id}
           href={`#${section.id}`}
           onClick={(e) => scrollToSection(e, section.id)}
-          aria-label={section.label}
+          aria-label={t.sections[section.id]}
           aria-current={section.id === active ? "true" : undefined}
         >
           {section.no}

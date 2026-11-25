@@ -15,6 +15,13 @@
   font-weight: 800;
   letter-spacing: -0.045em;
   line-height: 0.86;
+
+  // Japanese fills its whole square, so lines set this tight would collide.
+  &:lang(ja) {
+    font-size: clamp(52px, 7.4vw, 112px);
+    letter-spacing: -0.02em;
+    line-height: 1.12;
+  }
 }
 
 .links {

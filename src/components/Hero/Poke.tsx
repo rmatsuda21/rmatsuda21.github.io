@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 
+import { useStrings } from "@/i18n/LanguageContext";
 import { haptic } from "@/utils/haptic";
 
 import styles from "./Hero.module.scss";
@@ -12,6 +13,7 @@ const REST_MS = 2600;
  * Jigglypuff puffs up a little with every poke, then falls asleep.
  */
 export const Poke = () => {
+  const t = useStrings().hero;
   const [pokes, setPokes] = useState(0);
   const resting = pokes >= POKES_UNTIL_REST;
 
@@ -21,7 +23,7 @@ export const Poke = () => {
     return () => window.clearTimeout(id);
   }, [resting]);
 
-  const status = resting ? "Zzz" : pokes > 0 ? `Poked ×${pokes}` : "Poke me";
+  const status = resting ? "Zzz" : pokes > 0 ? t.poked(pokes) : t.pokeMe;
 
   return (
     <span className={styles.poke}>
@@ -42,7 +44,7 @@ export const Poke = () => {
         transition={{ type: "spring", stiffness: 500, damping: 9 }}
         whileTap={{ scale: 0.9 }}
       >
-        Jigglypuff (SSBU)
+        {t.mainValue}
       </motion.button>
       <span className={styles.pokeStatus} aria-live="polite">
         {status}

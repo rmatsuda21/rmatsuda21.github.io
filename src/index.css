@@ -22,7 +22,8 @@
   --pad: clamp(20px, 3.4vw, 48px);
   --cols: 4;
   --bar-height: 56px;
-  --font-pixel: "UnifontEX", ui-monospace, monospace;
+  /* DotGothic16 is also a 16px bitmap face; it supplies the Japanese. */
+  --font-pixel: "UnifontEX", "DotGothic16", ui-monospace, monospace;
 
   /* Aliases used by the Lab toys. */
   --text-color: var(--fg);
@@ -41,7 +42,9 @@ html[data-rev="light"] {
 }
 
 html {
-  font-family: "Rubik Variable", sans-serif;
+  /* Rubik has no Japanese, so that falls through to the system's gothic. */
+  font-family: "Rubik Variable", "Hiragino Sans", "Hiragino Kaku Gothic ProN",
+    "Yu Gothic", "Noto Sans JP", "Noto Sans CJK JP", Meiryo, sans-serif;
   font-size: 22px;
   font-weight: 600;
   font-style: normal;
@@ -53,6 +56,15 @@ html {
 
   background-color: var(--bg);
   color: var(--fg);
+}
+
+html:lang(ja) {
+  line-break: strict;
+}
+
+/* Where supported, headings and labels wrap between phrases rather than mid-word. */
+html:lang(ja) :is(h2, h3, dt, dd) {
+  word-break: auto-phrase;
 }
 
 /* The lens replaces the pointer only where there is a real, precise pointer. */

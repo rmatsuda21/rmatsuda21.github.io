@@ -14,6 +14,7 @@
 
   height: var(--bar-height);
   padding-inline: var(--pad);
+  white-space: nowrap;
   background-color: var(--bg);
   border-bottom: 1px solid var(--rule);
 }
@@ -69,6 +70,37 @@
       background-color: currentColor;
     }
   }
+}
+
+.lang {
+  @include pixel;
+
+  display: flex;
+  align-items: stretch;
+  height: 44px;
+  border: 1px solid var(--fg);
+
+  > span {
+    display: flex;
+    align-items: center;
+    padding-inline: 8px;
+  }
+
+  > [data-on="true"] {
+    background-color: var(--fg);
+    color: var(--bg);
+  }
+
+  @include fine-pointer {
+    &:hover > [data-on="false"] {
+      background-color: var(--rule);
+    }
+  }
+}
+
+// The full name only where the bar has room for it.
+.langLong {
+  display: none;
 }
 
 .nav {
@@ -154,17 +186,36 @@
   display: none;
 }
 
-@include on(desktop) {
-  .mark,
-  .nav {
-    display: flex;
-  }
-
-  .place {
-    display: inline;
+// Three controls and a clock do not fit across the narrowest phones.
+@media (max-width: 419px) {
+  .left {
+    gap: 12px;
   }
 
   .placeShort {
+    display: none;
+  }
+}
+
+@include on(desktop) {
+  .nav {
+    display: flex;
+  }
+}
+
+// The roomier labels wait until the nav has been given its space.
+@media (min-width: 1280px) {
+  .mark {
+    display: flex;
+  }
+
+  .place,
+  .langLong {
+    display: inline;
+  }
+
+  .placeShort,
+  .langShort {
     display: none;
   }
 }

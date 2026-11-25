@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "motion/react";
 
 import { ROLES, type Role } from "@/constants/Experience";
 import { Scramble } from "@/components/Scramble/Scramble";
+import { useLang, useStrings } from "@/i18n/LanguageContext";
 import { SectionHeader } from "@/components/SectionHeader/SectionHeader";
 
 import styles from "./Experience.module.scss";
@@ -41,14 +42,14 @@ const Row = ({ role, defaultOpen }: { role: Role; defaultOpen: boolean }) => {
             transition={{ type: "spring", stiffness: 300, damping: 32 }}
           >
             <div className={styles.initiatives}>
-              {role.initiatives.map((initiative) => (
-                <article key={initiative.name} className={styles.initiative}>
+              {role.initiatives.map((initiative, i) => (
+                <article key={i} className={styles.initiative}>
                   <h3>{initiative.name}</h3>
                   <p>{initiative.summary}</p>
 
                   <dl className={styles.figures} data-measure>
                     {initiative.figures.map((figure, i) => (
-                      <div key={figure.label}>
+                      <div key={i}>
                         <dd>
                           {/* Each cell decodes a beat after the one before it. */}
                           <Scramble text={figure.value} delay={i * 140} />
@@ -73,21 +74,24 @@ const Row = ({ role, defaultOpen }: { role: Role; defaultOpen: boolean }) => {
   );
 };
 
-export const Experience = () => (
-  <section id="experience" className={styles.section}>
-    <SectionHeader
-      no="02"
-      title="Experience"
-      meta={`${ROLES.length} roles · 2018—2026`}
-    />
-    <ol className={styles.ledger}>
-      {ROLES.map((role, i) => (
-        <Row
-          key={`${role.company}-${role.title}`}
-          role={role}
-          defaultOpen={i === 0}
-        />
-      ))}
-    </ol>
-  </section>
-);
+export const Experience = () => {
+  const { lang } = useLang();
+  const t = useStrings();
+  const roles = ROLES[lang];
+
+  return (
+    <section id="experience" className={styles.section}>
+      <SectionHeader
+        no="02"
+        title={t.sections.experience}
+        meta={t.experience.meta(roles.length)}
+      />
+      <ol className={styles.ledger}>
+        {roles.map((role, i) => (
+          // Keyed by position, so a row stays open across a language switch.
+          <Row key={i} role={role} defaultOpen={i === 0} />
+        ))}
+      </ol>
+    </section>
+  );
+};

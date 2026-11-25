@@ -24,6 +24,15 @@
           document.documentElement.dataset.rev = "light";
         }
       } catch (e) {}
+
+      // Likewise the language (same order as readLang in src/i18n/lang.ts).
+      try {
+        var lang =
+          new URLSearchParams(location.search).get("lang") ||
+          localStorage.getItem("lang") ||
+          navigator.language;
+        if (/^ja/i.test(lang)) document.documentElement.lang = "ja";
+      } catch (e) {}
     </script>
   </head>
   <body>

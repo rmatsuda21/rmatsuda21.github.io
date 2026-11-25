@@ -159,6 +159,8 @@
   margin-left: -8px;
   transform-origin: left center;
   font-weight: 500;
+  // Japanese may only wrap at the bracket, not part-way through a word.
+  word-break: keep-all;
 
   &:disabled {
     background-color: var(--fg);

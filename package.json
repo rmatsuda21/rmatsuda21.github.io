@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@fontsource-variable/rubik": "^5.2.8",
+    "@fontsource/dotgothic16": "^5.3.1",
     "@fontsource/unifontex": "^5.2.6",
     "@types/node": "^24.2.1",
     "classnames": "^2.5.1",

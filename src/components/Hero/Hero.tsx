@@ -1,4 +1,5 @@
 import { LINKS } from "@/constants/Site";
+import { useStrings } from "@/i18n/LanguageContext";
 import { Name } from "./Name";
 import { Poke } from "./Poke";
 import { StackRuler } from "./StackRuler";
@@ -6,41 +7,42 @@ import { StackRuler } from "./StackRuler";
 import styles from "./Hero.module.scss";
 
 export const Hero = () => {
+  const t = useStrings().hero;
+
   return (
     <section id="top" className={styles.hero}>
       <Name />
 
       <div className={styles.below}>
         <p className={styles.claim} data-measure>
-          Howdy! I'm a fullstack engineer. I like building things that are
-          fast, feel good to use, and are worth coming back to.
+          {t.claim}
         </p>
 
         <dl className={styles.spec}>
           <div>
-            <dt>Role</dt>
-            <dd>Software Engineer, Full Stack</dd>
+            <dt>{t.role}</dt>
+            <dd>{t.roleValue}</dd>
           </div>
           <div>
-            <dt>Base</dt>
-            <dd>Jersey City, NJ</dd>
+            <dt>{t.base}</dt>
+            <dd>{t.baseValue}</dd>
           </div>
           <div className={styles.stackRow}>
-            <dt>Stack</dt>
+            <dt>{t.stack}</dt>
             <dd>
               <StackRuler />
             </dd>
           </div>
           <div>
-            <dt>Main</dt>
+            <dt>{t.main}</dt>
             <dd>
               <Poke />
             </dd>
           </div>
           <div>
-            <dt>Contact</dt>
+            <dt>{t.contact}</dt>
             <dd className={styles.links}>
-              <a href={`mailto:${LINKS.email}`}>Email</a>
+              <a href={`mailto:${LINKS.email}`}>{t.email}</a>
               <a href={LINKS.github} target="_blank" rel="noreferrer">
                 GitHub
               </a>

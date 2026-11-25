@@ -3,6 +3,10 @@ import { useCallback, useEffect, useRef } from "react";
 import { REDUCED_MOTION } from "@/hooks/useMediaQuery";
 
 const GLYPHS = "ABCDEFGHJKLMNPQRSTUVWXYZ0123456789#%&$@+";
+// Japanese text decodes out of katakana, which is as wide as what it settles
+// into, so the line does not jump about while it runs.
+const KANA = "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワン";
+const isWide = (char: string) => char.charCodeAt(0) >= 0x3000;
 const TICK_MS = 40;
 const LEAD_MS = 240;
 const PER_CHAR_MS = 80;
@@ -57,7 +61,8 @@ export const Scramble = ({
             out += text[i];
           } else {
             done = false;
-            out += GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
+            const pool = isWide(text[i]) ? KANA : GLYPHS;
+            out += pool[Math.floor(Math.random() * pool.length)];
           }
         }
 

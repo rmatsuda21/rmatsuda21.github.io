@@ -3,12 +3,14 @@ import { motion, useAnimationControls, useInView } from "motion/react";
 
 import { Scramble } from "@/components/Scramble/Scramble";
 import { LINKS } from "@/constants/Site";
+import { useStrings } from "@/i18n/LanguageContext";
 import { haptic } from "@/utils/haptic";
 
 import styles from "./Contact.module.scss";
 
 const ROWS = [
-  { label: "Email", value: LINKS.email, href: `mailto:${LINKS.email}` },
+  // The one label that is not a brand name; `null` takes the translated word.
+  { label: null, value: LINKS.email, href: `mailto:${LINKS.email}` },
   { label: "GitHub", value: "rmatsuda21", href: LINKS.github },
   { label: "LinkedIn", value: "reomatsuda", href: LINKS.linkedin },
   { label: "CodePen", value: "rmatsuda", href: LINKS.codepen },
@@ -30,6 +32,7 @@ const STAMP_DELAY_MS = 900;
  * the block takes the hit; press the stamp to bring it down again.
  */
 const TitleBlock = () => {
+  const t = useStrings().contact;
   const blockRef = useRef<HTMLElement>(null);
   const inView = useInView(blockRef, { once: true, amount: 0.9 });
   const stamp = useAnimationControls();
@@ -72,26 +75,26 @@ const TitleBlock = () => {
     <motion.footer ref={blockRef} className={styles.titleBlock} animate={block}>
       <dl className={styles.cells}>
         <div className={styles.wide}>
-          <dt>Title</dt>
+          <dt>{t.blockTitle}</dt>
           <dd>
             {/* Decodes when it scrolls into view, and again on hover. */}
-            {inView ? <Scramble text="End of sheet" perChar={45} /> : " "}
+            {inView ? <Scramble text={t.endOfSheet} perChar={45} /> : " "}
           </dd>
         </div>
         <div>
-          <dt>Drawn by</dt>
+          <dt>{t.drawnBy}</dt>
           <dd>Reo Matsuda</dd>
         </div>
         <div>
-          <dt>Sheet</dt>
-          <dd>1 of 1</dd>
+          <dt>{t.sheet}</dt>
+          <dd>{t.sheetValue}</dd>
         </div>
         <div>
-          <dt>Printed</dt>
+          <dt>{t.printed}</dt>
           <dd>{PRINTED}</dd>
         </div>
         <div>
-          <dt>Built with</dt>
+          <dt>{t.builtWith}</dt>
           <dd>React + Motion</dd>
         </div>
       </dl>
@@ -99,7 +102,7 @@ const TitleBlock = () => {
       <motion.button
         type="button"
         className={styles.stamp}
-        aria-label="Stamp it again"
+        aria-label={t.stampAgain}
         initial={{ opacity: 0 }}
         animate={stamp}
         onClick={() => {
@@ -107,42 +110,46 @@ const TitleBlock = () => {
           slam();
         }}
       >
-        <span>Approved</span>
+        <span>{t.approved}</span>
         <small>{STAMPED}</small>
       </motion.button>
     </motion.footer>
   );
 };
 
-export const Contact = () => (
-  <section id="contact" className={styles.section}>
-    <div className={styles.body}>
-      <h2 className={styles.title} data-measure>
-        Say howdy.
-      </h2>
-      <ul className={styles.links}>
-        {ROWS.map((row) => {
-          const external = !row.href.startsWith("mailto:");
-          return (
-            <li key={row.label}>
-              <a
-                href={row.href}
-                data-lens="row"
-                {...(external && { target: "_blank", rel: "noreferrer" })}
-              >
-                <span className={styles.label}>{row.label}</span>
-                <span className={styles.value}>
-                  {row.value}
-                  <span className={styles.arrow} aria-hidden="true">
-                    ↗
+export const Contact = () => {
+  const t = useStrings().contact;
+
+  return (
+    <section id="contact" className={styles.section}>
+      <div className={styles.body}>
+        <h2 className={styles.title} data-measure>
+          {t.title}
+        </h2>
+        <ul className={styles.links}>
+          {ROWS.map((row) => {
+            const external = !row.href.startsWith("mailto:");
+            return (
+              <li key={row.href}>
+                <a
+                  href={row.href}
+                  data-lens="row"
+                  {...(external && { target: "_blank", rel: "noreferrer" })}
+                >
+                  <span className={styles.label}>{row.label ?? t.email}</span>
+                  <span className={styles.value}>
+                    {row.value}
+                    <span className={styles.arrow} aria-hidden="true">
+                      ↗
+                    </span>
                   </span>
-                </span>
-              </a>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
-    <TitleBlock />
-  </section>
-);
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+      <TitleBlock />
+    </section>
+  );
+};

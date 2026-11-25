@@ -53,6 +53,8 @@
   font-size: 16px;
   font-weight: 400;
   line-height: 1.35;
+  // Japanese wraps between phrases where the browser can tell them apart.
+  word-break: auto-phrase;
 }
 
 .stack {
@@ -98,8 +100,41 @@
   }
 }
 
-.thumb {
+.shot {
   margin-bottom: 16px;
+}
+
+// Steps through a project's screenshots. Sits flush under the figure it pages.
+.pager {
+  @include pixel;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid var(--fg);
+  border-top: 0;
+
+  button {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+
+    &:first-child {
+      border-right: 1px solid var(--fg);
+    }
+
+    &:last-child {
+      border-left: 1px solid var(--fg);
+    }
+
+    @include fine-pointer {
+      &:hover {
+        background-color: var(--fg);
+        color: var(--bg);
+      }
+    }
+  }
 }
 
 .panel {
@@ -173,6 +208,28 @@
     max-height: calc(100svh - 2 * clamp(16px, 4vw, 56px));
     border: 1px solid #fff;
   }
+
+  // Leaves room under the screenshot for the pager.
+  &[data-paged] img {
+    max-height: calc(100svh - 2 * 76px);
+  }
+}
+
+.lightboxPager {
+  --fg: #000;
+  --bg: #fff;
+
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  width: 176px;
+  translate: -50% 0;
+  background-color: #fff;
+  color: #000;
+
+  .pager {
+    border: 0;
+  }
 }
 
 .close {
@@ -209,7 +266,7 @@
     display: block;
   }
 
-  .thumb {
+  .shot {
     display: none;
   }
 

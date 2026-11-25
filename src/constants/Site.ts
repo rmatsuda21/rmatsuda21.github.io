@@ -1,9 +1,10 @@
+// Their labels are in `i18n/strings.ts`, under `sections`.
 export const SECTIONS = [
-  { id: "top", no: "01", label: "Subject" },
-  { id: "experience", no: "02", label: "Experience" },
-  { id: "work", no: "03", label: "Work" },
-  { id: "lab", no: "04", label: "Lab" },
-  { id: "contact", no: "05", label: "Contact" },
+  { id: "top", no: "01" },
+  { id: "experience", no: "02" },
+  { id: "work", no: "03" },
+  { id: "lab", no: "04" },
+  { id: "contact", no: "05" },
 ] as const;
 
 export type SectionId = (typeof SECTIONS)[number]["id"];

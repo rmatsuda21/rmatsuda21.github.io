@@ -6,6 +6,7 @@ import {
   useMediaQuery,
 } from "@/hooks/useMediaQuery";
 
+import { useStrings } from "@/i18n/LanguageContext";
 import { haptic } from "@/utils/haptic";
 
 import styles from "./Hero.module.scss";
@@ -29,6 +30,7 @@ const BAR_HEIGHT = 56;
  * The read-out above shows the lightest weight currently on screen.
  */
 export const Name = () => {
+  const t = useStrings().hero;
   const finePointer = useMediaQuery(FINE_POINTER);
   const nameRef = useRef<HTMLHeadingElement>(null);
   const readoutRef = useRef<HTMLSpanElement>(null);
@@ -159,10 +161,10 @@ export const Name = () => {
   return (
     <>
       <div className={styles.meta}>
-        <span>Sheet 01 — Subject</span>
+        <span>{t.sheet}</span>
         <span className={styles.readout}>
           Wght <span ref={readoutRef}>{REST_WEIGHT}</span> ·{" "}
-          {finePointer ? "Hover or click the name" : "Tap it or scroll"}
+          {finePointer ? t.hintFine : t.hintTouch}
         </span>
       </div>
 

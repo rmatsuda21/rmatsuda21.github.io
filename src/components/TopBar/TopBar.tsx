@@ -3,6 +3,7 @@ import { createPortal } from "react-dom";
 
 import { REDUCED_MOTION } from "@/hooks/useMediaQuery";
 import { SECTIONS } from "@/constants/Site";
+import { useLang, useStrings } from "@/i18n/LanguageContext";
 
 import { haptic } from "@/utils/haptic";
 import { scrollToSection } from "@/utils/scrollToSection";
@@ -39,6 +40,7 @@ const clock = new Intl.DateTimeFormat("en-US", {
 });
 
 const Clock = () => {
+  const t = useStrings().topBar;
   const [now, setNow] = useState(() => clock.format(new Date()));
 
   useEffect(() => {
@@ -48,8 +50,8 @@ const Clock = () => {
 
   return (
     <span className={styles.clock}>
-      <span className={styles.place}>Jersey City, NJ · </span>
-      <span className={styles.placeShort}>NJ · </span>
+      <span className={styles.place}>{t.place} · </span>
+      <span className={styles.placeShort}>{t.placeShort} · </span>
       <time>{now}</time> ET
     </span>
   );
@@ -100,7 +102,39 @@ const NavLink = ({ id, no, label }: { id: string; no: string; label: string }) =
   );
 };
 
+/**
+ * One button that flips between the two languages, with the current one
+ * filled in. Its accessible name is written in the language it switches to,
+ * since that is who it is for.
+ */
+const LangSwitch = () => {
+  const { lang, setLang } = useLang();
+  const other = lang === "en" ? "ja" : "en";
+
+  return (
+    <button
+      type="button"
+      className={styles.lang}
+      onClick={() => {
+        haptic(12);
+        setLang(other);
+      }}
+      lang={other}
+      aria-label={other === "ja" ? "日本語に切り替え" : "Switch to English"}
+    >
+      <span aria-hidden="true" data-on={lang === "en"}>
+        EN
+      </span>
+      <span aria-hidden="true" data-on={lang === "ja"}>
+        <span className={styles.langLong}>日本語</span>
+        <span className={styles.langShort}>JA</span>
+      </span>
+    </button>
+  );
+};
+
 export const TopBar = () => {
+  const t = useStrings();
   const [rev, setRev] = useState<Rev>(readRev);
   // Where the wipe is heading. Read by the transition-end handler.
   const target = useRef<Rev>(rev);
@@ -171,13 +205,13 @@ export const TopBar = () => {
   return (
     <header className={styles.bar}>
       <div className={styles.left}>
-        <span className={styles.mark}>RM—Portfolio</span>
+        <span className={styles.mark}>{t.topBar.mark}</span>
         <button
           type="button"
           className={styles.rev}
           onClick={toggle}
           aria-pressed={rev === "light"}
-          aria-label="Light revision"
+          aria-label={t.topBar.lightRevision}
         >
           <span aria-hidden="true">Rev {rev === "light" ? "2.1" : "2.0"}</span>
           <span className={styles.switch} aria-hidden="true">
@@ -185,15 +219,16 @@ export const TopBar = () => {
             <i />
           </span>
         </button>
+        <LangSwitch />
       </div>
 
-      <nav className={styles.nav} aria-label="Sections">
+      <nav className={styles.nav} aria-label={t.topBar.sectionsNav}>
         {SECTIONS.slice(1).map((section) => (
           <NavLink
             key={section.id}
             id={section.id}
             no={section.no}
-            label={section.label}
+            label={t.sections[section.id]}
           />
         ))}
       </nav>
